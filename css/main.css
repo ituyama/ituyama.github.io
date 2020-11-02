@@ -1,3 +1,6 @@
 .selector-for-some-widget {
   box-sizing: content-box;
 }
+html{
+  background-color: #b0e0e6;
+}
