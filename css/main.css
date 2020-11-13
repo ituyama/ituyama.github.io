@@ -20,7 +20,12 @@ width:100vw;
 .back-white{
   background-color: white;
 }
-.center{
-    text-align : center;
-    margin: 10px auto;
+
+.card{
+  margin-top: 30px;
+  text-align : center;
+}
+.title{
+  text-align : center;
+  margin: 10px auto;
 }
