@@ -129,16 +129,22 @@ title: "YamanoItsuki"
       </div>
     </div>
     <div class="row title">
-      <h1>blog</h1>
+      <div class="title">
+          <h1>blog</h1>
+      </div>
+
     </div>
     <div class="row title">
-      <ul>
-        {% for post in site.posts %}
-        <li>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-        {% endfor %}
-      </ul>
+      <div class="title">
+        <ul>
+          {% for post in site.posts %}
+          <li>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
     </div>
   </div>
 
