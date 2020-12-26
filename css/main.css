@@ -1,6 +1,4 @@
-.selector-for-some-widget {
-  box-sizing: content-box;
-}
+
 body{
   background-color: #f5f5f7;
   font-family: 'Noto Sans JP', sans-serif;
@@ -9,30 +7,19 @@ body{
   border-radius: 50%;
 
 }
-.main{
-width:100vw;
-}
+
 .padding{
   padding:50px;
 }
-.center{
-  text-align:center;
-}
 
 
-.card{
-  margin-top: 30px;
-  text-align : center;
-}
+
 .title{
   text-align : center;
   margin: 0px auto;
   font-family: 'Julius Sans One', sans-serif;
 }
-.center{
-  text-align : center;
-  margin: 10px auto;
-}
+
 .mainfont{
  font-family: "M PLUS 1p";
 }
