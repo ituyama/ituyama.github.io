@@ -44,3 +44,6 @@ width:100vw;
 ul {
   list-style: none;
 }
+body,div{
+  font-family: 'Noto Sans JP', sans-serif;
+}
