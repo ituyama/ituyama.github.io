@@ -28,3 +28,7 @@ border-color:#38444d;
 .ids{
   color:gray;
 }
+img{
+  width: 100%;
+  height: auto;
+}
