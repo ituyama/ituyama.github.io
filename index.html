@@ -107,25 +107,29 @@ title: YamanoItsuki
       </div>
     </div>
   </div>
-
   <div class="container">
-<div class="row card bigcard">
-  <div class="row card-deck">
-    {% for post in site.posts %}
-    <div class="card card-col">
-      <img src="https://ituyama.com/media/posts/{{ post.img }}.png" style="width:100%;" class="card-img-top img_wrap">
-      <div class="card-body">
-        <div class="card-title">
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </div>
-      </div>
-
+    <div class="row center">
+      <p class="center" style="margin-top:30px; font-size:30px;">Blog</p>
     </div>
-
-    {% endfor %}
-
   </div>
-</div>
+  <div class="container">
+    <div class="row card bigcard">
+      <div class="row card-deck">
+        {% for post in site.posts %}
+        <div class="card card-col">
+          <img src="https://ituyama.com/media/posts/{{ post.img }}.png" style="width:100%;" class="card-img-top img_wrap">
+          <div class="card-body">
+            <div class="card-title">
+              <a href="{{ post.url }}">{{ post.title }}</a>
+            </div>
+          </div>
+
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
 
 
   </div>
