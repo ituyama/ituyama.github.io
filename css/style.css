@@ -33,6 +33,10 @@
   background-color: white;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.bigcard{
+  padding:20px;
+  background-color: rgba(0,0,0,0.0.5);
+}
 .c-text{
   color:black;
 }
