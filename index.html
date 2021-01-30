@@ -107,12 +107,13 @@ title: YamanoItsuki
       </div>
     </div>
   </div>
+
   <div class="container">
 
       <div class="row card-deck">
         {% for post in site.posts %}
-        <div class="card card-col col-md-12 col-lg-4 col-xl-4">
-          <img src="https://ituyama.com/media/posts/{{ post.img }}.png" style="width:100%;" class="card-img-top">
+        <div class="card card-col">
+          <img src="https://ituyama.com/media/posts/{{ post.img }}.png" style="width:100%;" class="card-img-top img_wrap">
           <div class="card-body">
             <div class="card-title">
               <a href="{{ post.url }}">{{ post.title }}</a>
