@@ -19,7 +19,7 @@ border-color:#38444d;
   border-radius:50%;
 
   border:3px solid black;
-  position:absolute; top:120px; left:20px; z-index: 2;
+  position:relative; top:-270px; left:20px; z-index: 2;
 
 }
 .name{
@@ -28,4 +28,14 @@ border-color:#38444d;
 }
 .ids{
   color:gray;
+}
+h5{
+  color: white;
+  padding:20px;
+}
+.navbar{
+  border: thin solid;
+
+  background-color:#15202b;
+border-color:#38444d;
 }
