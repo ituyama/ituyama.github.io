@@ -78,7 +78,7 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .p-title{
   font-size:30px;
-  font-color:black;
+
 
 }
 body{
@@ -89,9 +89,7 @@ body{
 .margin-img{
   margin-top:100px;
 }
-.margin-cards{
-  margin:30px;
-}
+
 .card-col{
   background-color:rgba(255,255,255,0.5);
 }
