@@ -96,3 +96,6 @@ body{
 .card-col{
   background-color:rgba(255,255,255,0.5);
 }
+.navbar-top{
+  margin-top:50px;
+}
