@@ -46,13 +46,7 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 .c-text{
   color:black;
 }
-.navbar{
-  border-radius: 10px;
-  background-color: white;
-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin:15px;
 
-}
 .logo-margin{
   margin:5px;
 }
@@ -104,7 +98,7 @@ body{
 
 
 .navbar {
-  border-radius: 20px;
+  border-radius: 10px;
   margin-top: 20px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
