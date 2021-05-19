@@ -34,7 +34,7 @@ width:90%;
 border-radius: 100%;
 }
 .card {
-  border-radius: 10px;
+border-radius: 0px;
   background-color: white;
 border: none;
 margin: 10px;
