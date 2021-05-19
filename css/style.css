@@ -116,3 +116,6 @@ img{
   text-align: center;
   margin: 0 auto;
 }
+.gray{
+  color: rgb(105, 105, 105);
+}
