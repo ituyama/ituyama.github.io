@@ -53,23 +53,7 @@ margin: 10px;
 .logo-margin{
   margin:5px;
 }
-.btn{
-  border-radius: 10px;
-  font-family: 'Raleway', sans-serif;
-  background-color: #ff4ac4;
-  color: white;
-}
-.sec-0{
-  background-image: linear-gradient(-90deg, #D0008C, #89008D);
-  padding-top: 10px;
-}
-.sec-1{
-  position: relative;
-  background: linear-gradient(-90deg, #D0008C, #89008D);
-  height: 10vh;
-  border-bottom-left-radius: 50% 50%;
-  border-bottom-right-radius: 50% 50%;
-}
+
 .white{
   background-color: white;
 }
