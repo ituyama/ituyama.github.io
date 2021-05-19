@@ -117,5 +117,9 @@ img{
   margin: 0 auto;
 }
 .gray{
-  color: rgb(105, 105, 105);
+  color: rgb(121, 121, 121);
+}
+.logos{
+  font-weight: bold;
+  font-style: 30px;
 }
