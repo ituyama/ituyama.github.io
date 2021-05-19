@@ -2,6 +2,7 @@
 title: "portfolioを改装した話"
 date: "2021-01-30 16:04:56 +0900"
 img: "01"
+categories:　"technology"
 ---
 # portfolioを久々に改装しました。
 どうも山野です。  
