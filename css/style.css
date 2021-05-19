@@ -104,3 +104,11 @@ background-color: #f6f6f4;
 .notosans{
   font-family: 'Noto Sans JP', sans-serif;
 }
+.skills{
+  background-color: #333333;
+  font-family: 'Fira Code', monospace;
+  color: white;
+}
+.yellow{
+  color: yellow;
+}
