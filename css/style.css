@@ -1,0 +1,75 @@
+body{
+font-family: 'Noto Sans JP', sans-serif;
+background: whitesmoke;
+background-color: #dffaf6;
+background-image:
+ repeating-linear-gradient(45deg,#fff, #fff 25px,transparent 0, transparent 50px);
+height: 100vh;
+width: 100vw;
+z-index: 1;
+ 
+}
+.title{
+
+font-weight: 900;
+
+
+color:#f86e6e;
+font-size: 3em;
+text-align: center;
+margin-top: 30vh;
+}
+.disc{
+    color:#f86e6e;
+    font-weight: 900;
+    text-align: center;
+    font-size: 30px;
+    text-align: center;
+}
+.btn{
+padding: 10px;
+background:#baf3eb;
+border: 6px solid #4ca99c;
+border-radius: 20px;
+color: #4ca99c;
+font-weight: 900;
+
+text-align: center;
+}
+.cent{
+text-align: center;
+margin:0 auto;
+padding: 0  auto;
+margin-top: 20px;
+}
+.hirame{
+border-radius: 20px;
+border: 12px solid #4ca99c;
+
+}
+.icon{
+    padding: 0 auto;
+    margin: 0 auto;
+    border-radius: 100%;
+    margin-top: 15vh;
+    text-align: center;
+    border: 12px solid #4ca99c ;
+}
+
+i{
+    color: #4ca99c;
+  
+    margin: 15px;
+
+    font-size: 37px;
+    border-radius: 100%;
+    z-index: 1;
+}
+.frames{
+
+    border: 30px  solid #cbf1ec;
+    position: fixed;
+    z-index: 1000;
+    height: 100vh;
+    width: 100vw;
+}
