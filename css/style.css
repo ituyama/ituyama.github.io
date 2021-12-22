@@ -73,3 +73,10 @@ i{
     height: 100vh;
     width: 100vw;
 }
+.progress{
+    border: 4px solid #4ca99c ;
+    border-radius: 20px;
+}
+.bg-success{
+    background-color: blanchedalmond;
+}
