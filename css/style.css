@@ -1,30 +1,60 @@
 body{
 font-family: 'Noto Sans JP', sans-serif;
 background: whitesmoke;
-background-color: #dffaf6;
-background-image:
- repeating-linear-gradient(45deg,#fff, #fff 25px,transparent 0, transparent 50px);
-height: 100vh;
-width: 100vw;
+
+
+
 z-index: 1;
  
+}
+h2{
+    text-align: left;
+}
+h1{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    color:#20123a;
+    text-align: center;
+    padding: 0 auto;
+    margin: 40px auto;
+}
+
+.navbar-brand{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    color:#20123a;
+}
+.card{
+    
+    background: white;
+    border: 2px solid #20123a;
+    margin-top: 30px;
+}
+img,.ogp{
+    width: 1200px;
+    height: 630px;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+.icons{
+    border-radius: 100%;
+    border: 2px solid #20123a;
+    margin: 20px;
 }
 .title{
 
 font-weight: 900;
 
 
-color:#f86e6e;
+color:#20123a;
 font-size: 2.5em;
 text-align: center;
 margin-top: 30vh;
 }
 .disc{
-    color:#f86e6e;
-    font-weight: 900;
-    text-align: center;
-    font-size: 1rem;
-    text-align: center;
+ padding: 20px;
 }
 .btn{
 padding: 10px;
@@ -52,6 +82,7 @@ border: 12px solid #4ca99c;
     margin: 0 auto;
     border-radius: 100%;
     margin-top: 15vh;
+    margin: 30px;
     text-align: center;
     border: 12px solid #4ca99c ;
 }
@@ -79,4 +110,14 @@ i{
 }
 .bg-success{
     background-color: blanchedalmond;
+
+}
+a:active{
+    color: #20123a;
+}
+a:hover{
+    color: #20123a;
+}
+a{
+    color: #20123a;
 }
