@@ -88,7 +88,7 @@ const Skill = { template: `
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row">
-                            <img src="https://www.about.xtraveler.jp/img/yamano.png" class="icons" alt="">
+                            <img src="yamanopic.png" class="icons" alt="">
                         </div>
                     </div>
                     <div class="col-md-6">
