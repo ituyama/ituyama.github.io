@@ -213,12 +213,13 @@ const Skill = { template: `
     </div>
 `}
     const index = { template:
-    `<div>
+    `<div class="container">
         <div class="title"> YamanoItsuki</div>
         <div class="row">
             <div class="col-md-12 cent">
                 <router-link to="/Skill">Skill</router-link>/<router-link to="/Product">Product</router-link>/<router-link to="/Career">Career</router-link>/<a href="https://twitter.com/PM80437319">Twitter</a>
             </div>
+        </div>
         </div>
         `}
 
