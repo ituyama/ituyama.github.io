@@ -8,7 +8,9 @@ body{
 
   background-color: #f6f6f4;
 }
-
+.container{
+  background-color: white;
+}
 a{
   color: black;
 }
@@ -23,11 +25,14 @@ h1,h5{
 .title{
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 900;
-  font-size: 100px;
+  font-size: 4vmax;
+
   background:linear-gradient(135deg, #7b57ff 0%,#fd0495 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: 2s;
+  max-width: 90vw;
+
   
 }
 :hover.title{
