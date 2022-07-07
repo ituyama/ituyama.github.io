@@ -1,125 +1,155 @@
-/* body {
-  background-image: linear-gradient(-90deg, #D0008C, #89008D);
-} */
-
-.main-title {
-
-  font-family: 'Raleway', sans-serif;
-  color: white;
-  font-size: 100px;
-}
-.margin{
-    margin-top:5vh;
-}
-.center {
-  text-align: center;
-  margin: 0px auto;
-}
-.margins{
-  margin-top: 60px;
-}
-.text {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 30px;
-  color: white;
-}
-
-.ex {
-  font-size: 20px;
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-
-}
-.icon{
-width:150px;
-border-radius: 100%;
-margin:0 auto;
-text-align: center;
-}
-.card {
-border-radius: 0px;
-  background-color: white;
-border: none;
-margin: 10px;
-}
-.bigcard{
-  padding:20px;
-  background-color:rgba(255,255,255,0.5);
-
-}
-.c-text{
-  color:black;
-}
-
-.logo-margin{
-  margin:5px;
-}
-
-.white{
-  background-color: white;
-}
-.btn-1{
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-color:white;
-  color:black;
-  border-radius:50px;
-}
-.p-title{
-  font-size:30px;
-
-
-}
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 body{
-background-color: #f6f6f4;
+background-color: azure;
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: center;
 }
-.margin-img{
-  margin-top:100px;
+.navbar-brand{
+    text-align: center;
+    font-weight: 900;
+}
+.icons{
+border-radius: 100%;
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 auto;
+
+}
+.center{
+text-align: center;
+margin: 0 auto;
+padding: 0 auto;
+}
+h1{
+    font-weight: 900;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
-.card-col{
-  background-color:rgba(255,255,255,0.5);
-}
-
-
-.navbar {
-
-  background-color: #55c500;
-  border-bottom:5px,#333333;
+body {
+    background-color: #f6f6f4;
+  }
   
-}
-.notosans{
-  font-family: 'Noto Sans JP', sans-serif;
-}
-.skills{
-  background-color: #333333;
-  font-family: 'Fira Code', monospace;
-  color: white;
-}
-.yellow{
-  color: yellow;
-}
+  a {
+    color: black;
+  }
+  
+  h1,
+  h5 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+  }
+  
+  h1 {
+    background: linear-gradient(135deg, #7b57ff 0%, #fd0495 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  h6 {
+    color: gray;
+  }
+  
 
-	
-a {
- 
-color:black;
+  
+  .center {
+    text-align: center;
+    margin: 0px auto;
+  }
+  
+  .top {
+    margin-top: 20vh;
+  }
+  
+  .title {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: 5.5vmax;
+  
+    background: linear-gradient(135deg, #7b57ff 0%, #fd0495 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 2s;
+    max-width: 90vw;
+  }
+  
+  :hover.title {
+  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .black {
+    background: black;
+    color: white;
+    transition: 3s;
+    margin-top: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+  
+  .black:hover {
+    background: rgb(51, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    color: white;
+  }
+  
+  .btn {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+  }
+  
+  .mai {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    text-align: left;
+  }
+  
+  .forme {
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    height: 300px;
+  }
+  
+  .forme:active {
+    border: 1px solid black;
+  }
+  
+  .badge-black {
+    background-color: black;
+    color: white;
+  }
+  
+  .badge {
+    color: white;
+    margin: 10px;
+    background: #7b57ff;
+    margin: 10px;
+  }
+  .badge-skill{
+    color: white;
+    margin: 0px;
+    background: #7b57ff;
+  }
+  .card{
+    border: none;
+    color: white;
+    background: linear-gradient(135deg, #6646d7 0%, #950057 100%);
+    width: 100%;
 
- 
-}
-.profiles{
-  font-size: 35px;
-}
-.names{
-  margin-top: 30px;
-}
-img{
-  text-align: center;
-  margin: 0 auto;
-}
-.gray{
-  color: rgb(121, 121, 121);
-}
-.logos{
-  font-weight: bold;
-  font-style: 30px;
-  color: white;
-}
+  }
+  .techs{
+    color: white;
+    font-weight: 900;
+    margin: 10px;
+  }
+  .side{
+   width: 100%;
+  }
+  .roll{
+    max-height:90vh ;
+    overflow: scroll;
+  }
+  .iconimg{
+    border-radius: 5px;
+  }
