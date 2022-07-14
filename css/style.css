@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 body{
-background-color: azure;
     font-family: 'Noto Sans JP', sans-serif;
     text-align: center;
+    background-color: white;
 }
 .navbar-brand{
     text-align: center;
@@ -26,9 +26,7 @@ h1{
     font-family: 'Noto Sans JP', sans-serif;
 }
 
-body {
-    background-color: #f6f6f4;
-  }
+
   
   a {
     color: black;
@@ -40,22 +38,12 @@ body {
     font-weight: 900;
   }
   
-  h1 {
-    background: linear-gradient(135deg, #7b57ff 0%, #fd0495 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
+
   h6 {
     color: gray;
   }
   
 
-  
-  .center {
-    text-align: center;
-    margin: 0px auto;
-  }
   
   .top {
     margin-top: 20vh;
@@ -65,10 +53,8 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 900;
     font-size: 5.5vmax;
-  
-    background: linear-gradient(135deg, #7b57ff 0%, #fd0495 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  color: black;
+
     transition: 2s;
     max-width: 90vw;
   }
@@ -134,7 +120,7 @@ body {
   .card{
     border: none;
     color: white;
-    background: linear-gradient(135deg, #6646d7 0%, #950057 100%);
+   
     width: 100%;
 
   }
@@ -155,4 +141,16 @@ body {
   }
   h4{
     font-weight: 300;
+  }
+
+  .jumbotron-fluid{
+    background-color: white;
+    height: 90vh;
+  }
+  .messages{
+  margin-top: 20vh;
+  }
+  #canvas3d{
+    width: 100vw;
+    height: 100vh;
   }
