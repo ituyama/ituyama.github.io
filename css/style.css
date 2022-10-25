@@ -146,10 +146,7 @@ body {
   .side{
    width: 100%;
   }
-  .roll{
-    max-height:90vh ;
-    overflow: scroll;
-  }
+
   .iconimg{
     border-radius: 5px;
   }
