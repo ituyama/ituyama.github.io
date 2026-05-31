@@ -4,6 +4,7 @@ import profileData from "@/data/profile.json";
 export type Social = { name: string; handle: string; url: string; icon: string };
 export type ProfileLink = { label: string; url: string; icon: string };
 export type Company = { name: string; role: string };
+export type GalleryItem = { src: string; caption: string };
 export type Profile = {
   nameJa: string;
   nameEn: string;
@@ -11,12 +12,16 @@ export type Profile = {
   avatar: string;
   birthday: string;
   location: string;
+  highSchool: string;
   university: string;
   companies: Company[];
   skills: string[];
+  car: string;
+  carImage: string;
   email: string;
   activityGraph: string;
   about: string;
+  gallery: GalleryItem[];
   socials: Social[];
   links: ProfileLink[];
 };
@@ -55,12 +60,18 @@ export function profileContext(): string {
     age !== null ? `年齢: ${age}歳（この値をそのまま使う。再計算しない）` : "",
     profile.tagline ? `キャッチ: ${profile.tagline}` : "",
     profile.about ? `自己紹介: ${profile.about}` : "",
-    profile.university ? `学歴: ${profile.university}` : "",
+    profile.university || profile.highSchool
+      ? `学歴:\n${[profile.university, profile.highSchool].filter(Boolean).join("\n")}`
+      : "",
     profile.companies.length
       ? `所属:\n${profile.companies.map((c) => `${c.name} — ${c.role}`).join("\n")}`
       : "",
     profile.location ? `拠点: ${profile.location}` : "",
     profile.skills.length ? `スキル: ${profile.skills.join(", ")}` : "",
+    profile.car ? `愛車: ${profile.car}` : "",
+    profile.gallery.length
+      ? `写真:\n${profile.gallery.map((g) => `${g.caption}: ${g.src}`).join("\n")}`
+      : "",
     profile.email ? `メール: ${profile.email}` : "",
     profile.activityGraph ? `GitHub草グラフ: ${profile.activityGraph}` : "",
     socials ? `SNS:\n${socials}` : "",
@@ -147,22 +158,23 @@ export function buildLayout(p: Profile = profile): BentoLayout {
     });
   }
 
-  if (p.university) {
+  const education = [p.university, p.highSchool].filter(Boolean);
+  if (education.length) {
     tiles.push({
       type: "text",
       title: "Education",
-      body: p.university,
+      body: education.join("\n"),
       accent: nextAccent(),
       span: 6,
-      rowSpan: 1,
+      rowSpan: education.length > 1 ? 2 : 1,
       icon: "mortarboard",
     });
   }
 
   if (p.location) {
     tiles.push({
-      type: "stat",
-      title: "Location",
+      type: "map",
+      title: "住んでるところ",
       body: p.location,
       accent: nextAccent(),
       span: 4,
@@ -173,13 +185,48 @@ export function buildLayout(p: Profile = profile): BentoLayout {
 
   if (p.skills.length) {
     tiles.push({
-      type: "code",
+      type: "skills",
       title: "Skills",
-      body: `$ skills\n${p.skills.join(", ")}`,
+      body: p.skills.join(", "),
+      caption: `${p.skills.length} skills`,
       accent: nextAccent(),
       span: 6,
-      rowSpan: 2,
-      icon: "terminal",
+      rowSpan: 1,
+      icon: "stars",
+    });
+  }
+
+  if (p.carImage) {
+    tiles.push({
+      type: "image",
+      title: p.car || "Car",
+      body: p.carImage,
+      caption: p.car || undefined,
+      accent: nextAccent(),
+      span: 6,
+      rowSpan: 1,
+    });
+  } else if (p.car) {
+    tiles.push({
+      type: "stat",
+      title: "Car",
+      body: p.car,
+      accent: nextAccent(),
+      span: 4,
+      rowSpan: 1,
+      icon: "car-front-fill",
+    });
+  }
+
+  for (const g of p.gallery) {
+    tiles.push({
+      type: "image",
+      title: g.caption || "Photo",
+      body: g.src,
+      caption: g.caption || undefined,
+      accent: nextAccent(),
+      span: 6,
+      rowSpan: 1,
     });
   }
 

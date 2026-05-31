@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { BentoTile } from "@/lib/bentoSchema";
 
 // Static class lookups so Tailwind's JIT keeps these utilities.
@@ -14,29 +13,6 @@ const COL_SPAN: Record<number, string> = {
   11: "md:col-span-11",
   12: "md:col-span-12",
 };
-
-const ROW_SPAN: Record<number, string> = {
-  1: "md:row-span-1",
-  2: "md:row-span-2",
-};
-
-// Sensible default heights per tile type so the mosaic stays dynamic even
-// when the model omits rowSpan.
-function resolveRowSpan(tile: BentoTile): number {
-  if (tile.rowSpan === 1 || tile.rowSpan === 2) return tile.rowSpan;
-  switch (tile.type) {
-    case "profile":
-      return 1;
-    case "image":
-      return 2;
-    case "code":
-      return 2;
-    case "text":
-      return (tile.body ?? "").length > 88 ? 2 : 1;
-    default:
-      return 1;
-  }
-}
 
 function Chip({ name, size = "sm" }: { name?: string; size?: "sm" | "lg" }) {
   if (!name) return null;
@@ -80,13 +56,12 @@ function CellBody({ tile }: { tile: BentoTile }) {
       }
       return (
         <>
-          <Image
+          {/* Natural aspect ratio (width = column, height auto) so nothing is cropped. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={tile.body}
             alt={tile.title || tile.caption || ""}
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover"
-            priority
+            className="block h-auto w-full"
           />
           {tile.caption ? (
             <span className="absolute bottom-2 left-2 rounded-full bg-bento-surface/90 px-2.5 py-1 text-[0.66rem] font-medium text-bento-ink backdrop-blur">
@@ -95,6 +70,29 @@ function CellBody({ tile }: { tile: BentoTile }) {
           ) : null}
         </>
       );
+
+    case "map": {
+      const place = tile.body || "日本";
+      const src = `https://maps.google.com/maps?q=${encodeURIComponent(place)}&z=15&output=embed`;
+      return (
+        <>
+          <iframe
+            title={`${place} の地図`}
+            src={src}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="block h-full w-full grayscale-[0.35] contrast-[1.05]"
+          />
+          <span className="pointer-events-none absolute left-2 top-2 inline-flex items-center rounded-full bg-bento-surface/90 px-2.5 py-1 text-[0.7rem] font-semibold text-bento-ink backdrop-blur">
+            {tile.body}
+          </span>
+          <span className="pointer-events-none absolute bottom-2 left-2 inline-flex items-center gap-1.5 rounded-full bg-bento-surface/90 px-2.5 py-1 text-[0.72rem] font-semibold text-bento-ink backdrop-blur">
+            <i className="bi bi-geo-alt-fill text-bento-soft" aria-hidden="true" />
+            ここにいるよ
+          </span>
+        </>
+      );
+    }
 
     case "profile":
       return (
@@ -131,6 +129,32 @@ function CellBody({ tile }: { tile: BentoTile }) {
           </pre>
         </div>
       );
+
+    case "skills": {
+      const items = (tile.body ?? "")
+        .split(/[,、\n]/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+      return (
+        <div className="flex h-full flex-col">
+          <Header tile={{ ...tile, icon: tile.icon ?? "stars" }} />
+          <div className="mt-auto flex flex-wrap gap-1.5">
+            {items.map((s, i) => (
+              <span
+                key={`${s}-${i}`}
+                className="inline-flex items-center gap-1.5 rounded-md border border-bento-line bg-bento-panel px-2.5 py-1.5 text-[0.76rem] font-medium text-bento-ink"
+              >
+                <span className="size-1.5 rounded-[2px] bg-bento-muted" aria-hidden="true" />
+                {s}
+              </span>
+            ))}
+          </div>
+          {tile.caption ? (
+            <span className="mt-2.5 text-[0.7rem] text-bento-muted">{tile.caption}</span>
+          ) : null}
+        </div>
+      );
+    }
 
     case "activity":
       return (
@@ -190,12 +214,19 @@ export default function BentoCell({
   index: number;
 }) {
   const span = COL_SPAN[tile.span] ?? COL_SPAN[6];
-  const rowSpan = ROW_SPAN[resolveRowSpan(tile)] ?? ROW_SPAN[1];
   const isLink = tile.type === "link" && tile.href;
   const isImage = tile.type === "image";
+  const isMap = tile.type === "map";
 
-  const base = `bento-reveal group relative col-span-2 ${span} ${rowSpan} overflow-hidden rounded-[var(--radius-bento)] border border-bento-line bg-bento-surface`;
-  const inner = isImage ? "min-h-[12rem]" : "flex flex-col p-[clamp(1rem,1.9vw,1.5rem)]";
+  // Cards size to their content (align-items:start on the grid), so nothing is
+  // clipped and there is no stretched empty space. Images get a fixed height
+  // since a fill image has no intrinsic height.
+  const base = `bento-reveal group relative w-full col-span-2 ${span} rounded-[var(--radius-bento)] border border-bento-line bg-bento-surface`;
+  const inner = isImage
+    ? "overflow-hidden"
+    : isMap
+      ? "overflow-hidden aspect-[4/3]"
+      : "flex flex-col p-[clamp(1rem,1.9vw,1.5rem)]";
   const className = `${base} ${inner}`;
 
   const style: React.CSSProperties = {

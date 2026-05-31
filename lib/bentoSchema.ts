@@ -26,9 +26,11 @@ export const tileTypes = [
   "stat",
   "link",
   "code",
+  "skills",
   "profile",
   "activity",
   "image",
+  "map",
 ] as const;
 
 export type TileType = (typeof tileTypes)[number];
@@ -37,7 +39,7 @@ export const bentoTileSchema = z.object({
   type: z
     .enum(tileTypes)
     .describe(
-      "Tile renderer. text: short prose. stat: a big value + label. link: clickable card. code: monospace snippet. profile: name/identity card (no photo). activity: GitHub contribution graph. image: a full-bleed standalone image block (put the image URL/path in body); use for the portrait /media/yamanopic.png.",
+      "Tile renderer. text: short prose. stat: a big value + label. link: clickable card. code: monospace snippet. skills: a set of skill tags (put the skills in body as a comma-separated list, e.g. 'Python, TypeScript, LLM'). profile: name/identity card (no photo). activity: GitHub contribution graph. image: a full-bleed standalone image block (put the image URL/path in body); use for the portrait /media/yamanopic.png. map: an embedded map of a place (put the place name in body, e.g. '神奈川県'); use for location instead of a stat tile.",
     ),
   title: z
     .string()

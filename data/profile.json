@@ -4,7 +4,8 @@
   "tagline": "揺るぎなく緩やかな世界を実現する",
   "avatar": "/media/yamanopic.png",
   "birthday": "2002-10-03",
-  "location": "神奈川県",
+  "location": "武蔵小杉駅",
+  "highSchool": "私立水城高校 卒業",
   "university": "武蔵野大学 データサイエンス学部 卒業",
   "companies": [
     {
@@ -27,9 +28,12 @@
     "JavaScript",
     "HTML/CSS"
   ],
+  "car": "MINI Cooper D (F56)",
+  "carImage": "/media/car.png",
   "email": "itsuki-yamano@mitologie.jp",
   "activityGraph": "https://ghchart.rshah.org/1a73e8/ituyama",
   "about": "",
+  "gallery": [{ "src": "/media/room.png", "caption": "家を掃除した" }],
   "socials": [
     {
       "name": "X",

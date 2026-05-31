@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BentoGrid from "@/components/BentoGrid";
+import BentoMasonry from "@/components/BentoMasonry";
 import BentoSkeleton from "@/components/BentoSkeleton";
 import BuildStatus from "@/components/BuildStatus";
 import Composer from "@/components/Composer";
@@ -129,7 +129,7 @@ export default function Home() {
             <BuildStatus />
           </div>
         ) : null}
-        {loading ? <BentoSkeleton /> : <BentoGrid tiles={layout.tiles} />}
+        {loading ? <BentoSkeleton /> : <BentoMasonry tiles={layout.tiles} />}
       </div>
 
       <div

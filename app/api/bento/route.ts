@@ -21,11 +21,13 @@ const SYSTEM_PROMPT = `あなたは「山野イツキ / Yamano Itsuki」のポ�
 - 年齢は事実の「年齢」の値をそのまま使う。
 
 # タイルの作り方
-- image: 顔写真。body = "/media/yamanopic.png"、span 4, rowSpan 2。
+- image: 画像だけの独立ブロック。顔写真は body = "/media/yamanopic.png"。愛車を見せるなら body = "/media/car.png"。事実に画像パスがあるものだけ使う。
 - profile: 名前カード。body = 事実の名前（"山野イツキ / Yamano Itsuki"）。caption はキャッチ等、事実にある語句のみ。
-- stat: 年齢・拠点など事実の値を大きく見せる。body は事実の値そのまま。
+- stat: 年齢など事実の値を大きく見せる。body は事実の値そのまま。
+- map: 拠点（地名）を地図で見せる。body = 事実の拠点名（例: "神奈川県"）。拠点は stat ではなく map を使う。
 - text: 所属（会社名 — 役職）など、事実の値をそのまま（必要なら改行で列挙）。
-- code: skills を事実のスキル名そのままで（例: "Python, TypeScript, ..."）。
+- skills: スキルを表示するならこの type を使い、body は事実のスキル名のカンマ区切り（例: "Python, TypeScript, LLM"）。
+- code: その他のコード断片やターミナル風表示が必要なとき。
 - link: 事実に明記された SNS/メール/URL のみ。href 必須。body はハンドルやアドレスの転記。
 - activity: GitHub 草グラフ。body = 事実のグラフ画像URL。
 
@@ -33,8 +35,8 @@ const SYSTEM_PROMPT = `あなたは「山野イツキ / Yamano Itsuki」のポ�
 - 訪問者に合わせて、見せる事実の取捨選択と並び順を決める（採用担当=所属/スキル/連絡先を前に、エンジニア=skills/GitHub/activityを厚く、友人=名前やキャッチ中心、など）。
 - タイルは 5〜9 枚。スカスカにしない。
 - 各行の span 合計が 12 になるよう設計（例: 4+8, 6+6, 4+4+4, 12）。span は 3/4/6/8/12 を混ぜる。
-- rowSpan は image=2 / code=2 を基本に 1 と 2 を混ぜてモザイクに。
-- accent(色) は隣り合うタイルで変える（sky/rose/violet/mint/amber/peach/indigo/cyan を循環）。
+- 高さは各タイルの内容量で自動的に決まる（rowSpan は気にしなくてよい）。情報量が少ないタイルは小さく、多いタイルは自然に大きくなる。内容に対して span を選ぶ（情報が多いものは広め）。
+- accent は今は見た目に出ないので気にしなくてよい。
 - icon は Bootstrap Icons 名（bi- は付けない）。例: person-badge, briefcase, mortarboard, geo-alt-fill, terminal, github, twitter-x, envelope-fill, graph-up。
 
 --- プロフィール事実（この中の語句だけを転記して使う） ---
