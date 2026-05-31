@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Code, Noto_Sans_JP } from "next/font/google";
 import "@fontsource/line-seed-jp/400.css";
 import "@fontsource/line-seed-jp/700.css";
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ituyama.com"),
   title: "Yamano Itsuki",
   description: "山野一樹のポートフォリオ。LLM が応答を Bento グリッドとして組み立てます。",
-  icons: { icon: "/media/yamano.png" },
+  icons: { icon: "/media/yamanopic.png" },
   openGraph: {
     title: "Yamano Itsuki",
     description: "LLM × Bento UI のポートフォリオ。",
@@ -38,6 +38,13 @@ export const metadata: Metadata = {
     description: "LLM × Bento UI のポートフォリオ。",
     images: ["/media/ogp.png"],
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({

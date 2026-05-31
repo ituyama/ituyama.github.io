@@ -26,13 +26,13 @@ export default function Composer({
   }
 
   return (
-    <div className="sticky bottom-3 z-10 mx-auto w-full max-w-2xl">
+    <div className="sticky bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-10 mx-auto w-full max-w-2xl">
       <form
         onSubmit={(e) => {
           e.preventDefault();
           submit(value);
         }}
-        className="flex items-center gap-2 rounded-full border border-bento-line bg-bento-surface p-1.5 pl-4 focus-within:border-bento-line-strong"
+        className="flex items-center gap-2 rounded-full border border-bento-line bg-bento-surface p-1.5 pl-4 shadow-sm focus-within:border-bento-line-strong"
       >
         <i className="bi bi-search text-[0.9rem] text-bento-muted" aria-hidden="true" />
         <input
@@ -42,7 +42,7 @@ export default function Composer({
           aria-label="質問を入力"
           maxLength={500}
           disabled={loading}
-          className="min-w-0 flex-1 bg-transparent text-[0.85rem] text-bento-ink outline-none placeholder:text-bento-muted"
+          className="min-w-0 flex-1 bg-transparent text-[16px] text-bento-ink outline-none placeholder:text-bento-muted sm:text-[0.85rem]"
         />
         <button
           type="submit"
@@ -65,7 +65,7 @@ export default function Composer({
             type="button"
             onClick={() => submit(s)}
             disabled={loading}
-            className="rounded-full border border-bento-line bg-bento-surface px-3 py-1 text-[0.7rem] font-medium text-bento-soft disabled:opacity-40"
+            className="rounded-full border border-bento-line bg-bento-surface px-3 py-1.5 text-[0.72rem] font-medium text-bento-soft disabled:opacity-40"
           >
             {s}
           </button>

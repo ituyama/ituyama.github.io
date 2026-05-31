@@ -98,7 +98,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader onHome={backToTop} onReset={reopenWelcome} />
-      <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-5xl flex-col gap-4 px-[clamp(0.75rem,3vw,1.5rem)] pb-6 pt-[clamp(1rem,3vw,1.5rem)]">
+      <main className="mx-auto flex min-h-[calc(100dvh-3.5rem)] max-w-5xl flex-col gap-4 px-[clamp(0.75rem,3vw,1.5rem)] pb-6 pt-[clamp(1rem,3vw,1.5rem)]">
       {(layout.intro || lastPrompt) && (
         <div className="min-h-[1.5rem]">
           {lastPrompt ? (
@@ -134,7 +134,7 @@ export default function Home() {
 
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-x-0 bottom-0 z-[5] h-40 bg-gradient-to-t from-bento-bg via-bento-bg/85 to-transparent backdrop-blur-[3px] [mask-image:linear-gradient(to_top,#000_45%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_45%,transparent)]"
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-[5] h-28 bg-gradient-to-t from-bento-bg via-bento-bg/85 to-transparent backdrop-blur-[3px] [mask-image:linear-gradient(to_top,#000_45%,transparent)] [-webkit-mask-image:linear-gradient(to_top,#000_45%,transparent)] sm:h-40"
       />
       <Composer onSubmit={ask} loading={loading} />
       </main>

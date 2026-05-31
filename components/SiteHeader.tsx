@@ -13,7 +13,7 @@ export default function SiteHeader({
         <button
           type="button"
           onClick={onHome}
-          className="font-lineseed text-[0.95rem] font-extrabold uppercase tracking-[0.18em] text-bento-ink"
+          className="min-w-0 truncate font-lineseed text-[0.85rem] font-extrabold uppercase tracking-[0.12em] text-bento-ink sm:text-[0.95rem] sm:tracking-[0.18em]"
           aria-label="トップに戻る"
         >
           YAMANO ITSUKI
@@ -22,7 +22,7 @@ export default function SiteHeader({
         <button
           type="button"
           onClick={onReset}
-          className="flex items-center gap-1.5 rounded-full border border-bento-line bg-bento-surface px-3 py-1.5 text-[0.72rem] font-medium text-bento-soft"
+          className="flex shrink-0 items-center gap-1.5 rounded-full border border-bento-line bg-bento-surface px-3 py-1.5 text-[0.72rem] font-medium text-bento-soft"
         >
           <i className="bi bi-arrow-counterclockwise" aria-hidden="true" />
           もう一度聞く
