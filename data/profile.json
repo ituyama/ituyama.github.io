@@ -1,0 +1,48 @@
+{
+  "nameJa": "山野イツキ",
+  "nameEn": "Yamano Itsuki",
+  "tagline": "揺るぎなく緩やかな世界を実現する",
+  "avatar": "/media/yamanopic.png",
+  "birthday": "2002-10-03",
+  "location": "神奈川県",
+  "university": "武蔵野大学 データサイエンス学部 卒業",
+  "companies": [
+    {
+      "name": "DMM.com",
+      "role": "テックリード室"
+    },
+    {
+      "name": "Mitologie, Inc.",
+      "role": "Co-CEO"
+    },
+    {
+      "name": "Xtraveler, Inc.",
+      "role": "Co-Founder"
+    }
+  ],
+  "skills": [
+    "LLM",
+    "Python",
+    "TypeScript",
+    "JavaScript",
+    "HTML/CSS"
+  ],
+  "email": "itsuki-yamano@mitologie.jp",
+  "activityGraph": "https://ghchart.rshah.org/1a73e8/ituyama",
+  "about": "",
+  "socials": [
+    {
+      "name": "X",
+      "handle": "@PM80437319",
+      "url": "https://x.com/PM80437319",
+      "icon": "twitter-x"
+    },
+    {
+      "name": "GitHub",
+      "handle": "ituyama",
+      "url": "https://github.com/ituyama",
+      "icon": "github"
+    }
+  ],
+  "links": []
+}
