@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { profile } from "@/lib/profile";
 
 const PRESETS: { label: string; icon: string }[] = [
@@ -20,6 +20,7 @@ export default function WelcomeModal({
 }) {
   const [value, setValue] = useState("");
   const [closing, setClosing] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   // Play the exit animation, then hand control back to the page.
   function leaveWith(action: () => void) {
@@ -30,8 +31,47 @@ export default function WelcomeModal({
   const handleIdentify = (who: string) => leaveWith(() => onIdentify(who));
   const handleSkip = () => leaveWith(onSkip);
 
+  // Lock body scroll while the modal is open, and keep keyboard focus inside it.
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        handleSkip();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusables = overlayRef.current?.querySelectorAll<HTMLElement>(
+        'button, [href], input, [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div
+      ref={overlayRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="あなたについて教えてください"
       data-closing={closing}
       className="intro-overlay fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-bento-bg px-5"
     >
@@ -84,8 +124,9 @@ export default function WelcomeModal({
             value={value}
             onChange={(e) => setValue(e.target.value)}
             maxLength={60}
+            aria-label="あなたは誰ですか"
             placeholder="自由に入力(例: デザイナー、〇〇社の人)"
-            className="min-w-0 flex-1 bg-transparent text-[0.85rem] text-bento-ink outline-none placeholder:text-bento-muted"
+            className="min-w-0 flex-1 bg-transparent text-[16px] text-bento-ink outline-none placeholder:text-bento-muted sm:text-[0.85rem]"
           />
           <button
             type="submit"

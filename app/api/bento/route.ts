@@ -9,6 +9,23 @@ export const maxDuration = 30;
 
 const MODEL = process.env.OPENAI_MODEL ?? "gpt-4o";
 
+// Best-effort in-memory rate limit (per edge instance). Caps abuse / runaway
+// cost without external infra. Not a hard guarantee across regions.
+const RATE_LIMIT = 12;
+const RATE_WINDOW_MS = 60_000;
+const hits = new Map<string, { count: number; resetAt: number }>();
+
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const rec = hits.get(ip);
+  if (!rec || now > rec.resetAt) {
+    hits.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+  rec.count += 1;
+  return rec.count > RATE_LIMIT;
+}
+
 const SYSTEM_PROMPT = `あなたは「山野イツキ / Yamano Itsuki」のポートフォリオの Bento レイアウト構成エンジンです。
 あなたの仕事は「文章を書くこと」ではなく、下記プロフィール事実を、訪問者に合わせて『どれを・どの順で・どの大きさ/色で』並べるかを決めることだけです。
 
@@ -50,6 +67,17 @@ export async function POST(req: Request) {
     );
   }
 
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip") ||
+    "anonymous";
+  if (rateLimited(ip)) {
+    return NextResponse.json(
+      { error: "リクエストが多すぎます。少し時間をおいてからお試しください。" },
+      { status: 429 },
+    );
+  }
+
   let prompt = "";
   try {
     const body = (await req.json()) as { prompt?: unknown };
@@ -74,6 +102,8 @@ export async function POST(req: Request) {
       system: SYSTEM_PROMPT,
       prompt: `訪問者の入力: ${prompt}\n\nこの訪問者に合わせて、プロフィール事実の中から見せる項目と並び順・大きさ・色だけを決め、5〜9枚の Bento を構成してください。タイルの文言は事実の語句をそのまま転記し、文章は一切創作しないこと。intro は "" にすること。`,
       temperature: 0.3,
+      maxRetries: 1,
+      abortSignal: AbortSignal.timeout(25_000),
     });
 
     return NextResponse.json(object);

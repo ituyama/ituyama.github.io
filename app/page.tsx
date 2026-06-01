@@ -17,6 +17,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastPrompt, setLastPrompt] = useState<string | null>(null);
+  const [lastRawPrompt, setLastRawPrompt] = useState<string | null>(null);
   const [showWelcome, setShowWelcome] = useState(false);
   const [gateChecked, setGateChecked] = useState(false);
 
@@ -34,6 +35,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
     setLastPrompt(label ?? prompt);
+    setLastRawPrompt(prompt);
     try {
       const res = await fetch("/api/bento", {
         method: "POST",
@@ -64,7 +66,7 @@ export default function Home() {
     rememberVisitor(who);
     setShowWelcome(false);
     void ask(
-      `あなたを訪ねてきたのは「${who}」です。この訪問者の関心に合わせて、最も響くと思われる内容・順序・粒度で山野一樹のポートフォリオを Bento で構成してください。冒頭の intro でひとことだけ歓迎してください。`,
+      `あなたを訪ねてきたのは「${who}」です。この訪問者の関心に合わせて、最も響くと思われる内容・順序・粒度で山野一樹のポートフォリオを Bento で構成してください。`,
       `${who} として閲覧中`,
     );
   }
@@ -116,10 +118,21 @@ export default function Home() {
       {error ? (
         <div
           role="alert"
-          className="flex items-center gap-2 rounded-[var(--radius-bento-sm)] border border-rose-200 bg-rose-50 px-3 py-2 text-[0.78rem] font-medium text-rose-700"
+          className="flex flex-wrap items-center gap-2 rounded-[var(--radius-bento-sm)] border border-rose-200 bg-rose-50 px-3 py-2 text-[0.78rem] font-medium text-rose-700"
         >
           <i className="bi bi-exclamation-triangle" aria-hidden="true" />
-          {error}
+          <span className="min-w-0 flex-1">{error}</span>
+          {lastRawPrompt ? (
+            <button
+              type="button"
+              onClick={() => ask(lastRawPrompt, lastPrompt ?? undefined)}
+              disabled={loading}
+              className="inline-flex items-center gap-1.5 rounded-full border border-rose-300 bg-white px-3 py-1 font-semibold text-rose-700 transition-transform duration-200 active:scale-95 disabled:opacity-50"
+            >
+              <i className="bi bi-arrow-clockwise" aria-hidden="true" />
+              再試行
+            </button>
+          ) : null}
         </div>
       ) : null}
 

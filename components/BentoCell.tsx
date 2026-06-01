@@ -61,6 +61,8 @@ function CellBody({ tile }: { tile: BentoTile }) {
           <img
             src={tile.body}
             alt={tile.title || tile.caption || ""}
+            loading="lazy"
+            decoding="async"
             className="block h-auto w-full"
           />
           {tile.caption ? (
