@@ -4,6 +4,8 @@ import "@fontsource/line-seed-jp/400.css";
 import "@fontsource/line-seed-jp/700.css";
 import "@fontsource/line-seed-jp/800.css";
 import "./globals.css";
+import { profile } from "@/lib/profile";
+import ProfileFacts from "@/components/ProfileFacts";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -19,23 +21,48 @@ const firaCode = Fira_Code({
   display: "swap",
 });
 
+const factDescription = [
+  `${profile.nameJa}（${profile.nameEn}）のポートフォリオ。`,
+  profile.companies.length
+    ? profile.companies.map((c) => `${c.name}（${c.role}）`).join("、") + "。"
+    : "",
+  profile.university ? `${profile.university}。` : "",
+  profile.location ? `拠点は${profile.location}。` : "",
+  profile.skills.length ? `主なスキル: ${profile.skills.join("、")}。` : "",
+  "訪問者に合わせて LLM が内容を Bento グリッドに再構成します。",
+]
+  .filter(Boolean)
+  .join("");
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://ituyama.com"),
-  title: "Yamano Itsuki",
-  description: "山野一樹のポートフォリオ。LLM が応答を Bento グリッドとして組み立てます。",
+  title: { default: `${profile.nameEn}｜${profile.nameJa}`, template: "%s｜Yamano Itsuki" },
+  description: factDescription,
+  keywords: [
+    profile.nameJa,
+    profile.nameEn,
+    ...profile.companies.map((c) => c.name),
+    ...profile.skills,
+    "ポートフォリオ",
+    "portfolio",
+  ],
+  authors: [{ name: profile.nameEn }],
+  creator: profile.nameEn,
+  alternates: { canonical: "/" },
   icons: { icon: "/media/yamanopic.png" },
   openGraph: {
-    title: "Yamano Itsuki",
-    description: "LLM × Bento UI のポートフォリオ。",
+    title: `${profile.nameEn}｜${profile.nameJa}`,
+    description: factDescription,
     url: "https://ituyama.com",
-    siteName: "YamanoItsuki",
+    siteName: "Yamano Itsuki",
+    locale: "ja_JP",
     images: ["/media/ogp.png"],
-    type: "website",
+    type: "profile",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yamano Itsuki",
-    description: "LLM × Bento UI のポートフォリオ。",
+    title: `${profile.nameEn}｜${profile.nameJa}`,
+    description: factDescription,
     images: ["/media/ogp.png"],
   },
 };
@@ -45,6 +72,23 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#ffffff",
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.nameEn,
+  alternateName: profile.nameJa,
+  url: "https://ituyama.com",
+  image: `https://ituyama.com${profile.avatar}`,
+  email: profile.email || undefined,
+  jobTitle: profile.companies[0]?.role,
+  worksFor: profile.companies.map((c) => ({ "@type": "Organization", name: c.name })),
+  address: profile.location
+    ? { "@type": "PostalAddress", addressLocality: profile.location }
+    : undefined,
+  knowsAbout: profile.skills,
+  sameAs: profile.socials.map((s) => s.url),
 };
 
 export default function RootLayout({
@@ -59,8 +103,14 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
         />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </head>
       <body className={`${notoSansJp.variable} ${firaCode.variable}`}>
+        <ProfileFacts />
         {children}
       </body>
     </html>
