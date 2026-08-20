@@ -53,6 +53,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+::selection {
+  background: var(--color-bento-accent);
+  color: var(--color-bento-ink);
+}
+
+.pop-policy ::selection,
+.bg-bento-accent ::selection,
+.pop-chip ::selection,
+.pop-btn ::selection,
+.pop-work-tab.is-on ::selection,
+.pop-cover-name::selection {
+  background: var(--color-bento-ink);
+  color: var(--color-bento-accent);
+}
+
 .pop-frame {
   overflow: hidden;
   background: var(--color-bento-surface);
