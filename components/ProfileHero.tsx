@@ -8,8 +8,7 @@ export default function ProfileHero() {
 
   return (
     <section className="pop-kv">
-      <div className="pop-cover-stripes" aria-hidden="true" />
-      <div className="pop-cover-speed" aria-hidden="true" />
+      <div className="pop-cover-marble" aria-hidden="true" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
 
