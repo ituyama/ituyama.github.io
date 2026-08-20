@@ -1,0 +1,36 @@
+# 山野イツキ / Yamano Itsuki
+
+> 揺るぎなく緩やかな世界を実現する
+
+Site: https://ituyama.com
+
+## プロフィール
+
+2002年10月3日生まれ。　エンジニア、デザイナー、起業家。茨城県水戸市出身。私立水城高校を出て、武蔵野大学データサイエンス学部を卒業。新卒でDMM.comに入社。高校の時に立ち上げた会社が8期目、現在はポルシェのレンタカー事業をしている。
+- 年齢: 23歳
+- 生年月日: 2002-10-03
+- 拠点: 武蔵小杉駅
+- 学歴: 武蔵野大学 データサイエンス学部 卒業
+- 学歴: 私立水城高校 卒業
+- 役割: Software Engineer / Designer / Innovator
+
+方針: 揺るぎなく緩やかな世界を実現する
+
+## 所属
+- DMM.com — テックリード室 / 25新卒入社。テックリード室に所属。 / focus: テックリード, プロダクト, LLM / https://dmm.com
+- Mitologie, Inc. — Co-CEO / 個人会社です　色々やってます / focus: 経営, プロダクト, 実装 / https://mitologie.jp
+- Xtraveler, Inc. — Co-Founder / 共同創業者。技術周り全般やっています　8年目 / focus: 創業, プロダクト / https://xtraveler.jp
+
+## 募集
+人を募集しています
+- 飲み友達 — 友達: 飲み友達を募集しています　ドライブも行こうね
+- 一緒に働く人 — プロダクト / 事業: ちょいちょい開発案件　手に負えない数くることがあるので　エンジニアを募集しています。
+- 彼女 — 話し合いができる彼女: 話し合いができる彼女を探しています。他はもうなんでもいいです。
+
+## タグ
+- LLM, Python, TypeScript, JavaScript, Cloudflare, ねこ, ラーメン, さきいか, ポルシェ, 武蔵小杉在住, ドライブ, MINI F56, 起業8年目, 天秤座, 左利き, fric, 名誉伝説, メガベンチャー, 行政DX, HTML/CSS, ２拠点生活, 六本木
+
+## 連絡先・リンク
+- Email: itsuki-yamano@mitologie.jp
+- X: @PM80437319 (https://x.com/PM80437319)
+- GitHub: ituyama (https://github.com/ituyama)
