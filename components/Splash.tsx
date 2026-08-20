@@ -1,45 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const WORDS = [
-  "余白",
-  "緩急",
-  "本質",
-  "残心",
-  "疾風",
-  "閃光",
-  "深層",
-  "静寂",
-  "覚悟",
-  "実装",
-  "創造",
-  "越境",
-  "構築",
-  "探求",
-  "根源",
-  "孤高",
-  "余韻",
-  "刹那",
-  "無限",
-  "核心",
-  "洗練",
-  "柔軟",
-  "大胆",
-  "突破",
-  "前進",
-  "調和",
-  "循環",
-  "到達",
-  "創発",
-  "革新",
-  "奔流",
-  "極光",
-  "無双",
-  "覚醒",
-  "頂点",
-  "山野",
-];
+import { splash } from "@/lib/splash";
 
 const ROW_COUNT = 9;
 
@@ -51,7 +13,7 @@ const LAST_ROW_DELAY_MS = 4 * ROW_STAGGER_MS;
 const DONE_MS = HOLD_MS + LAST_ROW_DELAY_MS + ROW_OUT_MS + 120;
 
 const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
-  const words = WORDS.filter((_, i) => i % ROW_COUNT === row);
+  const words = splash.words.filter((_, i) => i % ROW_COUNT === row);
   const loop = [...words, ...words];
   return [...loop, ...loop];
 });
