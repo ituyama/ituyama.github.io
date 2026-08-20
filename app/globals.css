@@ -507,7 +507,8 @@ body {
   .pop-shape-square,
   .pop-shape-bar,
   .pop-shape-pip,
-  .pop-shape-capsule {
+  .pop-shape-capsule,
+  .pop-shape-triangle {
     display: none;
   }
 
@@ -524,26 +525,18 @@ body {
     transform: rotate(12deg);
   }
 
-  .pop-shape-triangle {
-    left: -16%;
-    bottom: auto;
-    top: 42%;
-    width: 26%;
-    transform: rotate(-18deg);
-  }
-
   .pop-shape-disc {
-    left: -18%;
+    left: -24%;
     top: auto;
-    bottom: -4%;
-    width: 46%;
+    bottom: -10%;
+    width: 36%;
   }
 
   .pop-shape-quarter {
-    right: -18%;
+    right: -22%;
     top: auto;
-    bottom: -8%;
-    width: 48%;
+    bottom: -14%;
+    width: 38%;
   }
 }
 
@@ -671,11 +664,90 @@ body {
 
 @media (max-width: 767px) {
   .pop-cover-copy {
-    bottom: calc(4.2rem + env(safe-area-inset-bottom));
+    bottom: calc(4.6rem + env(safe-area-inset-bottom));
+    width: calc(100% - 5.25rem);
+    max-width: none;
+    padding: 0;
+  }
+
+  .pop-cover-name {
+    font-size: clamp(2.4rem, 12.4vw, 3.4rem);
+    letter-spacing: 0.01em;
+    transform: skewX(-12deg) rotate(-4deg);
+  }
+
+  .pop-cover-kicker {
+    margin-top: 0.55rem;
+    max-width: 16rem;
+    font-size: 0.82rem;
+    -webkit-text-stroke: 0.16em #ffffff;
   }
 
   .pop-cover-shot-wrap {
-    height: 60svh;
+    height: 64svh;
+    bottom: -4%;
+    max-width: min(88%, 22rem);
+  }
+
+  .pop-cover-halo {
+    width: 88%;
+    top: 18%;
+  }
+
+  .pop-policy-mark {
+    font-size: clamp(1.7rem, 11vw, 2.4rem);
+  }
+
+  .pop-policy-mark-long {
+    font-size: clamp(1.2rem, 5.6vw, 1.65rem);
+    letter-spacing: 0.01em;
+  }
+
+  .pop-policy-inner,
+  .pop-work-inner {
+    width: calc(100% - 1.4rem);
+    padding: 2.4rem 0 2.6rem;
+    gap: 1.2rem;
+  }
+
+  .pop-policy-body {
+    margin-top: 1.15rem;
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  .pop-work-list {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 2px solid var(--color-bento-line);
+    scrollbar-width: none;
+  }
+
+  .pop-work-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pop-work-list li {
+    flex: 0 0 auto;
+  }
+
+  .pop-work-tab {
+    border-bottom: 0;
+    border-right: 2px solid var(--color-bento-line);
+    padding: 0.8rem 1rem;
+    white-space: nowrap;
+  }
+
+  .pop-work-list li:last-child .pop-work-tab {
+    border-right: 0;
+  }
+
+  .pop-work-tab-name {
+    font-size: 1.05rem;
+  }
+
+  .pop-work-stage {
+    height: 14.5rem;
   }
 }
 
