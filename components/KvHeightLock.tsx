@@ -14,44 +14,45 @@ function svhPx() {
   return h;
 }
 
+function clearLock(kv: HTMLElement) {
+  kv.style.removeProperty("height");
+  kv.style.removeProperty("min-height");
+  kv.style.removeProperty("max-height");
+}
+
+function lock(kv: HTMLElement, px: number) {
+  const v = `${px}px`;
+  kv.style.setProperty("height", v);
+  kv.style.setProperty("min-height", v);
+  kv.style.setProperty("max-height", v);
+}
+
 /**
- * Freeze the KV to the first 100svh in px.
- * Do not read visualViewport — that tracks the URL bar and moves the name.
+ * Pin the KV with inline px so 100svh cannot ease when the URL bar hides.
+ * Only relock on rotate — never on scroll/resize.
  */
 export default function KvHeightLock() {
   useLayoutEffect(() => {
-    const root = document.documentElement;
-    let width = window.innerWidth;
+    const kv = document.getElementById("top");
+    if (!(kv instanceof HTMLElement)) return;
 
-    const apply = (reason: "init" | "resize" | "orient") => {
-      const mobile = window.matchMedia(MOBILE).matches;
-      if (!mobile) {
-        root.style.removeProperty("--kv-h");
-        width = window.innerWidth;
+    const apply = (force: boolean) => {
+      if (!window.matchMedia(MOBILE).matches) {
+        clearLock(kv);
         return;
       }
-      if (reason === "resize" && Math.abs(window.innerWidth - width) < 2) return;
-      if (reason === "init" && root.style.getPropertyValue("--kv-h")) {
-        width = window.innerWidth;
-        return;
-      }
-      width = window.innerWidth;
-      root.style.setProperty("--kv-h", `${svhPx()}px`);
+      if (!force && kv.style.height) return;
+      lock(kv, svhPx());
     };
 
-    apply("init");
+    apply(true);
 
-    const onResize = () => apply("resize");
     const onOrient = () => {
-      window.setTimeout(() => apply("orient"), 250);
+      window.setTimeout(() => apply(true), 250);
     };
-
-    window.addEventListener("resize", onResize);
     window.addEventListener("orientationchange", onOrient);
     return () => {
-      window.removeEventListener("resize", onResize);
       window.removeEventListener("orientationchange", onOrient);
-      root.style.removeProperty("--kv-h");
     };
   }, []);
 

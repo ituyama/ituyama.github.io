@@ -129,28 +129,6 @@ export default function ProfileHero() {
         <img src="/media/city-tower.png" alt="" className="pop-collage pop-collage-w" />
       </div>
 
-      <div className="pop-cover-copy">
-        <h1 className="pop-cover-name">{profile.nameJa}</h1>
-        {profile.tagline ? (
-          <p className="pop-cover-kicker mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug">
-            {profile.tagline}
-          </p>
-        ) : null}
-        <div className="pop-cover-copy-rest mt-4 flex flex-wrap justify-center gap-1.5">
-          {pills.map((p) => (
-            <span key={p} className="pop-chip">
-              {p}
-            </span>
-          ))}
-        </div>
-        {profile.email ? (
-          <a href={`mailto:${profile.email}`} className="pop-cover-copy-rest pop-btn mt-5 w-fit">
-            <i className="bi bi-envelope-fill" aria-hidden="true" />
-            メールする
-          </a>
-        ) : null}
-      </div>
-
       <div className="pop-cover-shot-wrap">
         <div className="pop-cover-halo" aria-hidden="true">
           <svg className="pop-cover-halo-ring" viewBox="0 0 200 200">
@@ -189,6 +167,27 @@ export default function ProfileHero() {
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
+        <div className="pop-cover-copy">
+          <h1 className="pop-cover-name">{profile.nameJa}</h1>
+          {profile.tagline ? (
+            <p className="pop-cover-kicker mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug">
+              {profile.tagline}
+            </p>
+          ) : null}
+          <div className="pop-cover-copy-rest mt-4 flex flex-wrap justify-center gap-1.5">
+            {pills.map((p) => (
+              <span key={p} className="pop-chip">
+                {p}
+              </span>
+            ))}
+          </div>
+          {profile.email ? (
+            <a href={`mailto:${profile.email}`} className="pop-cover-copy-rest pop-btn mt-5 w-fit">
+              <i className="bi bi-envelope-fill" aria-hidden="true" />
+              メールする
+            </a>
+          ) : null}
+        </div>
       </div>
     </section>
   );

@@ -105,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" dir="ltr" suppressHydrationWarning>
+    <html lang="ja" dir="ltr">
       <head>
         <link
           rel="stylesheet"
@@ -116,15 +116,6 @@ export default function RootLayout({
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap"
-        />
-        <script
-          // Freeze mobile KV to the first 100svh before paint so the name
-          // does not jump when the URL bar resizes visualViewport.
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html:
-              "(function(){if(!matchMedia('(max-width:767px)').matches)return;var d=document.createElement('div');d.style.cssText='position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none';document.documentElement.appendChild(d);document.documentElement.style.setProperty('--kv-h',Math.round(d.getBoundingClientRect().height)+'px');d.remove();})();",
-          }}
         />
         <script
           type="application/ld+json"
