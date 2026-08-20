@@ -65,10 +65,10 @@ export default function SideNav({
 
       <div className="mt-auto hidden flex-col items-center gap-4 md:flex" aria-hidden="true">
         <div className="grid grid-cols-2 gap-1">
-          <span className="size-2.5 rounded-full bg-bento-accent" />
+          <span className="size-2.5 rounded-full bg-[#1b6a62]" />
           <span className="size-2.5 rounded-full bg-[#4d7cff]" />
+          <span className="size-2.5 rounded-full bg-bento-accent" />
           <span className="size-2.5 rounded-full bg-[#7a5cff]" />
-          <span className="size-2.5 rounded-full bg-[#111111]" />
         </div>
       </div>
     </aside>
