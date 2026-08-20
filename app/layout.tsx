@@ -6,6 +6,7 @@ import "@fontsource/line-seed-jp/800.css";
 import "./globals.css";
 import { profile } from "@/lib/profile";
 import ProfileFacts from "@/components/ProfileFacts";
+import Splash from "@/components/Splash";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -116,6 +117,7 @@ export default function RootLayout({
       </head>
       <body className={`${notoSansJp.variable} ${firaCode.variable}`}>
         <ProfileFacts />
+        <Splash />
         {children}
       </body>
     </html>
