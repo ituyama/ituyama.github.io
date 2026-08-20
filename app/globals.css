@@ -593,6 +593,91 @@ body {
     bottom: calc(8% + 3.6rem + env(safe-area-inset-bottom, 0px));
   }
 
+  .pop-cover-shot-wrap {
+    height: 82svh;
+    bottom: -8%;
+    max-width: 100%;
+  }
+
+  .pop-cover-shot {
+    max-width: none;
+  }
+
+  .pop-chip {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.68rem;
+  }
+
+  .pop-collage-nw {
+    height: 22%;
+    left: -6%;
+    top: -2%;
+  }
+
+  .pop-collage-ne {
+    height: 24%;
+    top: -8%;
+    right: -10%;
+  }
+
+  .pop-collage-e {
+    height: 20%;
+    right: -8%;
+  }
+
+  .pop-collage-w {
+    height: 20%;
+    left: -8%;
+  }
+
+  .pop-collage-se {
+    height: 26%;
+    right: -16%;
+    bottom: -20%;
+  }
+
+  .pop-collage-sw {
+    height: 24%;
+    left: -16%;
+    bottom: -18%;
+  }
+
+  .pop-collage-s {
+    width: 18%;
+    bottom: -14%;
+  }
+
+  .pop-shape-diamond,
+  .pop-shape-bar,
+  .pop-shape-dots,
+  .pop-shape-square,
+  .pop-shape-capsule,
+  .pop-shape-pip {
+    display: none;
+  }
+
+  .pop-shape-disc {
+    left: -10%;
+    top: 22%;
+    width: 20%;
+  }
+
+  .pop-shape-ring {
+    left: 2%;
+    top: 4%;
+    width: 11%;
+  }
+
+  .pop-shape-arch {
+    right: -12%;
+    width: 18%;
+  }
+
+  .pop-shape-quarter {
+    right: -18%;
+    width: 26%;
+  }
+
   .pop-policy-mark {
     font-size: clamp(1.7rem, 11vw, 2.4rem);
   }
