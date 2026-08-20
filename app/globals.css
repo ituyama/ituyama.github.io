@@ -104,15 +104,18 @@ body {
   background: #ffffff;
 }
 
-/* Faint mint clouding the veining sits on. */
+/*
+  Blob field the veining sits on: each shape gets its own mint tint and the whole
+  group is blurred so they read as clouding in the stone.
+*/
 .pop-cover-marble {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 70% 55% at 16% 20%, #f3fdf7 0%, transparent 62%),
-    radial-gradient(ellipse 85% 60% at 74% 88%, #f6fefa 0%, transparent 64%),
-    #ffffff;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4284' height='2493' viewBox='0 0 4284 2493'%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='75'/%3E%3C/filter%3E%3Cg filter='url(%23b)'%3E%3Cpath d='M1095 1323C1095 1588.65 943.149 2012 677.5 2012C411.851 2012 0 1925.65 0 1660C0 1394.35 411.851 1050 677.5 1050C943.149 1050 1095 1057.35 1095 1323Z' fill='%2382daa6'/%3E%3Cpath d='M3912.5 511.5C3912.5 777.149 4131.65 962 3866 962C3600.35 962 3188.5 875.649 3188.5 610C3188.5 344.351 3600.35 0 3866 0C4131.65 0 3912.5 245.851 3912.5 511.5Z' fill='%23bfefd3'/%3E%3Cpath d='M2949.5 1804C2949.5 2069.65 2797.65 2493 2532 2493C2266.35 2493 2133.5 2436.15 2133.5 2170.5C2133.5 1904.85 2266.35 1531 2532 1531C2797.65 1531 2949.5 1538.35 2949.5 1804Z' fill='%235ccf8e'/%3E%3Cpath d='M2675.5 1006C2675.5 1271.65 2507.65 1126 2242 1126C1976.35 1126 1580.5 1608.65 1580.5 1343C1580.5 1077.35 2068.5 778.001 2258 733.001C2447.5 688 2675.5 740.352 2675.5 1006Z' fill='%23dcf7e8'/%3E%3Cpath d='M2675.5 1006C2675.5 1271.65 2507.65 1126 2242 1126C1976.35 1126 1580.5 1608.65 1580.5 1343C1580.5 1077.35 2068.5 778.001 2258 733.001C2447.5 688 2675.5 740.352 2675.5 1006Z' fill='%239ce5bd'/%3E%3Cpath d='M4283.5 1337.4C4283.5 1603.05 4115.65 1457.4 3850 1457.4C3584.35 1457.4 3188.5 1940.05 3188.5 1674.4C3188.5 1408.75 3263.5 1172 3453 1127C3642.5 1082 4283.5 1071.75 4283.5 1337.4Z' fill='%2371d59a'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 /*
@@ -123,7 +126,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3Cpattern id='p' width='210' height='210' patternUnits='userSpaceOnUse' patternTransform='rotate(-24)'%3E%3Crect width='210' height='210' fill='%23ffffff'/%3E%3Crect width='9' height='210' fill='%236fd598'/%3E%3Crect x='16' width='3' height='210' fill='%23a9e8c2'/%3E%3Crect x='74' width='2' height='210' fill='%23bdedd0'/%3E%3Crect x='120' width='6' height='210' fill='%238fdfb0'/%3E%3Crect x='134' width='2' height='210' fill='%23cbf1da'/%3E%3Crect x='176' width='3' height='210' fill='%23b3ebc9'/%3E%3C/pattern%3E%3Cfilter id='m' x='-25%25' y='-25%25' width='150%25' height='150%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='5' seed='5' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='115' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/defs%3E%3Crect x='-300' y='-300' width='1800' height='1400' fill='url(%23p)' filter='url(%23m)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3Cpattern id='p' width='210' height='210' patternUnits='userSpaceOnUse' patternTransform='rotate(-24)'%3E%3Crect width='9' height='210' fill='%236fd598'/%3E%3Crect x='16' width='3' height='210' fill='%23a9e8c2'/%3E%3Crect x='74' width='2' height='210' fill='%23bdedd0'/%3E%3Crect x='120' width='6' height='210' fill='%238fdfb0'/%3E%3Crect x='134' width='2' height='210' fill='%23cbf1da'/%3E%3Crect x='176' width='3' height='210' fill='%23b3ebc9'/%3E%3C/pattern%3E%3Cfilter id='m' x='-25%25' y='-25%25' width='150%25' height='150%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='5' seed='5' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='115' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/defs%3E%3Crect x='-300' y='-300' width='1800' height='1400' fill='url(%23p)' filter='url(%23m)'/%3E%3C/svg%3E");
   background-size: cover;
   background-position: center;
   opacity: 0.9;
