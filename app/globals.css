@@ -439,11 +439,32 @@ body {
 
 .pop-cover-copy-title {
   position: relative;
+  padding: 0.18em 0.42em 0.2em;
+}
+
+.pop-cover-copy-title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 12px;
 }
 
 .pop-cover-copy-title h1 {
   position: relative;
   z-index: 1;
+}
+
+.pop-cover-kicker {
+  position: relative;
+  z-index: 2;
+  margin-top: 0.7rem;
+  padding: 0.28rem 0.75rem;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 999px;
 }
 
 .pop-cover-copy-rest {
@@ -453,7 +474,7 @@ body {
 
 .pop-cover-copy-cluster {
   position: absolute;
-  inset: -8% -1%;
+  inset: 0;
   z-index: 0;
   pointer-events: none;
 }
@@ -464,35 +485,35 @@ body {
 }
 
 .pop-copy-g-cir {
-  left: -3%;
-  top: 6%;
-  width: 22%;
+  left: -0.85rem;
+  top: -0.7rem;
+  width: 2.1rem;
 }
 
 .pop-copy-g-sq {
-  left: 18%;
-  top: -4%;
-  width: 26%;
-  transform: rotate(-9deg);
+  right: 28%;
+  top: -0.85rem;
+  width: 1.7rem;
+  transform: rotate(-12deg);
 }
 
 .pop-copy-g-sq2 {
-  left: 46%;
-  top: 2%;
-  width: 24%;
-  transform: rotate(11deg);
+  right: -0.75rem;
+  top: 0.15rem;
+  width: 1.85rem;
+  transform: rotate(14deg);
 }
 
 .pop-copy-g-dia {
-  left: 68%;
-  top: 10%;
-  width: 14%;
+  left: 22%;
+  bottom: -0.65rem;
+  width: 1.25rem;
 }
 
 .pop-copy-g-pip {
-  right: -2%;
-  top: 18%;
-  width: 13%;
+  right: 18%;
+  bottom: -0.55rem;
+  width: 1.15rem;
 }
 
 /* Standing portrait, slightly oversized so the legs can clip at the floor. */

@@ -138,7 +138,7 @@ export default function ProfileHero() {
           </h1>
         </div>
         {profile.tagline ? (
-          <p className="pop-cover-copy-rest mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
+          <p className="pop-cover-kicker max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
             {profile.tagline}
           </p>
         ) : null}
