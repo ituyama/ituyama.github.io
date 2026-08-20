@@ -62,10 +62,10 @@ function tickerItems(quote: Quote | null): Item[] {
 
 function Row({ items, duplicate }: { items: Item[]; duplicate?: boolean }) {
   return (
-    <ul className="flex shrink-0 items-center px-2" aria-hidden={duplicate || undefined}>
+    <ul className="flex h-full shrink-0 items-stretch px-2" aria-hidden={duplicate || undefined}>
       {items.map((item, i) => (
-        <li key={`${item.symbol}-${item.value}-${i}`} className="flex shrink-0 items-center">
-          <span className="mx-3 h-3.5 w-0.5 bg-bento-ink" aria-hidden="true" />
+        <li key={`${item.symbol}-${item.value}-${i}`} className="flex h-full shrink-0 items-center">
+          <span className="mx-3 h-full w-0.5 bg-bento-ink" aria-hidden="true" />
           <span className="flex shrink-0 items-baseline gap-2 whitespace-nowrap">
             <span className="text-[0.7rem] font-extrabold tracking-[0.1em]">{item.symbol}</span>
             <span className="text-[0.7rem] font-bold">{item.name}</span>
@@ -136,7 +136,7 @@ export default function TickerBar() {
         <span className="text-[0.72rem] font-extrabold tracking-[0.14em]">YAMANO</span>
       </div>
       <div className="ticker-mask min-w-0 flex-1 overflow-hidden">
-        <div className="ticker-track flex h-full w-max items-center">
+        <div className="ticker-track flex h-full w-max items-stretch">
           <Row items={items} />
           <Row items={items} duplicate />
         </div>
