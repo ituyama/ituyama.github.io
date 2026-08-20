@@ -45,10 +45,10 @@ const ROW_COUNT = 9;
 
 /** Hold tickers, then exit. Outer rows leave last. */
 const HOLD_MS = 2200;
-const ROW_OUT_MS = 980;
-const ROW_STAGGER_MS = 70;
+const ROW_OUT_MS = 1700;
+const ROW_STAGGER_MS = 110;
 const LAST_ROW_DELAY_MS = 4 * ROW_STAGGER_MS;
-const DONE_MS = HOLD_MS + LAST_ROW_DELAY_MS + ROW_OUT_MS + 80;
+const DONE_MS = HOLD_MS + LAST_ROW_DELAY_MS + ROW_OUT_MS + 120;
 
 const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
   const words = WORDS.filter((_, i) => i % ROW_COUNT === row);

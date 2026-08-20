@@ -1107,7 +1107,7 @@ body {
   z-index: 0;
   background: var(--color-bento-accent);
   opacity: 1;
-  transition: opacity 1.05s ease-out;
+  transition: opacity 1.7s ease-out;
 }
 
 .pop-splash.is-out .pop-splash-bg {
@@ -1116,7 +1116,7 @@ body {
 
 .pop-splash.is-out .pop-policy-dots {
   opacity: 0;
-  transition: opacity 0.9s ease-out;
+  transition: opacity 1.4s ease-out;
 }
 
 .pop-splash.is-out .pop-splash-track {
@@ -1125,22 +1125,22 @@ body {
 
 /* Slide until the last glyph clears the frame — no mid-fade on the type. */
 .pop-splash.is-out .pop-splash-row.is-ltr {
-  animation: splashRowOutL 0.98s cubic-bezier(0.55, 0, 0.2, 1) forwards;
+  animation: splashRowOutL 1.7s cubic-bezier(0.33, 0, 0.2, 1) forwards;
 }
 
 .pop-splash.is-out .pop-splash-row.is-rtl {
-  animation: splashRowOutR 0.98s cubic-bezier(0.55, 0, 0.2, 1) forwards;
+  animation: splashRowOutR 1.7s cubic-bezier(0.33, 0, 0.2, 1) forwards;
 }
 
 .pop-splash.is-out .pop-splash-row:nth-child(5) { animation-delay: 0ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(4),
-.pop-splash.is-out .pop-splash-row:nth-child(6) { animation-delay: 70ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(6) { animation-delay: 110ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(3),
-.pop-splash.is-out .pop-splash-row:nth-child(7) { animation-delay: 140ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(7) { animation-delay: 220ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(2),
-.pop-splash.is-out .pop-splash-row:nth-child(8) { animation-delay: 210ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(8) { animation-delay: 330ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(1),
-.pop-splash.is-out .pop-splash-row:nth-child(9) { animation-delay: 280ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(9) { animation-delay: 440ms; }
 
 @keyframes splashRowOutL {
   to {
@@ -1162,17 +1162,21 @@ body {
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 0.02em;
+  gap: 0.12em;
   transform: translateY(-50%);
 }
 
 .pop-splash-row {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-block: 0.06em;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .pop-splash-track {
   display: flex;
+  align-items: center;
   width: max-content;
   gap: 0.85em;
   will-change: transform;
@@ -1200,7 +1204,7 @@ body {
   font-size: clamp(4.4rem, 22vh, 14rem);
   font-weight: 900;
   letter-spacing: 0.16em;
-  line-height: 0.92;
+  line-height: 1.15;
 }
 
 @keyframes splashTickerL {
