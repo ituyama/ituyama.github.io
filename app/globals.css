@@ -164,12 +164,6 @@ body {
   }
 }
 
-.pop-cover-copy h1 {
-  text-shadow:
-    3px 3px 0 #fff,
-    6px 6px 0 #111;
-}
-
 @keyframes stripeSlide {
   from {
     transform: translate3d(0, 0, 0);
