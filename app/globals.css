@@ -1093,9 +1093,6 @@ body {
   inset: 0;
   z-index: 80;
   isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   overflow: hidden;
   background: var(--color-bento-accent);
   transform: translateY(0);
@@ -1107,12 +1104,15 @@ body {
 }
 
 .pop-splash-stack {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 0;
   z-index: 1;
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 0.08em;
+  gap: 0.02em;
+  transform: translateY(-50%);
 }
 
 .pop-splash-row {
@@ -1139,15 +1139,17 @@ body {
 .pop-splash-row:nth-child(5) .pop-splash-track { animation-duration: 21s; }
 .pop-splash-row:nth-child(6) .pop-splash-track { animation-duration: 15s; }
 .pop-splash-row:nth-child(7) .pop-splash-track { animation-duration: 23s; }
+.pop-splash-row:nth-child(8) .pop-splash-track { animation-duration: 17s; }
+.pop-splash-row:nth-child(9) .pop-splash-track { animation-duration: 25s; }
 
 .pop-splash-item {
   flex: none;
   color: #ffffff;
   font-family: var(--font-noto-serif-jp), "Noto Serif JP", serif;
-  font-size: clamp(2.6rem, 11vw, 6.4rem);
+  font-size: clamp(4.4rem, 22vh, 14rem);
   font-weight: 900;
-  letter-spacing: 0.18em;
-  line-height: 1;
+  letter-spacing: 0.16em;
+  line-height: 0.92;
 }
 
 @keyframes splashTickerL {

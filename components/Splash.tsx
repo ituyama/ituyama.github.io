@@ -41,7 +41,7 @@ const WORDS = [
   "山野",
 ];
 
-const ROW_COUNT = 7;
+const ROW_COUNT = 9;
 
 const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
   const words = WORDS.filter((_, i) => i % ROW_COUNT === row);
