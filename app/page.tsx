@@ -11,20 +11,29 @@ import XFloatButton from "@/components/XFloatButton";
 import { profile } from "@/lib/profile";
 
 export default function Home() {
+  const year = new Date().getFullYear();
+
   return (
     <>
       <TickerBar />
       <SideNav />
       <XFloatButton />
-      <ProfileHero />
-      <BioSection />
-      <TalkSection />
-      <WorkPanel />
-      <TagSection />
-      <HireSection />
-      <LifePanel />
+      <main>
+        <ProfileHero />
+        <BioSection />
+        <TalkSection />
+        <WorkPanel />
+        <TagSection />
+        <HireSection />
+        <LifePanel />
+      </main>
       <footer className="border-t-2 border-bento-line px-4 pb-[max(2rem,env(safe-area-inset-bottom,0px))] pt-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px] md:pb-8">
-        {profile.nameJa} / {profile.nameEn}
+        <p>
+          © {year} {profile.nameJa} / {profile.nameEn}
+        </p>
+        <p className="mt-1">
+          <a href="https://ituyama.com">ituyama.com</a>
+        </p>
       </footer>
     </>
   );

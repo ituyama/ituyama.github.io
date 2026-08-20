@@ -1,9 +1,6 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
-const SITE = "https://ituyama.com";
-
-// Explicitly welcome general and AI/LLM crawlers so the site can be indexed and
-// cited by generative search engines (ChatGPT, Perplexity, Gemini, Claude, …).
 const AI_BOTS = [
   "GPTBot",
   "OAI-SearchBot",
@@ -23,10 +20,10 @@ const AI_BOTS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/" },
-      ...AI_BOTS.map((userAgent) => ({ userAgent, allow: "/" })),
+      { userAgent: "*", allow: "/", disallow: ["/api/"] },
+      ...AI_BOTS.map((userAgent) => ({ userAgent, allow: "/", disallow: ["/api/"] })),
     ],
-    sitemap: `${SITE}/sitemap.xml`,
-    host: SITE,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

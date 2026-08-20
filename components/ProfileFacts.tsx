@@ -16,10 +16,11 @@ export default function ProfileFacts() {
 
   return (
     <section className="sr-only" aria-label={`${profile.nameJa}（${profile.nameEn}）のプロフィール`}>
-      <h1>
+      <p>
         {profile.nameJa} / {profile.nameEn}
-      </h1>
+      </p>
       {profile.tagline ? <p>{profile.tagline}</p> : null}
+      {profile.policy ? <p>{profile.policy}</p> : null}
       {profile.roles.length ? <p>{profile.roles.join(" / ")}</p> : null}
       {profile.about ? <p>{profile.about}</p> : null}
 

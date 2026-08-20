@@ -4,11 +4,18 @@ import "@fontsource/line-seed-jp/400.css";
 import "@fontsource/line-seed-jp/700.css";
 import "@fontsource/line-seed-jp/800.css";
 import "./globals.css";
-import { profile } from "@/lib/profile";
-import { tags } from "@/lib/tags";
-import { work } from "@/lib/work";
 import ProfileFacts from "@/components/ProfileFacts";
 import Splash from "@/components/Splash";
+import { profile } from "@/lib/profile";
+import {
+  jsonLdGraph,
+  ogImages,
+  SITE_URL,
+  siteDescription,
+  siteKeywords,
+  siteTitle,
+  twitterHandle,
+} from "@/lib/seo";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -31,49 +38,54 @@ const firaCode = Fira_Code({
   display: "swap",
 });
 
-const factDescription = [
-  `${profile.nameJa}（${profile.nameEn}）のポートフォリオ。`,
-  profile.roles.length ? `${profile.roles.join(" / ")}。` : "",
-  work.items.length
-    ? work.items.map((c) => `${c.name}（${c.role}）`).join("、") + "。"
-    : "",
-  profile.university ? `${profile.university}。` : "",
-  profile.location ? `拠点は${profile.location}。` : "",
-  tags.items.length ? `主なスキル: ${tags.items.join("、")}。` : "",
-]
-  .filter(Boolean)
-  .join("");
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ituyama.com"),
-  title: { default: `${profile.nameEn}｜${profile.nameJa}`, template: "%s｜Yamano Itsuki" },
-  description: factDescription,
-  keywords: [
-    profile.nameJa,
-    profile.nameEn,
-    ...work.items.map((c) => c.name),
-    ...tags.items,
-    "ポートフォリオ",
-    "portfolio",
-  ],
-  authors: [{ name: profile.nameEn }],
+  metadataBase: new URL(SITE_URL),
+  title: { default: siteTitle, template: `%s｜${profile.nameJa}` },
+  description: siteDescription,
+  keywords: siteKeywords,
+  authors: [{ name: profile.nameEn, url: SITE_URL }],
   creator: profile.nameEn,
-  alternates: { canonical: "/" },
-  icons: { icon: "/media/yamanopic.png" },
+  publisher: profile.nameEn,
+  category: "portfolio",
+  alternates: {
+    canonical: "/",
+    languages: { "ja-JP": "/" },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: { telephone: false, email: false, address: false },
+  icons: {
+    icon: [{ url: profile.avatar, type: "image/png" }],
+    apple: profile.avatar,
+  },
   openGraph: {
-    title: `${profile.nameEn}｜${profile.nameJa}`,
-    description: factDescription,
-    url: "https://ituyama.com",
-    siteName: "Yamano Itsuki",
+    title: siteTitle,
+    description: siteDescription,
+    url: SITE_URL,
+    siteName: siteTitle,
     locale: "ja_JP",
-    images: ["/media/ogp.png"],
+    images: ogImages,
     type: "profile",
+    firstName: "Itsuki",
+    lastName: "Yamano",
+    username: "ituyama",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.nameEn}｜${profile.nameJa}`,
-    description: factDescription,
-    images: ["/media/ogp.png"],
+    title: siteTitle,
+    description: siteDescription,
+    images: ogImages,
+    creator: twitterHandle ? `@${twitterHandle}` : undefined,
+    site: twitterHandle ? `@${twitterHandle}` : undefined,
   },
 };
 
@@ -82,23 +94,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#00e676",
-};
-
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.nameEn,
-  alternateName: profile.nameJa,
-  url: "https://ituyama.com",
-  image: `https://ituyama.com${profile.avatar}`,
-  email: profile.email || undefined,
-  jobTitle: work.items[0]?.role,
-  worksFor: work.items.map((c) => ({ "@type": "Organization", name: c.name })),
-  address: profile.location
-    ? { "@type": "PostalAddress", addressLocality: profile.location }
-    : undefined,
-  knowsAbout: tags.items,
-  sameAs: profile.socials.map((s) => s.url),
 };
 
 export default function RootLayout({
@@ -122,7 +117,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph()) }}
         />
       </head>
       <body className={`${notoSansJp.variable} ${notoSerifJp.variable} ${firaCode.variable}`}>
