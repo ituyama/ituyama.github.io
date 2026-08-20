@@ -17,6 +17,7 @@
 /image copy.png
 /image copy 2.png
 /image copy 3.png
+/image copy 4.png
 
 # debug
 npm-debug.log*

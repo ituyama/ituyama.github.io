@@ -122,6 +122,8 @@ export default function ProfileHero() {
         <img src="/media/city-tower.png" alt="" className="pop-collage pop-collage-c" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/media/city-signal.png" alt="" className="pop-collage pop-collage-d" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city-office.png" alt="" className="pop-collage pop-collage-e" />
       </div>
 
       <div className="pop-cover-copy">
