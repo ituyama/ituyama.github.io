@@ -27,7 +27,7 @@ export default function TalkSection() {
         <h2 id="talk-title" className="pop-policy-mark">
           MY POLICY
         </h2>
-        <p className="pop-policy-body">{body}</p>
+        <p className="pop-policy-slogan">{body}</p>
       </div>
     </section>
   );

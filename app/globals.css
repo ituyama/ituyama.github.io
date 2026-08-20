@@ -207,6 +207,15 @@ body {
   text-justify: inter-ideograph;
 }
 
+.pop-policy-slogan {
+  margin: 1.6rem 0 0;
+  color: #111111;
+  font-size: clamp(1.7rem, 5.8vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.3;
+  text-align: center;
+}
+
 .pop-policy-fade {
   color: #157a38;
 }
@@ -497,9 +506,13 @@ body {
 }
 
 .pop-cover-kicker {
+  max-width: 22rem;
   color: #111111;
+  font-size: clamp(1.2rem, 3.6vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.35;
   paint-order: stroke fill;
-  -webkit-text-stroke: 0.22em #ffffff;
+  -webkit-text-stroke: 0.18em #ffffff;
 }
 
 .pop-cover-name {
@@ -702,6 +715,11 @@ body {
     margin-top: 1.15rem;
     font-size: 0.98rem;
     line-height: 1.75;
+  }
+
+  .pop-policy-slogan {
+    margin-top: 1.15rem;
+    font-size: clamp(1.45rem, 7.2vw, 2.1rem);
   }
 
   .pop-work-list {
