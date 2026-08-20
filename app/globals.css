@@ -1078,8 +1078,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .bento-reveal,
   .ticker-track,
-  .ticker-live,
-  .pop-splash-bar-fill {
+  .ticker-live {
     animation: none !important;
   }
 
@@ -1097,7 +1096,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.15rem;
   overflow: hidden;
   background: var(--color-bento-accent);
   transform: translateY(0);
@@ -1108,62 +1106,22 @@ body {
   transform: translateY(-100%);
 }
 
-.pop-splash-mark,
-.pop-splash-name,
-.pop-splash-bar {
+.pop-splash-word {
   position: relative;
   z-index: 1;
-}
-
-.pop-splash-mark {
   margin: 0;
-  padding: 0.18em 0.28em 0.14em;
+  padding: 0.1em 0.2em 0.06em;
   background: #111111;
   color: #ffffff;
-  font-family: var(--font-sans);
-  font-size: clamp(1.7rem, 8vw, 3.4rem);
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  font-family: "Dela Gothic One", var(--font-sans);
+  font-size: clamp(4.6rem, 28vw, 11rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
   line-height: 0.88;
   text-shadow:
-    -3px 0 #4d7cff,
-    3px 0 #7a5cff;
-}
-
-.pop-splash-name {
-  margin: 0;
-  font-family: "Dela Gothic One", var(--font-sans);
-  font-size: clamp(2.4rem, 12vw, 4.6rem);
-  font-weight: 400;
-  line-height: 0.92;
-  letter-spacing: 0.02em;
-  color: #111111;
-  transform: skewX(-16deg) rotate(-5deg);
-}
-
-.pop-splash-bar {
-  width: min(12.5rem, 48vw);
-  height: 12px;
-  overflow: hidden;
-  border: 2px solid #000000;
-  background: #ffffff;
-}
-
-.pop-splash-bar-fill {
-  display: block;
-  height: 100%;
-  width: 0;
-  background: #111111;
-  animation: splashFill 1.25s var(--ease-bento) 0.12s forwards;
-}
-
-@keyframes splashFill {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+    -4px 0 #4d7cff,
+    4px 0 #7a5cff;
+  transform: skewX(-10deg) rotate(-3deg);
 }
 
 .font-lineseed {
