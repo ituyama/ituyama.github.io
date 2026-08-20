@@ -1,27 +1,30 @@
 {
-  "title": "HIRE",
-  "intro": "いま探しているのは、この3つです。",
+  "title": "求人",
+  "intro": "人を募集しています",
   "openings": [
     {
       "org": "飲み友達",
-      "role": "酒 / 話",
-      "summary": "仕事の話でも、どうでもいい話でもいい。夜に一杯やれる人。",
-      "tags": ["武蔵小杉"],
+      "role": "友達",
+      "summary": "飲み友達を募集しています　ドライブも行こうね",
+      "tags": [],
       "cta": "連絡する",
       "email": "itsuki-yamano@mitologie.jp"
     },
     {
       "org": "一緒に働く人",
       "role": "プロダクト / 事業",
-      "summary": "作ることも、決めることも、自分でやる人。会社の枠は問わない。",
-      "tags": ["Mitologie", "Xtraveler"],
+      "summary": "ちょいちょい開発案件　手に負えない数くることがあるので　エンジニアを募集しています。",
+      "tags": [
+        "Mitologie",
+        "Xtraveler"
+      ],
       "cta": "話を聞く",
       "email": "itsuki-yamano@mitologie.jp"
     },
     {
       "org": "彼女",
-      "role": "話し合いができる人",
-      "summary": "感情で終わらせない。言いたいことを言って、聞ける人。",
+      "role": "話し合いができる彼女",
+      "summary": "話し合いができる彼女を探しています。他はもうなんでもいいです。",
       "tags": [],
       "cta": "連絡する",
       "email": "itsuki-yamano@mitologie.jp"
