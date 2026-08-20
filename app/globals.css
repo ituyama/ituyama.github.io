@@ -204,7 +204,7 @@ body {
   }
 }
 
-/* City cutouts planted from the floor. They frame the portrait; they do not sit on it. */
+/* Planted cutouts on top of the geometric photo-windows. */
 .pop-cover-collage {
   position: absolute;
   inset: 0;
@@ -218,75 +218,47 @@ body {
   height: auto;
 }
 
-.pop-collage-city {
-  left: -10%;
-  bottom: -8%;
-  height: 72%;
-  width: auto;
-  transform: rotate(-5deg);
-}
-
-.pop-collage-tower {
-  left: 4%;
-  bottom: -14%;
-  height: 96%;
-  width: auto;
-  transform: rotate(-3deg);
-}
-
 .pop-collage-office {
-  left: -8%;
-  bottom: -12%;
-  width: 42%;
+  left: -10%;
+  bottom: -14%;
+  width: 44%;
   height: auto;
-  transform: rotate(-6deg);
+  transform: rotate(-8deg);
 }
 
 .pop-collage-glass {
-  right: -8%;
-  bottom: -6%;
-  height: 108%;
+  right: -10%;
+  bottom: -8%;
+  height: 118%;
   width: auto;
-  transform: rotate(3deg);
+  transform: rotate(4deg);
 }
 
 .pop-collage-signal {
-  right: -6%;
-  bottom: -18%;
-  height: 92%;
+  right: -4%;
+  bottom: -20%;
+  height: 88%;
   width: auto;
-  transform: rotate(-6deg);
+  transform: rotate(-7deg);
 }
 
 @media (max-width: 767px) {
-  .pop-collage-city {
-    left: -28%;
-    bottom: -6%;
-    height: 48%;
-  }
-
-  .pop-collage-tower {
-    left: -8%;
-    bottom: -16%;
-    height: 72%;
-  }
-
   .pop-collage-office {
-    left: -18%;
-    bottom: -8%;
-    width: 62%;
+    left: -20%;
+    bottom: -10%;
+    width: 64%;
   }
 
   .pop-collage-glass {
-    right: -22%;
-    bottom: -8%;
-    height: 78%;
+    right: -24%;
+    bottom: -10%;
+    height: 82%;
   }
 
   .pop-collage-signal {
-    right: -12%;
-    bottom: -14%;
-    height: 62%;
+    right: -14%;
+    bottom: -16%;
+    height: 58%;
   }
 }
 
@@ -310,6 +282,11 @@ body {
   stroke: #000000;
   stroke-width: 3;
   vector-effect: non-scaling-stroke;
+}
+
+.pop-shape image,
+.pop-shape clipPath * {
+  stroke: none;
 }
 
 /*
@@ -340,11 +317,11 @@ body {
 }
 
 .pop-shape-diamond {
-  left: 24%;
-  top: 40%;
-  width: 8%;
+  left: 26%;
+  top: 36%;
+  width: 11%;
   z-index: 4;
-  transform: rotate(14deg);
+  transform: rotate(18deg);
 }
 
 .pop-shape-capsule {
@@ -356,19 +333,19 @@ body {
 }
 
 .pop-shape-triangle {
-  left: calc(72px - 1%);
-  bottom: -4%;
-  width: 14%;
+  left: calc(72px - 2%);
+  bottom: -6%;
+  width: 20%;
   z-index: 3;
-  transform: rotate(-8deg);
+  transform: rotate(-12deg);
 }
 
 .pop-shape-arch {
-  right: -3%;
-  top: -6%;
-  width: 16%;
+  right: -4%;
+  top: -8%;
+  width: 20%;
   z-index: 2;
-  transform: rotate(7deg);
+  transform: rotate(10deg);
 }
 
 .pop-shape-cross {
@@ -380,9 +357,9 @@ body {
 }
 
 .pop-shape-square {
-  right: 1%;
-  top: 24%;
-  width: 7.5%;
+  right: 2%;
+  top: 22%;
+  width: 11%;
   z-index: 3;
   transform: rotate(16deg);
 }
@@ -396,17 +373,17 @@ body {
 }
 
 .pop-shape-quarter {
-  right: -8%;
-  bottom: -10%;
-  width: 28%;
+  right: -10%;
+  bottom: -12%;
+  width: 34%;
   z-index: 2;
-  transform: rotate(180deg);
+  transform: rotate(6deg);
 }
 
 .pop-shape-pip {
-  right: 18%;
-  bottom: 5%;
-  width: 8%;
+  right: 16%;
+  bottom: 6%;
+  width: 13%;
   z-index: 4;
 }
 
