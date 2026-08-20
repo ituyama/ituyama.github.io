@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fira_Code, Noto_Sans_JP } from "next/font/google";
+import { Fira_Code, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "@fontsource/line-seed-jp/400.css";
 import "@fontsource/line-seed-jp/700.css";
 import "@fontsource/line-seed-jp/800.css";
@@ -12,6 +12,13 @@ const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
   variable: "--font-noto-sans-jp",
+  display: "swap",
+});
+
+const notoSerifJp = Noto_Serif_JP({
+  subsets: ["latin"],
+  weight: ["700", "900"],
+  variable: "--font-noto-serif-jp",
   display: "swap",
 });
 
@@ -115,7 +122,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
-      <body className={`${notoSansJp.variable} ${firaCode.variable}`}>
+      <body className={`${notoSansJp.variable} ${notoSerifJp.variable} ${firaCode.variable}`}>
         <ProfileFacts />
         <Splash />
         {children}

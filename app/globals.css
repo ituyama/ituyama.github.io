@@ -1110,18 +1110,12 @@ body {
   position: relative;
   z-index: 1;
   margin: 0;
-  padding: 0.1em 0.2em 0.06em;
-  background: #111111;
-  color: #ffffff;
-  font-family: "Dela Gothic One", var(--font-sans);
-  font-size: clamp(4.6rem, 28vw, 11rem);
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  line-height: 0.88;
-  text-shadow:
-    -4px 0 #4d7cff,
-    4px 0 #7a5cff;
-  transform: skewX(-10deg) rotate(-3deg);
+  color: #111111;
+  font-family: var(--font-noto-serif-jp), "Noto Serif JP", serif;
+  font-size: clamp(4.8rem, 30vw, 12rem);
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  line-height: 1;
 }
 
 .font-lineseed {
