@@ -244,11 +244,29 @@ body {
 }
 
 .ticker-track {
-  animation: tickerScroll 42s linear infinite;
+  animation: tickerScroll 36s linear infinite;
 }
 
-.ticker-track:hover {
+.ticker-mask:hover .ticker-track {
   animation-play-state: paused;
+}
+
+.ticker-mask {
+  mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+}
+
+.ticker-live {
+  animation: tickerLive 1.4s ease-in-out infinite;
+}
+
+@keyframes tickerLive {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
 .discover-media-fill {
@@ -364,6 +382,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .bento-reveal,
   .ticker-track,
+  .ticker-live,
   .pop-cover-stripes,
   .pop-cover-speed {
     animation: none !important;
