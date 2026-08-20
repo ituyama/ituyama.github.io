@@ -11,11 +11,12 @@ export default function WorkPanel() {
   ].filter((x): x is { label: string; value: string } => Boolean(x));
 
   return (
-    <section>
-      <h2 className="pop-section-title">仕事</h2>
+    <section id="work" aria-labelledby="work-title">
       <article className="pop-work-sheet pop-frame">
         <header className="pop-work-sheet-head">
-          <p className="pop-work-sheet-kicker">所属 {profile.companies.length}社</p>
+          <p id="work-title" className="pop-work-sheet-kicker">
+            所属 {profile.companies.length}社
+          </p>
           <p className="pop-work-sheet-lead">{profile.tagline}</p>
         </header>
 

@@ -100,7 +100,7 @@ export default function ProfileHero() {
   ];
 
   return (
-    <section className="pop-kv">
+    <section className="pop-kv" id="top">
       <div className="pop-cover-shapes" aria-hidden="true">
         {heroShapes.map((shape) => (
           <svg
