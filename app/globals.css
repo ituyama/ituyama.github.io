@@ -1110,7 +1110,7 @@ body {
   position: relative;
   z-index: 1;
   margin: 0;
-  color: #111111;
+  color: #ffffff;
   font-family: var(--font-noto-serif-jp), "Noto Serif JP", serif;
   font-size: clamp(4.8rem, 30vw, 12rem);
   font-weight: 900;
