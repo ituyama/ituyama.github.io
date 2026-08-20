@@ -426,7 +426,7 @@ body {
 .pop-cover-copy {
   position: absolute;
   right: 0;
-  bottom: 12%;
+  bottom: 8%;
   left: 0;
   z-index: 21;
   display: flex;
@@ -438,14 +438,17 @@ body {
   padding: 0 clamp(1.2rem, 4vw, 2.4rem);
 }
 
-/* Fills the KV; the floor of the section clips the legs. */
+/* Standing portrait, slightly oversized so the legs can clip at the floor. */
 .pop-cover-shot {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  bottom: -8%;
   z-index: 20;
-  width: 100%;
-  height: 118%;
-  object-fit: cover;
+  width: auto;
+  height: 64svh;
+  max-width: min(92%, 28rem);
+  transform: translateX(-50%);
+  object-fit: contain;
   object-position: top center;
   pointer-events: none;
 }
@@ -462,13 +465,23 @@ body {
 
   .pop-cover-copy {
     left: 72px;
-    bottom: 10%;
+    bottom: 7%;
+  }
+
+  .pop-cover-shot {
+    left: calc(50% + 36px);
+    height: 70svh;
+    max-width: 30rem;
   }
 }
 
 @media (max-width: 767px) {
   .pop-cover-copy {
     bottom: calc(4.2rem + env(safe-area-inset-bottom));
+  }
+
+  .pop-cover-shot {
+    height: 52svh;
   }
 }
 
