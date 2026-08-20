@@ -29,9 +29,7 @@ export type Profile = {
 
 /**
  * Single source of truth about Yamano Itsuki, loaded from data/profile.json.
- * Injected into the LLM system prompt so generated tiles stay factual, and
- * also used to render the initial (static) Bento layout before any query.
- * Edit the JSON to update the portfolio content.
+ * Used to render the homepage card grid. Edit the JSON to update the portfolio.
  */
 export const profile: Profile = profileData;
 

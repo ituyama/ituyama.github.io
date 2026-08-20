@@ -29,7 +29,6 @@ const factDescription = [
   profile.university ? `${profile.university}。` : "",
   profile.location ? `拠点は${profile.location}。` : "",
   profile.skills.length ? `主なスキル: ${profile.skills.join("、")}。` : "",
-  "訪問者に合わせて LLM が内容を Bento グリッドに再構成します。",
 ]
   .filter(Boolean)
   .join("");

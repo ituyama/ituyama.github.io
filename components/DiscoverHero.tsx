@@ -1,6 +1,5 @@
 "use client";
 
-import { forwardRef, useState } from "react";
 import { profile } from "@/lib/profile";
 
 export type Chip = { id: string; label: string };
@@ -9,27 +8,21 @@ export const DISCOVER_CHIPS: Chip[] = [
   { id: "all", label: "すべて" },
   { id: "work", label: "仕事" },
   { id: "edu", label: "学歴" },
+  { id: "skills", label: "スキル" },
   ...profile.skills.map((s) => ({ id: s, label: s })),
 ];
 
-const DiscoverHero = forwardRef<
-  HTMLInputElement,
-  {
-    loading: boolean;
-    activeChip: string;
-    onSubmit: (prompt: string) => void;
-    onChip: (chip: Chip) => void;
-  }
->(function DiscoverHero({ loading, activeChip, onSubmit, onChip }, ref) {
-  const [value, setValue] = useState("");
-
-  function submit(text: string) {
-    const v = text.trim();
-    if (!v || loading) return;
-    onSubmit(v);
-    setValue("");
-  }
-
+export default function DiscoverHero({
+  query,
+  activeChip,
+  onQuery,
+  onChip,
+}: {
+  query: string;
+  activeChip: string;
+  onQuery: (value: string) => void;
+  onChip: (chip: Chip) => void;
+}) {
   return (
     <header className="flex flex-col gap-5">
       <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
@@ -43,34 +36,20 @@ const DiscoverHero = forwardRef<
         </div>
 
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            submit(value);
-          }}
+          onSubmit={(e) => e.preventDefault()}
           className="flex h-12 w-full max-w-md shrink-0 items-center overflow-hidden rounded-full border-[1.5px] border-bento-ink bg-bento-surface pl-5 focus-within:shadow-[0_0_0_3px_rgba(0,230,118,0.35)]"
         >
           <input
-            ref={ref}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={query}
+            onChange={(e) => onQuery(e.target.value)}
             placeholder="名前 ・ スキル ・ なんでも"
-            aria-label="質問を入力"
-            maxLength={500}
-            disabled={loading}
+            aria-label="カードを絞り込む"
+            maxLength={80}
             className="min-w-0 flex-1 bg-transparent text-[16px] text-bento-ink outline-none placeholder:text-bento-muted sm:text-[0.88rem]"
           />
-          <button
-            type="submit"
-            disabled={loading || !value.trim()}
-            aria-label="検索"
-            className="m-1 flex size-10 shrink-0 items-center justify-center rounded-full bg-bento-accent text-bento-ink disabled:cursor-not-allowed disabled:opacity-35"
-          >
-            {loading ? (
-              <i className="bi bi-arrow-repeat animate-spin text-[1.05rem]" aria-hidden="true" />
-            ) : (
-              <i className="bi bi-search text-[1.05rem]" aria-hidden="true" />
-            )}
-          </button>
+          <span className="m-1 flex size-10 shrink-0 items-center justify-center rounded-full bg-bento-accent text-bento-ink">
+            <i className="bi bi-search text-[1.05rem]" aria-hidden="true" />
+          </span>
         </form>
       </div>
 
@@ -82,8 +61,7 @@ const DiscoverHero = forwardRef<
               key={chip.id}
               type="button"
               onClick={() => onChip(chip)}
-              disabled={loading}
-              className={`shrink-0 rounded-full px-3.5 py-1.5 text-[0.78rem] font-bold disabled:opacity-40 ${
+              className={`shrink-0 rounded-full px-3.5 py-1.5 text-[0.78rem] font-bold ${
                 selected
                   ? "bg-bento-accent text-bento-ink"
                   : "border border-bento-accent bg-bento-surface text-bento-ink"
@@ -96,6 +74,4 @@ const DiscoverHero = forwardRef<
       </div>
     </header>
   );
-});
-
-export default DiscoverHero;
+}

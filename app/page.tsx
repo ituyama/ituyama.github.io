@@ -1,161 +1,73 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import BentoGrid from "@/components/BentoGrid";
-import BentoSkeleton from "@/components/BentoSkeleton";
-import BuildStatus from "@/components/BuildStatus";
-import DiscoverHero, { DISCOVER_CHIPS, type Chip } from "@/components/DiscoverHero";
+import DiscoverHero, { type Chip } from "@/components/DiscoverHero";
 import SideNav from "@/components/SideNav";
 import TickerBar from "@/components/TickerBar";
-import WelcomeModal from "@/components/WelcomeModal";
-import type { BentoLayout } from "@/lib/bentoSchema";
+import type { BentoTile } from "@/lib/bentoSchema";
 import { initialLayout } from "@/lib/profile";
 
-const VISITOR_KEY = "bento.visitor.v1";
+function haystack(tile: BentoTile) {
+  return [tile.title, tile.body, tile.caption, tile.type, tile.href]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
 
-const CHIP_PROMPTS: Record<string, string> = {
-  work: "所属と仕事について見せて",
-  edu: "学歴について見せて",
-  skills: "スキルを教えて",
-};
-
-export default function Home() {
-  const [layout, setLayout] = useState<BentoLayout>(initialLayout);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [lastPrompt, setLastPrompt] = useState<string | null>(null);
-  const [lastRawPrompt, setLastRawPrompt] = useState<string | null>(null);
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [gateChecked, setGateChecked] = useState(false);
-  const [activeChip, setActiveChip] = useState("all");
-  const searchRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    try {
-      if (!localStorage.getItem(VISITOR_KEY)) setShowWelcome(true);
-    } catch {
-      setShowWelcome(true);
-    } finally {
-      setGateChecked(true);
-    }
-  }, []);
-
-  async function ask(prompt: string, label?: string) {
-    setLoading(true);
-    setError(null);
-    setLastPrompt(label ?? prompt);
-    setLastRawPrompt(prompt);
-    try {
-      const res = await fetch("/api/bento", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
-      });
-      const data = (await res.json()) as Partial<BentoLayout> & { error?: string };
-      if (!res.ok || data.error) {
-        throw new Error(data.error ?? "生成に失敗しました。");
-      }
-      setLayout({ intro: data.intro ?? "", tiles: data.tiles ?? [] });
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "エラーが発生しました。");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  function rememberVisitor(who: string) {
-    try {
-      localStorage.setItem(VISITOR_KEY, who);
-    } catch {
-      // ignore
-    }
-  }
-
-  function handleIdentify(who: string) {
-    rememberVisitor(who);
-    setShowWelcome(false);
-    setActiveChip("all");
-    void ask(
-      `あなたを訪ねてきたのは「${who}」です。この訪問者の関心に合わせて、最も響くと思われる内容・順序・粒度で山野イツキのポートフォリオを構成してください。`,
-      `${who} として閲覧中`,
+function matchesChip(tile: BentoTile, chip: string) {
+  if (chip === "all") return true;
+  if (chip === "work") {
+    return (
+      tile.title === "Work" ||
+      tile.type === "profile" ||
+      tile.type === "link" ||
+      tile.type === "activity"
     );
   }
-
-  function handleSkip() {
-    rememberVisitor("skip");
-    setShowWelcome(false);
+  if (chip === "edu") {
+    return tile.title === "Education" || tile.type === "profile";
   }
-
-  function backToTop() {
-    setLayout(initialLayout);
-    setError(null);
-    setLastPrompt(null);
-    setLastRawPrompt(null);
-    setActiveChip("all");
+  if (chip === "skills") {
+    return tile.type === "skills" || tile.type === "activity" || tile.type === "code";
   }
+  return haystack(tile).includes(chip.toLowerCase());
+}
 
-  function reopenWelcome() {
-    setLayout(initialLayout);
-    setError(null);
-    setLastPrompt(null);
-    setLastRawPrompt(null);
-    setActiveChip("all");
-    setShowWelcome(true);
-  }
+function matchesQuery(tile: BentoTile, query: string) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  return haystack(tile).includes(q);
+}
+
+export default function Home() {
+  const [activeChip, setActiveChip] = useState("all");
+  const [query, setQuery] = useState("");
+
+  const tiles = useMemo(
+    () => initialLayout.tiles.filter((t) => matchesChip(t, activeChip) && matchesQuery(t, query)),
+    [activeChip, query],
+  );
 
   function handleChip(chip: Chip) {
     setActiveChip(chip.id);
-    if (chip.id === "all") {
-      backToTop();
-      return;
-    }
-    const prompt = CHIP_PROMPTS[chip.id] ?? `「${chip.label}」について見せて`;
-    void ask(prompt, chip.label);
+    setQuery("");
   }
 
-  function handleSearch(prompt: string) {
-    setActiveChip("");
-    void ask(prompt);
-  }
-
-  function handleNav(id: "home" | "ask" | "work" | "skills" | "reset") {
+  function handleNav(id: "home" | "work" | "skills") {
     if (id === "home") {
-      backToTop();
-      return;
-    }
-    if (id === "ask") {
-      searchRef.current?.focus();
-      return;
-    }
-    if (id === "reset") {
-      reopenWelcome();
+      setActiveChip("all");
+      setQuery("");
       return;
     }
     if (id === "work") {
       handleChip({ id: "work", label: "仕事" });
       return;
     }
-    setActiveChip("skills");
-    void ask("スキルを教えて", "スキル");
+    handleChip({ id: "skills", label: "スキル" });
   }
 
-  const skillIds = DISCOVER_CHIPS.filter((c) => !["all", "work", "edu"].includes(c.id)).map((c) => c.id);
-  const navActive =
-    activeChip === "work"
-      ? "work"
-      : activeChip === "edu" || activeChip === "skills" || skillIds.includes(activeChip)
-        ? "skills"
-        : lastPrompt && activeChip !== "all"
-          ? "ask"
-          : "home";
-
-  const contentReady = gateChecked && !showWelcome;
-
-  if (!contentReady) {
-    return showWelcome ? (
-      <WelcomeModal onIdentify={handleIdentify} onSkip={handleSkip} />
-    ) : null;
-  }
+  const navActive = activeChip === "work" ? "work" : activeChip === "all" ? "home" : "skills";
 
   return (
     <>
@@ -163,56 +75,19 @@ export default function Home() {
       <SideNav active={navActive} onNavigate={handleNav} />
       <main className="mx-auto flex min-h-[calc(100dvh-2.5rem)] max-w-[1280px] flex-col gap-6 px-[clamp(0.85rem,3vw,2rem)] pb-24 pt-6 md:ml-[72px] md:pb-10">
         <DiscoverHero
-          ref={searchRef}
-          loading={loading}
+          query={query}
           activeChip={activeChip}
-          onSubmit={handleSearch}
+          onQuery={setQuery}
           onChip={handleChip}
         />
 
-        {(layout.intro || lastPrompt) && (
-          <div className="min-h-[1.25rem]">
-            {lastPrompt ? (
-              <p className="flex items-center gap-1.5 text-[0.72rem] font-bold text-bento-muted">
-                <i className="bi bi-compass" aria-hidden="true" />
-                {lastPrompt}
-              </p>
-            ) : null}
-            {layout.intro ? (
-              <p className="mt-1 text-[0.9rem] leading-snug text-bento-ink">{layout.intro}</p>
-            ) : null}
-          </div>
+        {tiles.length ? (
+          <BentoGrid tiles={tiles} />
+        ) : (
+          <p className="rounded-[var(--radius-bento)] border-[1.5px] border-bento-ink bg-bento-surface px-5 py-8 text-center text-[0.9rem] font-medium text-bento-muted">
+            該当するカードがありません
+          </p>
         )}
-
-        {error ? (
-          <div
-            role="alert"
-            className="flex flex-wrap items-center gap-2 rounded-[var(--radius-bento-sm)] border-[1.5px] border-rose-700 bg-rose-50 px-3 py-2 text-[0.78rem] font-bold text-rose-800"
-          >
-            <i className="bi bi-exclamation-triangle" aria-hidden="true" />
-            <span className="min-w-0 flex-1">{error}</span>
-            {lastRawPrompt ? (
-              <button
-                type="button"
-                onClick={() => ask(lastRawPrompt, lastPrompt ?? undefined)}
-                disabled={loading}
-                className="inline-flex items-center gap-1.5 rounded-full bg-bento-accent px-3 py-1 font-bold text-bento-ink disabled:opacity-50"
-              >
-                <i className="bi bi-arrow-clockwise" aria-hidden="true" />
-                再試行
-              </button>
-            ) : null}
-          </div>
-        ) : null}
-
-        <div className="relative flex-1">
-          {loading ? (
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center pt-10">
-              <BuildStatus />
-            </div>
-          ) : null}
-          {loading ? <BentoSkeleton /> : <BentoGrid tiles={layout.tiles} />}
-        </div>
       </main>
     </>
   );

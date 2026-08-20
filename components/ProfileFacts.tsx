@@ -3,11 +3,10 @@ import { calcAge, profile } from "@/lib/profile";
 /**
  * Server-rendered, fully crawlable summary of the profile facts.
  *
- * The visible UI is a client-rendered, LLM-arranged Bento grid, which AI
- * crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, …) generally
- * cannot execute. This block puts every fact into the initial HTML as plain
- * semantic markup so those crawlers — and screen readers — get the complete
- * picture regardless of JavaScript. It is visually hidden but present in the DOM.
+ * The visible UI is a client-rendered card grid. This block puts every fact
+ * into the initial HTML as plain semantic markup so crawlers and screen
+ * readers get the complete picture regardless of JavaScript. It is visually
+ * hidden but present in the DOM.
  */
 export default function ProfileFacts() {
   const age = profile.birthday ? calcAge(profile.birthday) : null;
