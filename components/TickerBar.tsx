@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { calcAge, profile } from "@/lib/profile";
+import { ticker, type TickerItem } from "@/lib/ticker";
 
 type Quote = {
   ok: boolean;
@@ -9,58 +9,24 @@ type Quote = {
   changePercent?: number;
 };
 
-type Item = {
-  symbol: string;
-  name: string;
-  value: string;
-  delta?: string;
-  up?: boolean;
-};
+function withLiveQuote(quote: Quote | null): TickerItem[] {
+  const items = [...ticker.items];
+  if (!ticker.liveNikkei || !quote?.ok || quote.price == null) return items;
 
-function tickerItems(quote: Quote | null): Item[] {
-  const age = profile.birthday ? calcAge(profile.birthday) : null;
-  const items: Item[] = [];
-
-  if (quote?.ok && quote.price != null) {
-    const up = (quote.changePercent ?? 0) >= 0;
-    items.push({
+  const up = (quote.changePercent ?? 0) >= 0;
+  return [
+    {
       symbol: "N225",
       name: "日経平均",
       value: `${quote.price.toLocaleString("ja-JP", { maximumFractionDigits: 2 })}円`,
       delta: `${up ? "+" : ""}${(quote.changePercent ?? 0).toFixed(2)}%`,
       up,
-    });
-  }
-
-  for (const c of profile.companies) {
-    items.push({
-      symbol: (c.name.split(/[\s,./]+/)[0] ?? c.name).slice(0, 4).toUpperCase(),
-      name: c.name.replace(/, Inc\.$/, ""),
-      value: c.role,
-    });
-  }
-
-  if (profile.location) items.push({ symbol: "LOC", name: "拠点", value: profile.location });
-  if (age !== null) items.push({ symbol: "AGE", name: "年齢", value: `${age}歳` });
-
-  for (const s of profile.skills) {
-    items.push({ symbol: "SKILL", name: "スキル", value: s });
-  }
-
-  if (profile.car) items.push({ symbol: "CAR", name: "愛車", value: profile.car });
-
-  for (const social of profile.socials) {
-    items.push({
-      symbol: social.icon === "github" ? "GH" : "X",
-      name: social.name,
-      value: social.handle,
-    });
-  }
-
-  return items;
+    },
+    ...items,
+  ];
 }
 
-function Row({ items, duplicate }: { items: Item[]; duplicate?: boolean }) {
+function Row({ items, duplicate }: { items: TickerItem[]; duplicate?: boolean }) {
   return (
     <ul className="flex h-full shrink-0 items-stretch px-2" aria-hidden={duplicate || undefined}>
       {items.map((item, i) => (
@@ -114,6 +80,7 @@ export default function TickerBar() {
   const [quote, setQuote] = useState<Quote | null>(null);
 
   useEffect(() => {
+    if (!ticker.liveNikkei) return;
     let alive = true;
     fetch("/api/nikkei")
       .then((r) => r.json())
@@ -126,14 +93,14 @@ export default function TickerBar() {
     };
   }, []);
 
-  const items = useMemo(() => tickerItems(quote), [quote]);
+  const items = useMemo(() => withLiveQuote(quote), [quote]);
   if (items.length === 0) return null;
 
   return (
     <div className="sticky top-0 z-40 flex h-10 overflow-hidden border-b-2 border-bento-ink bg-bento-accent text-bento-ink">
       <div className="relative z-10 flex h-full shrink-0 items-center gap-2 border-r-2 border-bento-ink px-3">
         <span className="ticker-live size-1.5 rounded-full bg-bento-ink" aria-hidden="true" />
-        <span className="text-[0.72rem] font-extrabold tracking-[0.14em]">YAMANO</span>
+        <span className="text-[0.72rem] font-extrabold tracking-[0.14em]">{ticker.brand}</span>
       </div>
       <div className="ticker-mask min-w-0 flex-1 overflow-hidden">
         <div className="ticker-track flex h-full w-max items-stretch">

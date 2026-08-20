@@ -1,0 +1,56 @@
+{
+  "brand": "YAMANO",
+  "liveNikkei": true,
+  "items": [
+    {
+      "symbol": "NOW",
+      "name": "方針",
+      "value": "揺るぎなく緩やかな世界を実現する"
+    },
+    {
+      "symbol": "ROLE",
+      "name": "職能",
+      "value": "Software Engineer"
+    },
+    {
+      "symbol": "ROLE",
+      "name": "職能",
+      "value": "Designer"
+    },
+    {
+      "symbol": "ROLE",
+      "name": "職能",
+      "value": "Innovator"
+    },
+    {
+      "symbol": "DMM",
+      "name": "DMM.com",
+      "value": "テックリード室"
+    },
+    {
+      "symbol": "MITO",
+      "name": "Mitologie",
+      "value": "Co-CEO"
+    },
+    {
+      "symbol": "XTRA",
+      "name": "Xtraveler",
+      "value": "Co-Founder / 8期目"
+    },
+    {
+      "symbol": "BIZ",
+      "name": "事業",
+      "value": "ポルシェのレンタカー"
+    },
+    {
+      "symbol": "LOC",
+      "name": "拠点",
+      "value": "武蔵小杉"
+    },
+    {
+      "symbol": "CAR",
+      "name": "愛車",
+      "value": "MINI Cooper D"
+    }
+  ]
+}
