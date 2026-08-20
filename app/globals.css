@@ -439,7 +439,6 @@ body {
 
 .pop-cover-copy-title {
   position: relative;
-  z-index: 1;
 }
 
 .pop-cover-copy-title h1 {
@@ -447,9 +446,14 @@ body {
   z-index: 1;
 }
 
+.pop-cover-copy-rest {
+  position: relative;
+  z-index: 2;
+}
+
 .pop-cover-copy-cluster {
   position: absolute;
-  inset: -18% -4%;
+  inset: -8% -1%;
   z-index: 0;
   pointer-events: none;
 }
@@ -459,36 +463,36 @@ body {
   overflow: visible;
 }
 
-.pop-copy-g-sq {
-  left: 16%;
-  top: -8%;
-  width: 42%;
-  transform: rotate(-11deg);
+.pop-copy-g-cir {
+  left: -3%;
+  top: 6%;
+  width: 22%;
 }
 
-.pop-copy-g-cir {
-  left: -6%;
-  top: -6%;
-  width: 34%;
+.pop-copy-g-sq {
+  left: 18%;
+  top: -4%;
+  width: 26%;
+  transform: rotate(-9deg);
 }
 
 .pop-copy-g-sq2 {
-  right: -6%;
-  top: 4%;
-  width: 30%;
-  transform: rotate(14deg);
+  left: 46%;
+  top: 2%;
+  width: 24%;
+  transform: rotate(11deg);
 }
 
 .pop-copy-g-dia {
-  left: 40%;
-  bottom: -22%;
-  width: 16%;
+  left: 68%;
+  top: 10%;
+  width: 14%;
 }
 
 .pop-copy-g-pip {
-  right: 18%;
-  bottom: -18%;
-  width: 12%;
+  right: -2%;
+  top: 18%;
+  width: 13%;
 }
 
 /* Standing portrait, slightly oversized so the legs can clip at the floor. */
