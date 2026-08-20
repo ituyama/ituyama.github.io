@@ -242,6 +242,14 @@ body {
   transform: rotate(-6deg);
 }
 
+.pop-collage-glass {
+  right: -8%;
+  bottom: -6%;
+  height: 108%;
+  width: auto;
+  transform: rotate(3deg);
+}
+
 .pop-collage-signal {
   right: -6%;
   bottom: -18%;
@@ -267,6 +275,12 @@ body {
     left: -18%;
     bottom: -8%;
     width: 62%;
+  }
+
+  .pop-collage-glass {
+    right: -22%;
+    bottom: -8%;
+    height: 78%;
   }
 
   .pop-collage-signal {
