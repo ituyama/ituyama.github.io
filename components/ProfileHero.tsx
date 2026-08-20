@@ -115,10 +115,7 @@ export default function ProfileHero() {
       </div>
 
       <div className="pop-cover-copy">
-        <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.22em] text-bento-ink">
-          {profile.nameEn}
-        </p>
-        <h1 className="mt-2 font-lineseed text-[clamp(2.8rem,11vw,4.2rem)] font-extrabold leading-[0.88] tracking-tight text-bento-ink md:text-[clamp(2.6rem,6vw,5rem)]">
+        <h1 className="font-lineseed text-[clamp(2.8rem,11vw,4.2rem)] font-extrabold leading-[0.88] tracking-tight text-bento-ink md:text-[clamp(2.6rem,6vw,5rem)]">
           {profile.nameJa}
         </h1>
         {profile.tagline ? (
