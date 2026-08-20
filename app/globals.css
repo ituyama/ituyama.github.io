@@ -302,30 +302,12 @@ body {
 @media (max-width: 767px) {
   .pop-collage-nw,
   .pop-collage-ne,
-  .pop-collage-e {
-    display: none;
-  }
-
-  .pop-collage-se {
-    right: -8%;
-    bottom: -12%;
-    height: 40%;
-  }
-
-  .pop-collage-s {
-    bottom: -8%;
-    width: 52%;
-  }
-
-  .pop-collage-sw {
-    left: -12%;
-    height: 36%;
-  }
-
+  .pop-collage-e,
+  .pop-collage-se,
+  .pop-collage-s,
+  .pop-collage-sw,
   .pop-collage-w {
-    left: 0;
-    top: 28%;
-    height: 28%;
+    display: none;
   }
 }
 
@@ -664,34 +646,35 @@ body {
 
 @media (max-width: 767px) {
   .pop-cover-copy {
-    bottom: calc(4.6rem + env(safe-area-inset-bottom));
-    width: calc(100% - 5.25rem);
+    top: 52%;
+    bottom: auto;
+    width: calc(100% - 1.6rem);
     max-width: none;
     padding: 0;
   }
 
   .pop-cover-name {
-    font-size: clamp(2.4rem, 12.4vw, 3.4rem);
+    font-size: clamp(2.55rem, 13vw, 3.5rem);
     letter-spacing: 0.01em;
     transform: skewX(-12deg) rotate(-4deg);
   }
 
   .pop-cover-kicker {
-    margin-top: 0.55rem;
+    margin-top: 0.45rem;
     max-width: 16rem;
     font-size: 0.82rem;
     -webkit-text-stroke: 0.16em #ffffff;
   }
 
   .pop-cover-shot-wrap {
-    height: 64svh;
-    bottom: -4%;
-    max-width: min(88%, 22rem);
+    height: 100svh;
+    bottom: 0;
+    max-width: none;
   }
 
   .pop-cover-halo {
-    width: 88%;
-    top: 18%;
+    width: 90%;
+    top: 16%;
   }
 
   .pop-policy-mark {
