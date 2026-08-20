@@ -21,7 +21,7 @@ export default function Home() {
       <WorkPanel />
       <LifePanel />
       <PlayPanel />
-      <footer className="border-t-2 border-bento-line px-4 pb-[calc(5.2rem+env(safe-area-inset-bottom,0px))] pt-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px] md:pb-8">
+      <footer className="border-t-2 border-bento-line px-4 pb-[max(2rem,env(safe-area-inset-bottom,0px))] pt-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px] md:pb-8">
         {profile.nameJa} / {profile.nameEn}
       </footer>
     </>
