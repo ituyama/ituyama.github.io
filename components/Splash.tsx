@@ -41,9 +41,16 @@ const WORDS = [
   "山野",
 ];
 
+const ROW_COUNT = 7;
+
+const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
+  const words = WORDS.filter((_, i) => i % ROW_COUNT === row);
+  const loop = [...words, ...words];
+  return [...loop, ...loop];
+});
+
 export default function Splash() {
   const [phase, setPhase] = useState<"in" | "out" | "done">("in");
-  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -52,33 +59,11 @@ export default function Splash() {
       return;
     }
 
-    const timers: number[] = [];
-    let i = 0;
-    let cancelled = false;
-
-    const tick = () => {
-      if (cancelled) return;
-      i += 1;
-      if (i >= WORDS.length) {
-        timers.push(window.setTimeout(() => {
-          if (!cancelled) setPhase("out");
-        }, 420));
-        timers.push(window.setTimeout(() => {
-          if (!cancelled) setPhase("done");
-        }, 980));
-        return;
-      }
-      setIndex(i);
-      const remaining = WORDS.length - i;
-      const delay = remaining <= 4 ? 90 + (5 - remaining) * 70 : 58;
-      timers.push(window.setTimeout(tick, delay));
-    };
-
-    timers.push(window.setTimeout(tick, 60));
-
+    const out = window.setTimeout(() => setPhase("out"), 2200);
+    const done = window.setTimeout(() => setPhase("done"), 2750);
     return () => {
-      cancelled = true;
-      for (const id of timers) window.clearTimeout(id);
+      window.clearTimeout(out);
+      window.clearTimeout(done);
     };
   }, []);
 
@@ -87,7 +72,19 @@ export default function Splash() {
   return (
     <div className={`pop-splash ${phase === "out" ? "is-out" : ""}`} aria-hidden="true">
       <div className="pop-policy-dots" />
-      <p className="pop-splash-word">{WORDS[index]}</p>
+      <div className="pop-splash-stack">
+        {ROWS.map((words, i) => (
+          <div key={i} className={`pop-splash-row ${i % 2 ? "is-rtl" : "is-ltr"}`}>
+            <div className="pop-splash-track">
+              {words.map((word, j) => (
+                <span key={`${word}-${j}`} className="pop-splash-item">
+                  {word}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

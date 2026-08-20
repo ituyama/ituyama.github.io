@@ -1078,7 +1078,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .bento-reveal,
   .ticker-track,
-  .ticker-live {
+  .ticker-live,
+  .pop-splash-track {
     animation: none !important;
   }
 
@@ -1094,7 +1095,6 @@ body {
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   overflow: hidden;
   background: var(--color-bento-accent);
@@ -1106,16 +1106,66 @@ body {
   transform: translateY(-100%);
 }
 
-.pop-splash-word {
+.pop-splash-stack {
   position: relative;
   z-index: 1;
-  margin: 0;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.08em;
+}
+
+.pop-splash-row {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.pop-splash-track {
+  display: flex;
+  width: max-content;
+  gap: 0.85em;
+  will-change: transform;
+  animation: splashTickerL 22s linear infinite;
+}
+
+.pop-splash-row.is-rtl .pop-splash-track {
+  animation-name: splashTickerR;
+}
+
+.pop-splash-row:nth-child(1) .pop-splash-track { animation-duration: 26s; }
+.pop-splash-row:nth-child(2) .pop-splash-track { animation-duration: 18s; }
+.pop-splash-row:nth-child(3) .pop-splash-track { animation-duration: 24s; }
+.pop-splash-row:nth-child(4) .pop-splash-track { animation-duration: 16s; }
+.pop-splash-row:nth-child(5) .pop-splash-track { animation-duration: 21s; }
+.pop-splash-row:nth-child(6) .pop-splash-track { animation-duration: 15s; }
+.pop-splash-row:nth-child(7) .pop-splash-track { animation-duration: 23s; }
+
+.pop-splash-item {
+  flex: none;
   color: #ffffff;
   font-family: var(--font-noto-serif-jp), "Noto Serif JP", serif;
-  font-size: clamp(4.8rem, 30vw, 12rem);
+  font-size: clamp(2.6rem, 11vw, 6.4rem);
   font-weight: 900;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   line-height: 1;
+}
+
+@keyframes splashTickerL {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes splashTickerR {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .font-lineseed {
