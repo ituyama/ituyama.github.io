@@ -4,11 +4,6 @@ export default function TalkSection() {
   const body = profile.policy.trim();
   if (!body) return null;
 
-  const sentences = body.split(/(?<=。)/).map((s) => s.trim()).filter(Boolean);
-  const fadeFrom = Math.max(0, sentences.length - 2);
-  const head = sentences.slice(0, fadeFrom).join("");
-  const tail = sentences.slice(fadeFrom).join("");
-
   return (
     <section
       id="talk"
@@ -32,10 +27,7 @@ export default function TalkSection() {
         <h2 id="talk-title" className="pop-policy-mark">
           MY POLICY
         </h2>
-        <p className="pop-policy-body">
-          {head}
-          {tail ? <span className="pop-policy-fade"> {tail}</span> : null}
-        </p>
+        <p className="pop-policy-body">{body}</p>
       </div>
     </section>
   );
