@@ -101,6 +101,16 @@ export default function ProfileHero() {
 
   return (
     <section className="pop-kv">
+      <div className="pop-cover-collage" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city.png" alt="" className="pop-collage pop-collage-a" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city.png" alt="" className="pop-collage pop-collage-b" />
+        <span className="pop-collage pop-collage-chip">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/media/city.png" alt="" />
+        </span>
+      </div>
       <div className="pop-cover-shapes" aria-hidden="true">
         {heroShapes.map((shape) => (
           <svg

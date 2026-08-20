@@ -204,14 +204,81 @@ body {
   }
 }
 
-/* Flat geometric field behind the hero; each shape is placed on its own below. */
-.pop-cover-shapes {
+/* City cutouts under the geometry — one photo, three placements, collage. */
+.pop-cover-collage {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #ffffff;
+}
+
+.pop-collage {
+  position: absolute;
+  height: auto;
+}
+
+.pop-collage-a {
+  left: -12%;
+  bottom: -10%;
+  height: 108%;
+  width: auto;
+  transform: rotate(-6deg);
+}
+
+.pop-collage-b {
+  right: -16%;
+  bottom: -6%;
+  height: 118%;
+  width: auto;
+  transform: rotate(5deg);
+}
+
+.pop-collage-chip {
+  right: 7%;
+  bottom: 14%;
+  width: 9.5rem;
+  height: 9.5rem;
+  overflow: hidden;
+  border: 2px solid #000000;
+  transform: rotate(-11deg);
+  background: #111111;
+}
+
+.pop-collage-chip img {
+  width: 220%;
+  max-width: none;
+  height: auto;
+  margin-top: -28%;
+  margin-left: -12%;
+}
+
+@media (max-width: 767px) {
+  .pop-collage-chip {
+    display: none;
+  }
+
+  .pop-collage-a {
+    left: -30%;
+    bottom: auto;
+    top: 4%;
+    height: 72%;
+  }
+
+  .pop-collage-b {
+    right: -34%;
+    bottom: -4%;
+    height: 68%;
+  }
+}
+
+/* Flat geometric field behind the hero; each shape is placed on its own below. */
+.pop-cover-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .pop-shape {
