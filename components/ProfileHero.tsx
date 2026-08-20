@@ -115,20 +115,28 @@ export default function ProfileHero() {
       </div>
 
       <div className="pop-cover-copy">
-        <svg
-          className="pop-cover-copy-plate"
-          viewBox="0 0 420 260"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M48 86C28 22 118 10 206 28C292 8 392 34 382 108C402 168 346 232 238 242C132 252 22 208 30 132C18 110 56 102 48 86Z"
-            fill="#ffffff"
-            stroke="#000000"
-            strokeWidth="3"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
+        <div className="pop-cover-copy-plate" aria-hidden="true">
+          <svg className="pop-cover-copy-dot" viewBox="0 0 100 100">
+            <circle
+              cx="50"
+              cy="50"
+              r="46"
+              fill="#00e676"
+              stroke="#000000"
+              strokeWidth="3"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+          <svg className="pop-cover-copy-dia" viewBox="0 0 100 100">
+            <path
+              d="M50 6 L94 50 L50 94 L6 50 Z"
+              fill="#ffffff"
+              stroke="#000000"
+              strokeWidth="3"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+        </div>
         <div className="pop-cover-copy-inner">
           <h1 className="font-lineseed text-[clamp(2.8rem,11vw,4.2rem)] font-extrabold leading-[0.88] tracking-tight text-bento-ink md:text-[clamp(2.6rem,6vw,5rem)]">
             {profile.nameJa}

@@ -439,12 +439,30 @@ body {
 
 .pop-cover-copy-plate {
   position: absolute;
-  inset: -12% -6% -10%;
+  inset: 0;
   z-index: 0;
-  width: auto;
-  height: auto;
-  overflow: visible;
   pointer-events: none;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 12px;
+}
+
+.pop-cover-copy-dot {
+  position: absolute;
+  top: -1.15rem;
+  right: -1.1rem;
+  width: 2.45rem;
+  height: 2.45rem;
+  overflow: visible;
+}
+
+.pop-cover-copy-dia {
+  position: absolute;
+  bottom: -0.9rem;
+  left: -0.95rem;
+  width: 1.95rem;
+  height: 1.95rem;
+  overflow: visible;
 }
 
 .pop-cover-copy-inner {
