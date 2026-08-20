@@ -1,0 +1,31 @@
+import BioSection from "@/components/BioSection";
+import HireSection from "@/components/HireSection";
+import LifePanel from "@/components/LifePanel";
+import ProfileHero from "@/components/ProfileHero";
+import SideNav from "@/components/SideNav";
+import TagSection from "@/components/TagSection";
+import TalkSection from "@/components/TalkSection";
+import TickerBar from "@/components/TickerBar";
+import WorkPanel from "@/components/WorkPanel";
+import XFloatButton from "@/components/XFloatButton";
+import { profile } from "@/lib/profile";
+
+export default function Home() {
+  return (
+    <>
+      <TickerBar />
+      <SideNav />
+      <XFloatButton />
+      <ProfileHero />
+      <BioSection />
+      <TalkSection />
+      <WorkPanel />
+      <TagSection />
+      <HireSection />
+      <LifePanel />
+      <footer className="border-t-2 border-bento-line px-4 pb-[max(2rem,env(safe-area-inset-bottom,0px))] pt-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px] md:pb-8">
+        {profile.nameJa} / {profile.nameEn}
+      </footer>
+    </>
+  );
+}
