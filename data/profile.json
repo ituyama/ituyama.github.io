@@ -2,6 +2,11 @@
   "nameJa": "山野イツキ",
   "nameEn": "Yamano Itsuki",
   "tagline": "揺るぎなく緩やかな世界を実現する",
+  "roles": [
+    "Software Engineer",
+    "Designer",
+    "Innovator"
+  ],
   "avatar": "/media/yamanopic.png",
   "birthday": "2002-10-03",
   "location": "武蔵小杉駅",
@@ -53,7 +58,7 @@
   "email": "itsuki-yamano@mitologie.jp",
   "spotify": "https://open.spotify.com/playlist/2g1lmvdTEmKFI1YpSeN3f9",
   "activityGraph": "https://ghchart.rshah.org/00e676/ituyama",
-  "about": "2002年10月3日生まれ。　エンジニア、デザイナー。茨城県水戸市出身。私立水城高校を出て、武蔵野大学データサイエンス学部を卒業。新卒でDMM.comに入社。高校の時に立ち上げた会社が8期目、現在はポルシェのレンタカー事業をしている。",
+  "about": "2002年10月3日生まれ。　エンジニア、デザイナー、起業家。茨城県水戸市出身。私立水城高校を出て、武蔵野大学データサイエンス学部を卒業。新卒でDMM.comに入社。高校の時に立ち上げた会社が8期目、現在はポルシェのレンタカー事業をしている。",
   "policy": "揺るぎなく緩やかな世界を実現する",
   "gallery": [
     {

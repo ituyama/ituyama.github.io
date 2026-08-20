@@ -94,10 +94,7 @@ const heroShapes: { id: string; viewBox: string; art: ReactNode }[] = [
 ];
 
 export default function ProfileHero() {
-  const pills = [
-    ...profile.companies.map((c) => c.name.replace(/, Inc\.$/, "")),
-    ...profile.skills.slice(0, 3),
-  ];
+  const pills = profile.roles;
 
   return (
     <section className="pop-kv" id="top">

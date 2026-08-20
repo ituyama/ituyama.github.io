@@ -15,6 +15,7 @@ export type Profile = {
   nameJa: string;
   nameEn: string;
   tagline: string;
+  roles: string[];
   avatar: string;
   birthday: string;
   location: string;
@@ -65,6 +66,7 @@ export function profileContext(): string {
     profile.birthday ? `生年月日: ${profile.birthday}` : "",
     age !== null ? `年齢: ${age}歳（この値をそのまま使う。再計算しない）` : "",
     profile.tagline ? `キャッチ: ${profile.tagline}` : "",
+    profile.roles.length ? `役割: ${profile.roles.join(", ")}` : "",
     profile.policy ? `方針: ${profile.policy}` : "",
     profile.about ? `自己紹介: ${profile.about}` : "",
     profile.university || profile.highSchool

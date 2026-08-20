@@ -17,6 +17,7 @@ export default function ProfileFacts() {
         {profile.nameJa} / {profile.nameEn}
       </h1>
       {profile.tagline ? <p>{profile.tagline}</p> : null}
+      {profile.roles.length ? <p>{profile.roles.join(" / ")}</p> : null}
       {profile.about ? <p>{profile.about}</p> : null}
 
       <dl>

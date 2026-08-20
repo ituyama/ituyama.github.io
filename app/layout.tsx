@@ -31,6 +31,7 @@ const firaCode = Fira_Code({
 
 const factDescription = [
   `${profile.nameJa}（${profile.nameEn}）のポートフォリオ。`,
+  profile.roles.length ? `${profile.roles.join(" / ")}。` : "",
   profile.companies.length
     ? profile.companies.map((c) => `${c.name}（${c.role}）`).join("、") + "。"
     : "",
