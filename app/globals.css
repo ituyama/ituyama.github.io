@@ -204,7 +204,7 @@ body {
   }
 }
 
-/* City cutouts under the geometry — three photos, overlapping, collage. */
+/* City cutouts under the geometry — overlapping photos, collage. */
 .pop-cover-collage {
   position: absolute;
   inset: 0;
@@ -240,6 +240,14 @@ body {
   height: 124%;
   width: auto;
   transform: rotate(-4deg);
+}
+
+.pop-collage-d {
+  right: -2%;
+  top: -10%;
+  height: 58%;
+  width: auto;
+  transform: rotate(11deg);
 }
 
 .pop-collage-chip {
@@ -283,6 +291,12 @@ body {
     left: 8%;
     bottom: -12%;
     height: 78%;
+  }
+
+  .pop-collage-d {
+    right: -18%;
+    top: -6%;
+    height: 42%;
   }
 }
 
