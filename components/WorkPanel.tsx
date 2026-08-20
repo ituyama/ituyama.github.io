@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 
-import { profile } from "@/lib/profile";
+import { work } from "@/lib/work";
 
 function displayName(name: string) {
   return name.replace(/, Inc\.$/, "");
 }
 
 export default function WorkPanel() {
-  const companies = profile.companies;
+  const items = work.items;
   const [active, setActive] = useState(0);
-  const company = companies[active] ?? companies[0];
+  const company = items[active] ?? items[0];
 
   if (!company) return null;
 
@@ -19,13 +19,13 @@ export default function WorkPanel() {
     <section id="work" className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby="work-title">
       <div className="pop-work-inner">
         <h2 id="work-title" className="pop-policy-mark">
-          WORK
+          {work.title}
         </h2>
 
         <article className="pop-work-sheet pop-frame">
           <div className="pop-work-split">
             <ul className="pop-work-list" role="tablist" aria-label="所属">
-              {companies.map((item, i) => {
+              {items.map((item, i) => {
                 const on = i === active;
                 return (
                   <li key={item.name}>

@@ -1,15 +1,9 @@
+import { work } from "@/lib/work";
 import type { BentoLayout } from "./bentoSchema";
 import profileData from "@/data/profile.json";
 
 export type Social = { name: string; handle: string; url: string; icon: string };
 export type ProfileLink = { label: string; url: string; icon: string };
-export type Company = {
-  name: string;
-  role: string;
-  summary?: string;
-  url?: string;
-  focus?: string[];
-};
 export type GalleryItem = { src: string; caption: string };
 export type Profile = {
   nameJa: string;
@@ -21,7 +15,6 @@ export type Profile = {
   location: string;
   highSchool: string;
   university: string;
-  companies: Company[];
   skills: string[];
   car: string;
   carImage: string;
@@ -72,8 +65,8 @@ export function profileContext(): string {
     profile.university || profile.highSchool
       ? `学歴:\n${[profile.university, profile.highSchool].filter(Boolean).join("\n")}`
       : "",
-    profile.companies.length
-      ? `所属:\n${profile.companies
+    work.items.length
+      ? `所属:\n${work.items
           .map((c) =>
             [`${c.name} — ${c.role}`, c.summary, c.focus?.length ? `フォーカス: ${c.focus.join(", ")}` : ""]
               .filter(Boolean)

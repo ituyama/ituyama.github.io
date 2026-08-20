@@ -5,6 +5,7 @@ import "@fontsource/line-seed-jp/700.css";
 import "@fontsource/line-seed-jp/800.css";
 import "./globals.css";
 import { profile } from "@/lib/profile";
+import { work } from "@/lib/work";
 import ProfileFacts from "@/components/ProfileFacts";
 import Splash from "@/components/Splash";
 
@@ -32,8 +33,8 @@ const firaCode = Fira_Code({
 const factDescription = [
   `${profile.nameJa}（${profile.nameEn}）のポートフォリオ。`,
   profile.roles.length ? `${profile.roles.join(" / ")}。` : "",
-  profile.companies.length
-    ? profile.companies.map((c) => `${c.name}（${c.role}）`).join("、") + "。"
+  work.items.length
+    ? work.items.map((c) => `${c.name}（${c.role}）`).join("、") + "。"
     : "",
   profile.university ? `${profile.university}。` : "",
   profile.location ? `拠点は${profile.location}。` : "",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
   keywords: [
     profile.nameJa,
     profile.nameEn,
-    ...profile.companies.map((c) => c.name),
+    ...work.items.map((c) => c.name),
     ...profile.skills,
     "ポートフォリオ",
     "portfolio",
@@ -90,8 +91,8 @@ const personJsonLd = {
   url: "https://ituyama.com",
   image: `https://ituyama.com${profile.avatar}`,
   email: profile.email || undefined,
-  jobTitle: profile.companies[0]?.role,
-  worksFor: profile.companies.map((c) => ({ "@type": "Organization", name: c.name })),
+  jobTitle: work.items[0]?.role,
+  worksFor: work.items.map((c) => ({ "@type": "Organization", name: c.name })),
   address: profile.location
     ? { "@type": "PostalAddress", addressLocality: profile.location }
     : undefined,

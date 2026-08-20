@@ -1,4 +1,5 @@
 import { calcAge, profile } from "@/lib/profile";
+import { work } from "@/lib/work";
 
 export const dynamic = "force-static";
 
@@ -25,9 +26,9 @@ export function GET() {
   if (profile.highSchool) lines.push(`- 学歴: ${profile.highSchool}`);
   if (profile.car) lines.push(`- 愛車: ${profile.car}`);
 
-  if (profile.companies.length) {
+  if (work.items.length) {
     lines.push("", "## 所属");
-    for (const c of profile.companies) lines.push(`- ${c.name} — ${c.role}`);
+    for (const c of work.items) lines.push(`- ${c.name} — ${c.role}`);
   }
 
   if (profile.skills.length) {

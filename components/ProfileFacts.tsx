@@ -1,5 +1,6 @@
 import { hire } from "@/lib/hire";
 import { calcAge, profile } from "@/lib/profile";
+import { work } from "@/lib/work";
 
 /**
  * Server-rendered, fully crawlable summary of the profile facts.
@@ -48,11 +49,11 @@ export default function ProfileFacts() {
         ) : null}
       </dl>
 
-      {profile.companies.length ? (
+      {work.items.length ? (
         <section aria-label="所属">
           <h2>所属</h2>
           <ul>
-            {profile.companies.map((c) => (
+            {work.items.map((c) => (
               <li key={c.name}>
                 <p>
                   {c.name} — {c.role}
