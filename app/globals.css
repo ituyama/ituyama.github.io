@@ -103,11 +103,8 @@ body {
   z-index: 0;
   background: repeating-linear-gradient(
     -22deg,
-    #c8f5d4 0 34px,
-    #ffffff 34px 42px,
-    #f4fff8 42px 76px,
-    #ffffff 76px 84px,
-    #e0fae8 84px 128px
+    #eaf8ef 0 22px,
+    #ffffff 22px 44px
   );
   animation: stripeSlide 22s linear infinite;
 }
