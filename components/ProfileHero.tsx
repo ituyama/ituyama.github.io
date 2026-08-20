@@ -140,7 +140,6 @@ export default function ProfileHero() {
 
       <div className="pop-cover-shot-wrap">
         <div className="pop-cover-halo" aria-hidden="true">
-          <span className="pop-cover-halo-glow" />
           <svg className="pop-cover-halo-ring" viewBox="0 0 200 200">
             {Array.from({ length: 12 }, (_, i) => (
               <g key={i}>
