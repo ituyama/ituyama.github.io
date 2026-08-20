@@ -496,18 +496,67 @@ body {
 }
 
 /* Standing portrait, slightly oversized so the legs can clip at the floor. */
-.pop-cover-shot {
+.pop-cover-shot-wrap {
   position: absolute;
   left: 50%;
   bottom: -8%;
   z-index: 20;
-  width: auto;
+  display: flex;
   height: 72svh;
+  width: fit-content;
   max-width: min(92%, 32rem);
   transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.pop-cover-shot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
   object-fit: contain;
   object-position: top center;
-  pointer-events: none;
+}
+
+.pop-cover-halo {
+  position: absolute;
+  left: 50%;
+  top: 15.5%;
+  z-index: 0;
+  width: 46%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -48%);
+}
+
+.pop-cover-halo::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff9e6 0%, #00e67688 42%, transparent 70%);
+}
+
+.pop-cover-halo svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: haloSpin 14s linear infinite;
+}
+
+@keyframes haloSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop-cover-halo svg {
+    animation: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -525,7 +574,7 @@ body {
     bottom: 7%;
   }
 
-  .pop-cover-shot {
+  .pop-cover-shot-wrap {
     left: calc(50% + 36px);
     height: 82svh;
     max-width: 36rem;
@@ -537,7 +586,7 @@ body {
     bottom: calc(4.2rem + env(safe-area-inset-bottom));
   }
 
-  .pop-cover-shot {
+  .pop-cover-shot-wrap {
     height: 60svh;
   }
 }

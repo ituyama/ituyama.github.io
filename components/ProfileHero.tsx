@@ -157,8 +157,39 @@ export default function ProfileHero() {
         ) : null}
       </div>
 
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
+      <div className="pop-cover-shot-wrap">
+        <div className="pop-cover-halo" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="78" fill="none" stroke="#000000" strokeWidth="5" />
+            <circle cx="100" cy="100" r="74" fill="none" stroke="#00e676" strokeWidth="7" />
+            <circle
+              cx="100"
+              cy="100"
+              r="58"
+              fill="none"
+              stroke="#000000"
+              strokeWidth="2.5"
+              strokeDasharray="5 8"
+            />
+            {Array.from({ length: 16 }, (_, i) => (
+              <rect
+                key={i}
+                x="97"
+                y="10"
+                width="6"
+                height="18"
+                rx="1"
+                fill="#00e676"
+                stroke="#000000"
+                strokeWidth="1.5"
+                transform={`rotate(${i * 22.5} 100 100)`}
+              />
+            ))}
+          </svg>
+        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
+      </div>
     </section>
   );
 }
