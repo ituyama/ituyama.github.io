@@ -4,6 +4,7 @@ import SideNav from "@/components/SideNav";
 import TalkSection from "@/components/TalkSection";
 import TickerBar from "@/components/TickerBar";
 import WorkPanel from "@/components/WorkPanel";
+import XFloatButton from "@/components/XFloatButton";
 import { initialLayout, profile } from "@/lib/profile";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <TickerBar />
       <SideNav />
+      <XFloatButton />
       <ProfileHero />
       <TalkSection />
       <WorkPanel />
