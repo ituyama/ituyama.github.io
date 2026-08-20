@@ -101,20 +101,6 @@ export default function ProfileHero() {
 
   return (
     <section className="pop-kv">
-      <div className="pop-cover-collage" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city.png" alt="" className="pop-collage pop-collage-a" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-station.png" alt="" className="pop-collage pop-collage-b" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-tower.png" alt="" className="pop-collage pop-collage-c" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-signal.png" alt="" className="pop-collage pop-collage-d" />
-        <span className="pop-collage pop-collage-chip">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/media/city.png" alt="" />
-        </span>
-      </div>
       <div className="pop-cover-shapes" aria-hidden="true">
         {heroShapes.map((shape) => (
           <svg
@@ -126,6 +112,16 @@ export default function ProfileHero() {
             {shape.art}
           </svg>
         ))}
+      </div>
+      <div className="pop-cover-collage" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city.png" alt="" className="pop-collage pop-collage-a" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city-station.png" alt="" className="pop-collage pop-collage-b" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city-tower.png" alt="" className="pop-collage pop-collage-c" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city-signal.png" alt="" className="pop-collage pop-collage-d" />
       </div>
 
       <div className="pop-cover-copy">
