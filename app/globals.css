@@ -445,8 +445,8 @@ body {
   bottom: -8%;
   z-index: 20;
   width: auto;
-  height: 64svh;
-  max-width: min(92%, 28rem);
+  height: 72svh;
+  max-width: min(92%, 32rem);
   transform: translateX(-50%);
   object-fit: contain;
   object-position: top center;
@@ -470,8 +470,8 @@ body {
 
   .pop-cover-shot {
     left: calc(50% + 36px);
-    height: 70svh;
-    max-width: 30rem;
+    height: 82svh;
+    max-width: 36rem;
   }
 }
 
@@ -481,7 +481,7 @@ body {
   }
 
   .pop-cover-shot {
-    height: 52svh;
+    height: 60svh;
   }
 }
 
