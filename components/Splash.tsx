@@ -43,6 +43,13 @@ const WORDS = [
 
 const ROW_COUNT = 9;
 
+/** Hold tickers, then exit. Outer rows leave last. */
+const HOLD_MS = 2200;
+const ROW_OUT_MS = 980;
+const ROW_STAGGER_MS = 70;
+const LAST_ROW_DELAY_MS = 4 * ROW_STAGGER_MS;
+const DONE_MS = HOLD_MS + LAST_ROW_DELAY_MS + ROW_OUT_MS + 80;
+
 const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
   const words = WORDS.filter((_, i) => i % ROW_COUNT === row);
   const loop = [...words, ...words];
@@ -59,8 +66,8 @@ export default function Splash() {
       return;
     }
 
-    const out = window.setTimeout(() => setPhase("out"), 2200);
-    const done = window.setTimeout(() => setPhase("done"), 3120);
+    const out = window.setTimeout(() => setPhase("out"), HOLD_MS);
+    const done = window.setTimeout(() => setPhase("done"), DONE_MS);
     return () => {
       window.clearTimeout(out);
       window.clearTimeout(done);
@@ -71,6 +78,7 @@ export default function Splash() {
 
   return (
     <div className={`pop-splash ${phase === "out" ? "is-out" : ""}`} aria-hidden="true">
+      <div className="pop-splash-bg" />
       <div className="pop-policy-dots" />
       <div className="pop-splash-stack">
         {ROWS.map((words, i) => (

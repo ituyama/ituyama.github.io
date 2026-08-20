@@ -1083,10 +1083,9 @@ body {
     animation: none !important;
   }
 
-  .pop-splash,
-  .pop-splash::before,
-  .pop-splash::after,
-  .pop-splash-row {
+  .pop-splash-bg,
+  .pop-splash-row,
+  .pop-policy-dots {
     transition: none !important;
     animation: none !important;
   }
@@ -1102,74 +1101,56 @@ body {
   background: transparent;
 }
 
-.pop-splash::before,
-.pop-splash::after {
-  content: "";
+.pop-splash-bg {
   position: absolute;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: 0;
-  height: 50%;
   background: var(--color-bento-accent);
-  transition: transform 0.64s var(--ease-bento) 0.2s;
+  opacity: 1;
+  transition: opacity 1.05s ease-out;
 }
 
-.pop-splash::before {
-  top: 0;
-  border-bottom: 2px solid #000000;
-}
-
-.pop-splash::after {
-  bottom: 0;
-  border-top: 2px solid #000000;
-}
-
-.pop-splash.is-out::before {
-  transform: translateY(-105%);
-}
-
-.pop-splash.is-out::after {
-  transform: translateY(105%);
+.pop-splash.is-out .pop-splash-bg {
+  opacity: 0;
 }
 
 .pop-splash.is-out .pop-policy-dots {
   opacity: 0;
-  transition: opacity 0.18s linear;
+  transition: opacity 0.9s ease-out;
 }
 
 .pop-splash.is-out .pop-splash-track {
   animation-play-state: paused;
 }
 
+/* Slide until the last glyph clears the frame — no mid-fade on the type. */
 .pop-splash.is-out .pop-splash-row.is-ltr {
-  animation: splashRowOutL 0.52s cubic-bezier(0.7, 0, 0.18, 1) forwards;
+  animation: splashRowOutL 0.98s cubic-bezier(0.55, 0, 0.2, 1) forwards;
 }
 
 .pop-splash.is-out .pop-splash-row.is-rtl {
-  animation: splashRowOutR 0.52s cubic-bezier(0.7, 0, 0.18, 1) forwards;
+  animation: splashRowOutR 0.98s cubic-bezier(0.55, 0, 0.2, 1) forwards;
 }
 
 .pop-splash.is-out .pop-splash-row:nth-child(5) { animation-delay: 0ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(4),
-.pop-splash.is-out .pop-splash-row:nth-child(6) { animation-delay: 45ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(6) { animation-delay: 70ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(3),
-.pop-splash.is-out .pop-splash-row:nth-child(7) { animation-delay: 90ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(7) { animation-delay: 140ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(2),
-.pop-splash.is-out .pop-splash-row:nth-child(8) { animation-delay: 135ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(8) { animation-delay: 210ms; }
 .pop-splash.is-out .pop-splash-row:nth-child(1),
-.pop-splash.is-out .pop-splash-row:nth-child(9) { animation-delay: 180ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(9) { animation-delay: 280ms; }
 
 @keyframes splashRowOutL {
   to {
-    transform: translateX(-108%);
-    opacity: 0;
+    transform: translateX(-115%);
   }
 }
 
 @keyframes splashRowOutR {
   to {
-    transform: translateX(108%);
-    opacity: 0;
+    transform: translateX(115%);
   }
 }
 
