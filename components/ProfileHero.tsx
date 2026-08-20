@@ -115,11 +115,21 @@ export default function ProfileHero() {
       </div>
       <div className="pop-cover-collage" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-office.png" alt="" className="pop-collage pop-collage-office" />
+        <img src="/media/city-tower.png" alt="" className="pop-collage pop-collage-n" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-glass.png" alt="" className="pop-collage pop-collage-glass" />
+        <img src="/media/city-glass.png" alt="" className="pop-collage pop-collage-ne" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-signal.png" alt="" className="pop-collage pop-collage-signal" />
+        <img src="/media/city-signal.png" alt="" className="pop-collage pop-collage-e" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city.png" alt="" className="pop-collage pop-collage-se" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city-office.png" alt="" className="pop-collage pop-collage-s" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city.png" alt="" className="pop-collage pop-collage-sw" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city-tower.png" alt="" className="pop-collage pop-collage-w" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/media/city-glass.png" alt="" className="pop-collage pop-collage-nw" />
       </div>
 
       <div className="pop-cover-copy">

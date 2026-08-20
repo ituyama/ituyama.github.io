@@ -204,7 +204,7 @@ body {
   }
 }
 
-/* Planted cutouts on the poster. */
+/* City cutouts rooted on the frame, growing inward from every side. */
 .pop-cover-collage {
   position: absolute;
   inset: 0;
@@ -218,47 +218,105 @@ body {
   height: auto;
 }
 
-.pop-collage-office {
-  left: -16%;
-  bottom: -18%;
-  width: 30%;
+.pop-collage-n {
+  top: -24%;
+  left: 50%;
+  height: 38%;
+  width: auto;
+  transform: translateX(-50%) rotate(7deg);
+  transform-origin: top center;
+}
+
+.pop-collage-ne {
+  top: -18%;
+  right: -16%;
+  height: 44%;
+  width: auto;
+  transform: rotate(14deg);
+  transform-origin: top right;
+}
+
+.pop-collage-e {
+  top: 22%;
+  right: -18%;
+  height: 52%;
+  width: auto;
+  transform: rotate(6deg);
+  transform-origin: center right;
+}
+
+.pop-collage-se {
+  right: -12%;
+  bottom: -20%;
+  height: 42%;
+  width: auto;
+  transform: rotate(-8deg);
+  transform-origin: bottom right;
+}
+
+.pop-collage-s {
+  left: 50%;
+  bottom: -22%;
+  width: 28%;
   height: auto;
-  transform: rotate(-6deg);
+  transform: translateX(-50%) rotate(-5deg);
+  transform-origin: bottom center;
 }
 
-.pop-collage-glass {
-  right: -22%;
-  bottom: -14%;
-  height: 72%;
+.pop-collage-sw {
+  left: -14%;
+  bottom: -16%;
+  height: 40%;
   width: auto;
-  transform: rotate(3deg);
+  transform: rotate(-10deg);
+  transform-origin: bottom left;
 }
 
-.pop-collage-signal {
-  right: -10%;
-  bottom: -28%;
-  height: 58%;
+.pop-collage-w {
+  left: -20%;
+  top: 18%;
+  height: 50%;
   width: auto;
   transform: rotate(-6deg);
+  transform-origin: center left;
+}
+
+.pop-collage-nw {
+  left: -16%;
+  top: -14%;
+  height: 40%;
+  width: auto;
+  transform: rotate(-12deg);
+  transform-origin: top left;
 }
 
 @media (max-width: 767px) {
-  .pop-collage-office {
-    left: -24%;
-    bottom: -16%;
+  .pop-collage-ne,
+  .pop-collage-se,
+  .pop-collage-sw,
+  .pop-collage-nw {
+    display: none;
+  }
+
+  .pop-collage-n {
+    top: -18%;
+    height: 28%;
+  }
+
+  .pop-collage-e {
+    right: -28%;
+    top: 28%;
+    height: 38%;
+  }
+
+  .pop-collage-s {
+    bottom: -18%;
     width: 48%;
   }
 
-  .pop-collage-glass {
-    right: -32%;
-    bottom: -14%;
-    height: 52%;
-  }
-
-  .pop-collage-signal {
-    right: -18%;
-    bottom: -22%;
-    height: 42%;
+  .pop-collage-w {
+    left: -28%;
+    height: 36%;
   }
 }
 
