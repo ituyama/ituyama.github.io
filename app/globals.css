@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 /*
-  Pop profile — neon mint, thick ink outlines, flat cards, no soft shadows.
+  Pop profile — white / lime surfaces and borders, black type.
 */
 @theme {
-  --color-bento-bg: #f2f3f2;
+  --color-bento-bg: #ffffff;
   --color-bento-surface: #ffffff;
   --color-bento-ink: #111111;
   --color-bento-soft: #3d3d3d;
   --color-bento-muted: #6b6b6b;
-  --color-bento-line: #b8f5c8;
+  --color-bento-line: #00e676;
   --color-bento-line-strong: #ffffff;
   --color-bento-accent: #00e676;
-  --color-bento-panel: #eef1f0;
-  --color-bento-nav: #f7f7f7;
-  --color-bento-media: #111111;
+  --color-bento-panel: #ffffff;
+  --color-bento-nav: #ffffff;
+  --color-bento-media: #00e676;
 
   --radius-bento: 12px;
   --radius-bento-sm: 10px;
@@ -93,7 +93,7 @@ body {
   min-height: 100svh;
   margin-top: -2.5rem;
   overflow: visible;
-  background: #111111;
+  background: #ffffff;
 }
 
 .pop-cover-stripes {
@@ -103,9 +103,9 @@ body {
   background: repeating-linear-gradient(
     -22deg,
     #00e676 0 34px,
-    #111111 34px 42px,
-    #f4fff8 42px 76px,
-    #111111 76px 84px,
+    #ffffff 34px 42px,
+    #e9fff3 42px 76px,
+    #ffffff 76px 84px,
     #7dffb0 84px 128px
   );
   animation: stripeSlide 22s linear infinite;
@@ -255,8 +255,8 @@ body {
 
 .discover-media-fill {
   background:
-    radial-gradient(ellipse 90% 80% at 78% 16%, rgba(0, 230, 118, 0.45), transparent 58%),
-    #111111;
+    radial-gradient(ellipse 90% 80% at 78% 16%, rgba(255, 255, 255, 0.45), transparent 58%),
+    #00e676;
 }
 
 .discover-grid {
