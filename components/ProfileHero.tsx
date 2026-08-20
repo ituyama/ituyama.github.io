@@ -1,39 +1,95 @@
+import type { ReactNode } from "react";
+
 import { calcAge, profile } from "@/lib/profile";
 
+const LIME = "#00e676";
+const BLUE = "#4d7cff";
+const VIOLET = "#7a5cff";
+const MINT = "#ccffe4";
+
 /*
-  Each hero shape is its own element so it can be placed and sized on its own.
-  `box` is the path's tight bounding box, which keeps the SVG free of dead space.
+  Hero backdrop: Bauhaus primitives in the site palette. Each shape is its own
+  element so CSS can cluster, overlap, and rotate them. Outlines come from
+  `.pop-shape *`, so the weight stays even no matter how far a shape is scaled.
 */
-const heroShapes = [
+const heroShapes: { id: string; viewBox: string; art: ReactNode }[] = [
   {
-    id: "lime",
-    box: "0 1050 1095 962",
-    fill: "#00e676",
-    d: "M1095 1323C1095 1588.65 943.149 2012 677.5 2012C411.851 2012 0 1925.65 0 1660C0 1394.35 411.851 1050 677.5 1050C943.149 1050 1095 1057.35 1095 1323Z",
+    id: "disc",
+    viewBox: "0 0 100 100",
+    art: <circle cx="50" cy="50" r="48" fill={LIME} />,
   },
   {
-    id: "blue",
-    box: "3188.5 0 809 962",
-    fill: "#4d7cff",
-    d: "M3912.5 511.5C3912.5 777.149 4131.65 962 3866 962C3600.35 962 3188.5 875.649 3188.5 610C3188.5 344.351 3600.35 0 3866 0C4131.65 0 3912.5 245.851 3912.5 511.5Z",
+    id: "quarter",
+    viewBox: "0 0 100 100",
+    art: <path d="M2 2 L98 2 A96 96 0 0 1 2 98 Z" fill={MINT} />,
   },
   {
-    id: "violet",
-    box: "2133.5 1531 816 962",
-    fill: "#7a5cff",
-    d: "M2949.5 1804C2949.5 2069.65 2797.65 2493 2532 2493C2266.35 2493 2133.5 2436.15 2133.5 2170.5C2133.5 1904.85 2266.35 1531 2532 1531C2797.65 1531 2949.5 1538.35 2949.5 1804Z",
+    id: "ring",
+    viewBox: "0 0 100 100",
+    art: (
+      <>
+        <circle cx="50" cy="50" r="48" fill={BLUE} />
+        <circle cx="50" cy="50" r="21" fill="#ffffff" />
+      </>
+    ),
   },
   {
-    id: "white",
-    box: "1580.5 718.6 1095 704.2",
-    fill: "#ffffff",
-    d: "M2675.5 1006C2675.5 1271.65 2507.65 1126 2242 1126C1976.35 1126 1580.5 1608.65 1580.5 1343C1580.5 1077.35 2068.5 778.001 2258 733.001C2447.5 688 2675.5 740.352 2675.5 1006Z",
+    id: "arch",
+    viewBox: "0 0 100 130",
+    art: <path d="M2 128 L2 52 A48 48 0 0 1 98 52 L98 128 Z" fill={VIOLET} />,
   },
   {
-    id: "mint",
-    box: "3188.5 1102.4 1095 651.9",
-    fill: "#ccffe4",
-    d: "M4283.5 1337.4C4283.5 1603.05 4115.65 1457.4 3850 1457.4C3584.35 1457.4 3188.5 1940.05 3188.5 1674.4C3188.5 1408.75 3263.5 1172 3453 1127C3642.5 1082 4283.5 1071.75 4283.5 1337.4Z",
+    id: "triangle",
+    viewBox: "0 0 100 92",
+    art: <path d="M50 2 L98 90 L2 90 Z" fill={VIOLET} />,
+  },
+  {
+    id: "capsule",
+    viewBox: "0 0 120 56",
+    art: <rect x="2" y="2" width="116" height="52" rx="26" fill={BLUE} />,
+  },
+  {
+    id: "diamond",
+    viewBox: "0 0 100 100",
+    art: <path d="M50 2 L98 50 L50 98 L2 50 Z" fill="#ffffff" />,
+  },
+  {
+    id: "cross",
+    viewBox: "0 0 100 100",
+    art: (
+      <path
+        d="M36 2 L64 2 L64 36 L98 36 L98 64 L64 64 L64 98 L36 98 L36 64 L2 64 L2 36 L36 36 Z"
+        fill={LIME}
+      />
+    ),
+  },
+  {
+    id: "dots",
+    viewBox: "0 0 100 100",
+    art: (
+      <>
+        {[18, 50, 82].map((cy) =>
+          [18, 50, 82].map((cx) => (
+            <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="9" fill={LIME} />
+          )),
+        )}
+      </>
+    ),
+  },
+  {
+    id: "square",
+    viewBox: "0 0 100 100",
+    art: <rect x="2" y="2" width="96" height="96" rx="8" fill={MINT} />,
+  },
+  {
+    id: "bar",
+    viewBox: "0 0 180 20",
+    art: <rect x="2" y="2" width="176" height="16" rx="8" fill={LIME} />,
+  },
+  {
+    id: "pip",
+    viewBox: "0 0 100 100",
+    art: <circle cx="50" cy="50" r="48" fill={LIME} />,
   },
 ];
 
@@ -50,16 +106,10 @@ export default function ProfileHero() {
           <svg
             key={shape.id}
             className={`pop-shape pop-shape-${shape.id}`}
-            viewBox={shape.box}
+            viewBox={shape.viewBox}
             preserveAspectRatio="xMidYMid meet"
           >
-            <path
-              d={shape.d}
-              fill={shape.fill}
-              stroke="#000000"
-              strokeWidth={3}
-              vectorEffect="non-scaling-stroke"
-            />
+            {shape.art}
           </svg>
         ))}
       </div>
