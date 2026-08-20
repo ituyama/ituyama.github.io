@@ -37,6 +37,10 @@ html,
 body {
   padding: 0;
   margin: 0;
+}
+
+/* Keep this off <body>: a scrollable body breaks the sticky ticker. */
+html {
   overflow-x: hidden;
 }
 
