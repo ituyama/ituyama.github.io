@@ -484,7 +484,7 @@ body {
 .pop-cover-copy {
   position: absolute;
   left: 50%;
-  bottom: 8%;
+  bottom: 4.5rem;
   z-index: 21;
   display: flex;
   width: max-content;
@@ -589,7 +589,7 @@ body {
 
   .pop-cover-copy {
     left: calc(50% + 36px);
-    bottom: 7%;
+    bottom: 4.5rem;
   }
 
   .pop-cover-name {
@@ -605,7 +605,7 @@ body {
 
 @media (max-width: 767px) {
   .pop-cover-copy {
-    bottom: calc(8% + 3.6rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(3.6rem + 4rem + env(safe-area-inset-bottom, 0px));
   }
 
   .pop-cover-shot-wrap {
