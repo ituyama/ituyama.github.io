@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from "react";
 
-import { calcAge, profile } from "@/lib/profile";
+import { profile } from "@/lib/profile";
 import BandSheet from "./BandSheet";
 import LiveClock from "./LiveClock";
 
 type Item = {
   name: string;
-  kind: "place" | "now" | "edu" | "skills" | "github";
+  kind: "place" | "now" | "github";
 };
 
 export default function LifePanel() {
@@ -16,8 +16,6 @@ export default function LifePanel() {
     const next: Item[] = [];
     if (profile.location) next.push({ name: "拠点", kind: "place" });
     next.push({ name: "いま", kind: "now" });
-    if (profile.university || profile.highSchool) next.push({ name: "学歴", kind: "edu" });
-    if (profile.skills.length) next.push({ name: "スキル", kind: "skills" });
     if (profile.activityGraph) next.push({ name: "GitHub", kind: "github" });
     return next;
   }, []);
@@ -27,7 +25,6 @@ export default function LifePanel() {
   if (!item) return null;
 
   const flush = item.kind === "place" || item.kind === "github";
-  const age = profile.birthday ? calcAge(profile.birthday) : null;
   const mapSrc = profile.location
     ? `https://maps.google.com/maps?q=${encodeURIComponent(profile.location)}&z=15&output=embed`
     : "";
@@ -66,32 +63,6 @@ export default function LifePanel() {
           <p className="pop-work-role">Japan Standard Time</p>
           <div className="mt-3">
             <LiveClock />
-          </div>
-          {age !== null ? <p className="pop-work-summary mt-4">{age}歳</p> : null}
-        </>
-      ) : null}
-
-      {item.kind === "edu" ? (
-        <>
-          <p className="pop-work-role">学歴</p>
-          {profile.university ? <p className="pop-work-summary">{profile.university}</p> : null}
-          {profile.highSchool ? (
-            <p className={profile.university ? "pop-work-summary mt-2" : "pop-work-summary"}>
-              {profile.highSchool}
-            </p>
-          ) : null}
-        </>
-      ) : null}
-
-      {item.kind === "skills" ? (
-        <>
-          <p className="pop-work-role">スキル</p>
-          <div className="pop-skill-row">
-            {profile.skills.map((skill) => (
-              <span key={skill} className="pop-chip">
-                {skill}
-              </span>
-            ))}
           </div>
         </>
       ) : null}

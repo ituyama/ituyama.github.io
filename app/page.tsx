@@ -1,3 +1,4 @@
+import BioSection from "@/components/BioSection";
 import LifePanel from "@/components/LifePanel";
 import PlayPanel from "@/components/PlayPanel";
 import ProfileHero from "@/components/ProfileHero";
@@ -15,6 +16,7 @@ export default function Home() {
       <SideNav />
       <XFloatButton />
       <ProfileHero />
+      <BioSection />
       <TalkSection />
       <WorkPanel />
       <LifePanel />

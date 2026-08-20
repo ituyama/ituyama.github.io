@@ -804,6 +804,72 @@ body {
   margin-top: 0.85rem;
 }
 
+.pop-skill-row-tight {
+  margin-top: 0;
+}
+
+.pop-bio-list {
+  margin: 0;
+}
+
+.pop-bio-row {
+  display: grid;
+  grid-template-columns: 5.6rem 1fr;
+  border-bottom: 2px solid var(--color-bento-line);
+}
+
+.pop-bio-row:last-child {
+  border-bottom: 0;
+}
+
+.pop-bio-row dt {
+  margin: 0;
+  padding: 1.05rem 0.9rem;
+  border-right: 2px solid var(--color-bento-line);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+}
+
+.pop-bio-row dd {
+  margin: 0;
+  padding: 1.05rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.pop-bio-sub {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-bento-muted);
+}
+
+.pop-bio-line + .pop-bio-line {
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 768px) {
+  .pop-bio-row {
+    grid-template-columns: 7.2rem 1fr;
+  }
+
+  .pop-bio-row dt {
+    padding: 1.2rem 1.15rem;
+  }
+
+  .pop-bio-row dd {
+    padding: 1.2rem 1.5rem;
+  }
+}
+
 .pop-lime {
   position: relative;
   isolation: isolate;
