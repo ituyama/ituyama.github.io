@@ -490,35 +490,24 @@ body {
   .pop-shape-bar,
   .pop-shape-pip,
   .pop-shape-capsule,
-  .pop-shape-triangle {
+  .pop-shape-triangle,
+  .pop-shape-ring,
+  .pop-shape-arch {
     display: none;
   }
 
-  .pop-shape-ring {
-    left: -12%;
-    top: 1%;
-    width: 30%;
-  }
-
-  .pop-shape-arch {
-    right: -14%;
-    top: -2%;
-    width: 32%;
-    transform: rotate(12deg);
-  }
-
   .pop-shape-disc {
-    left: -24%;
+    left: -32%;
     top: auto;
-    bottom: -10%;
-    width: 36%;
+    bottom: 8%;
+    width: 42%;
   }
 
   .pop-shape-quarter {
-    right: -22%;
+    right: -30%;
     top: auto;
-    bottom: -14%;
-    width: 38%;
+    bottom: 6%;
+    width: 44%;
   }
 }
 
@@ -646,28 +635,31 @@ body {
 
 @media (max-width: 767px) {
   .pop-cover-copy {
-    top: 58%;
+    top: 44%;
     bottom: auto;
-    width: calc(100% - 1.6rem);
+    width: calc(100% - 1.4rem);
     max-width: none;
     padding: 0;
   }
 
   .pop-cover-name {
-    font-size: clamp(2.55rem, 13vw, 3.5rem);
+    font-size: clamp(2.7rem, 14.5vw, 3.7rem);
     letter-spacing: 0.01em;
     transform: skewX(-12deg) rotate(-4deg);
   }
 
   .pop-cover-kicker {
-    margin-top: 0.45rem;
-    max-width: 16rem;
-    font-size: 0.82rem;
-    -webkit-text-stroke: 0.16em #ffffff;
+    margin-top: 0.4rem;
+    max-width: 17rem;
+    font-size: 0.8rem;
+    -webkit-text-stroke: 0.18em #ffffff;
   }
 
   .pop-cover-shot-wrap {
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: -2.4rem;
+    left: 0;
     height: auto;
     width: auto;
     max-width: none;
@@ -679,12 +671,14 @@ body {
   .pop-cover-shot {
     height: 100%;
     max-width: none;
-    object-position: center bottom;
+    object-position: center 18%;
   }
 
   .pop-cover-halo {
-    width: 78%;
-    top: 12%;
+    left: 50%;
+    top: 11%;
+    width: 48%;
+    transform: translate(-50%, -8%);
   }
 
   .pop-policy-mark {
