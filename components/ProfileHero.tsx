@@ -115,15 +115,9 @@ export default function ProfileHero() {
       </div>
       <div className="pop-cover-collage" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city.png" alt="" className="pop-collage pop-collage-a" />
+        <img src="/media/city-office.png" alt="" className="pop-collage pop-collage-office" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-station.png" alt="" className="pop-collage pop-collage-b" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-tower.png" alt="" className="pop-collage pop-collage-c" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-signal.png" alt="" className="pop-collage pop-collage-d" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city-office.png" alt="" className="pop-collage pop-collage-e" />
+        <img src="/media/city-signal.png" alt="" className="pop-collage pop-collage-signal" />
       </div>
 
       <div className="pop-cover-copy">
