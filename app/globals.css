@@ -561,19 +561,23 @@ body {
   transform: translateX(-50%);
 }
 
-.pop-cover-name,
 .pop-cover-kicker {
   color: #111111;
   paint-order: stroke fill;
+  -webkit-text-stroke: 0.22em #ffffff;
 }
 
 .pop-cover-name {
-  -webkit-text-stroke: 0.14em #ffffff;
-  text-shadow: 0 0 0.35em #ffffff;
-}
-
-.pop-cover-kicker {
-  -webkit-text-stroke: 0.22em #ffffff;
+  margin: 0;
+  font-family: "Dela Gothic One", var(--font-sans);
+  font-size: clamp(2.6rem, 10vw, 4.8rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: #00e676;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 0.05em #000000;
+  transform: skewX(-16deg) rotate(-5deg);
 }
 
 .pop-cover-copy-rest {
@@ -650,6 +654,10 @@ body {
   .pop-cover-copy {
     left: calc(50% + 36px);
     bottom: 7%;
+  }
+
+  .pop-cover-name {
+    font-size: clamp(3.4rem, 7vw, 6rem);
   }
 
   .pop-cover-shot-wrap {
