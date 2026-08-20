@@ -1,3 +1,4 @@
+import { profile } from "@/lib/profile";
 import { tags } from "@/lib/tags";
 
 export default function TagSection() {
@@ -17,6 +18,12 @@ export default function TagSection() {
             </li>
           ))}
         </ul>
+        {tags.cta && profile.email ? (
+          <a href={`mailto:${profile.email}`} className="pop-btn w-fit">
+            <i className="bi bi-envelope-fill" aria-hidden="true" />
+            {tags.cta}
+          </a>
+        ) : null}
       </div>
     </section>
   );
