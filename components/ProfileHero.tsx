@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import KvHeightLock from "./KvHeightLock";
 import { profile } from "@/lib/profile";
 
 const LIME = "#00e676";
@@ -98,6 +99,7 @@ export default function ProfileHero() {
 
   return (
     <section className="pop-kv" id="top">
+      <KvHeightLock />
       <div className="pop-cover-shapes" aria-hidden="true">
         {heroShapes.map((shape) => (
           <svg
