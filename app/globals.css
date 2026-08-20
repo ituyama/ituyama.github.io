@@ -204,7 +204,7 @@ body {
   }
 }
 
-/* City cutouts under the geometry — one photo, three placements, collage. */
+/* City cutouts under the geometry — two photos, overlapping, collage. */
 .pop-cover-collage {
   position: absolute;
   inset: 0;

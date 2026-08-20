@@ -105,7 +105,7 @@ export default function ProfileHero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/media/city.png" alt="" className="pop-collage pop-collage-a" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/media/city.png" alt="" className="pop-collage pop-collage-b" />
+        <img src="/media/city-station.png" alt="" className="pop-collage pop-collage-b" />
         <span className="pop-collage pop-collage-chip">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/media/city.png" alt="" />
