@@ -7,50 +7,46 @@ export default function ProfileHero() {
   ];
 
   return (
-    <div className="pop-frame">
-      <div className="pop-cover">
-        <div className="pop-cover-stripes" aria-hidden="true" />
-        <div className="pop-cover-speed" aria-hidden="true" />
-        <p className="pop-cover-mark" aria-hidden="true">
-          YAMANO
+    <section className="pop-kv">
+      <div className="pop-cover-stripes" aria-hidden="true" />
+      <div className="pop-cover-speed" aria-hidden="true" />
+      <p className="pop-cover-mark" aria-hidden="true">
+        YAMANO
+      </p>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
+
+      <div className="pop-cover-copy">
+        <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.22em] text-bento-ink">
+          {profile.nameEn}
         </p>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
-
-        <div className="pop-cover-copy">
-          <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.22em] text-bento-ink">
-            {profile.nameEn}
+        <h1 className="mt-2 font-lineseed text-[clamp(2.8rem,9vw,6.2rem)] font-extrabold leading-[0.88] tracking-tight text-bento-ink">
+          {profile.nameJa}
+        </h1>
+        {profile.tagline ? (
+          <p className="mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
+            {profile.tagline}
           </p>
-          <h1 className="mt-2 font-lineseed text-[clamp(2.6rem,8vw,5.4rem)] font-extrabold leading-[0.9] tracking-tight text-bento-ink">
-            {profile.nameJa}
-          </h1>
-          {profile.tagline ? (
-            <p className="mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
-              {profile.tagline}
-            </p>
-          ) : null}
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            {pills.map((p) => (
-              <span key={p} className="pop-chip">
-                {p}
-              </span>
-            ))}
-          </div>
-          {profile.email ? (
-            <a href={`mailto:${profile.email}`} className="pop-btn mt-5 w-fit">
-              <i className="bi bi-envelope-fill" aria-hidden="true" />
-              メールする
-            </a>
-          ) : null}
+        ) : null}
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {pills.map((p) => (
+            <span key={p} className="pop-chip">
+              {p}
+            </span>
+          ))}
         </div>
+        {profile.email ? (
+          <a href={`mailto:${profile.email}`} className="pop-btn mt-5 w-fit">
+            <i className="bi bi-envelope-fill" aria-hidden="true" />
+            メールする
+          </a>
+        ) : null}
       </div>
-
-      <MetricsRow />
-    </div>
+    </section>
   );
 }
 
-function MetricsRow() {
+export function MetricsRow() {
   const age = profile.birthday ? calcAge(profile.birthday) : null;
   const items = [
     { label: "年齢", value: age !== null ? `${age}歳` : "—" },
@@ -61,7 +57,7 @@ function MetricsRow() {
   ];
 
   return (
-    <dl className="grid grid-cols-2 border-t-2 border-bento-ink sm:grid-cols-5">
+    <dl className="pop-frame grid grid-cols-2 sm:grid-cols-5">
       {items.map((item, i) => (
         <div
           key={item.label}

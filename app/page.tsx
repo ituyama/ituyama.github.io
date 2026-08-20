@@ -3,7 +3,7 @@
 import { useState } from "react";
 import BentoGrid from "@/components/BentoGrid";
 import OverviewPanel from "@/components/OverviewPanel";
-import ProfileHero from "@/components/ProfileHero";
+import ProfileHero, { MetricsRow } from "@/components/ProfileHero";
 import SideNav, { type NavId } from "@/components/SideNav";
 import TickerBar from "@/components/TickerBar";
 import WorkPanel from "@/components/WorkPanel";
@@ -22,8 +22,9 @@ export default function Home() {
     <>
       <TickerBar />
       <SideNav active={tab} onNavigate={setTab} />
-      <main className="mx-auto flex min-h-[calc(100dvh-2.5rem)] max-w-[1120px] flex-col gap-6 px-[clamp(0.85rem,3vw,1.75rem)] pb-24 pt-5 md:ml-[72px] md:pb-12">
-        <ProfileHero />
+      <ProfileHero />
+      <main className="relative z-10 mx-auto flex max-w-[1120px] flex-col gap-6 px-[clamp(0.85rem,3vw,1.75rem)] pb-24 pt-8 md:ml-[72px] md:pb-12">
+        <MetricsRow />
 
         <div className="flex gap-5 border-b-2 border-bento-ink/15">
           {TABS.map((t) => (
