@@ -1,3 +1,4 @@
+import SectionHead from "./SectionHead";
 import { profile } from "@/lib/profile";
 
 export default function TalkSection() {
@@ -24,9 +25,7 @@ export default function TalkSection() {
       </svg>
 
       <div className="pop-policy-inner">
-        <h2 id="talk-title" className="pop-policy-mark">
-          MY POLICY
-        </h2>
+        <SectionHead id="talk-title" title="MY POLICY" />
         <p className="pop-policy-body">{body}</p>
       </div>
     </section>
