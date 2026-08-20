@@ -1099,15 +1099,12 @@ body {
   .bento-reveal,
   .ticker-track,
   .ticker-live,
-  .pop-splash-track {
+  .pop-splash-name {
     animation: none !important;
   }
 
-  .pop-splash-bg,
-  .pop-splash-row,
-  .pop-policy-dots {
+  .pop-splash {
     transition: none !important;
-    animation: none !important;
   }
 }
 
@@ -1115,135 +1112,30 @@ body {
   position: fixed;
   inset: 0;
   z-index: 80;
-  isolation: isolate;
+  display: grid;
+  place-items: center;
   overflow: hidden;
   pointer-events: none;
-  background: transparent;
-}
-
-.pop-splash-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
   background: var(--color-bento-accent);
-  opacity: 1;
-  transition: opacity 0.55s ease-out;
+  transition: opacity 0.5s ease-out;
 }
 
-.pop-splash.is-out .pop-splash-bg {
+.pop-splash.is-out {
   opacity: 0;
 }
 
-.pop-splash.is-out .pop-policy-dots {
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-}
-
-.pop-splash.is-out .pop-splash-track {
-  animation-play-state: paused;
-}
-
-/* Slide until the last glyph clears the frame — no mid-fade on the type. */
-.pop-splash.is-out .pop-splash-row.is-ltr {
-  animation: splashRowOutL 1.7s cubic-bezier(0.33, 0, 0.2, 1) forwards;
-}
-
-.pop-splash.is-out .pop-splash-row.is-rtl {
-  animation: splashRowOutR 1.7s cubic-bezier(0.33, 0, 0.2, 1) forwards;
-}
-
-.pop-splash.is-out .pop-splash-row:nth-child(5) { animation-delay: 0ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(4),
-.pop-splash.is-out .pop-splash-row:nth-child(6) { animation-delay: 110ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(3),
-.pop-splash.is-out .pop-splash-row:nth-child(7) { animation-delay: 220ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(2),
-.pop-splash.is-out .pop-splash-row:nth-child(8) { animation-delay: 330ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(1),
-.pop-splash.is-out .pop-splash-row:nth-child(9) { animation-delay: 440ms; }
-
-@keyframes splashRowOutL {
-  to {
-    transform: translateX(-115%);
-  }
-}
-
-@keyframes splashRowOutR {
-  to {
-    transform: translateX(115%);
-  }
-}
-
-.pop-splash-stack {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  z-index: 1;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 0.12em;
-  transform: translateY(-50%);
-}
-
-.pop-splash-row {
-  overflow-x: hidden;
-  overflow-y: visible;
-  padding-block: 0.06em;
+.pop-splash-name {
+  margin: 0;
+  color: #111111;
+  font-family: "Dela Gothic One", var(--font-sans);
+  font-size: clamp(2.8rem, 12vw, 8rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 0.9;
   white-space: nowrap;
-  line-height: 1.2;
+  transform: skewX(-16deg) rotate(-5deg);
 }
 
-.pop-splash-track {
-  display: flex;
-  align-items: center;
-  width: max-content;
-  gap: 0.85em;
-  will-change: transform;
-  animation: splashTickerL 22s linear infinite;
-}
-
-.pop-splash-row.is-rtl .pop-splash-track {
-  animation-name: splashTickerR;
-}
-
-.pop-splash-row:nth-child(1) .pop-splash-track { animation-duration: 26s; }
-.pop-splash-row:nth-child(2) .pop-splash-track { animation-duration: 18s; }
-.pop-splash-row:nth-child(3) .pop-splash-track { animation-duration: 24s; }
-.pop-splash-row:nth-child(4) .pop-splash-track { animation-duration: 16s; }
-.pop-splash-row:nth-child(5) .pop-splash-track { animation-duration: 21s; }
-.pop-splash-row:nth-child(6) .pop-splash-track { animation-duration: 15s; }
-.pop-splash-row:nth-child(7) .pop-splash-track { animation-duration: 23s; }
-.pop-splash-row:nth-child(8) .pop-splash-track { animation-duration: 17s; }
-.pop-splash-row:nth-child(9) .pop-splash-track { animation-duration: 25s; }
-
-.pop-splash-item {
-  flex: none;
-  color: #ffffff;
-  font-family: var(--font-noto-serif-jp), "Noto Serif JP", serif;
-  font-size: clamp(4.4rem, 22vh, 14rem);
-  font-weight: 900;
-  letter-spacing: 0.16em;
-  line-height: 1.15;
-}
-
-@keyframes splashTickerL {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes splashTickerR {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
 
 .font-lineseed {
   font-family: "LINE Seed JP", var(--font-sans);
