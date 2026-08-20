@@ -681,47 +681,105 @@ body {
   background: var(--color-bento-accent);
 }
 
-.pop-work-card {
-  padding: clamp(1.15rem, 2.6vw, 1.7rem);
+.pop-work-sheet-head {
+  padding: 1.1rem 1.25rem 1rem;
+  background: var(--color-bento-accent);
+  border-bottom: 2px solid var(--color-bento-line);
 }
 
-.pop-work-index {
-  margin: 0 0 0.65rem;
+.pop-work-sheet-kicker {
+  margin: 0;
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--color-bento-muted);
+  letter-spacing: 0.14em;
+}
+
+.pop-work-sheet-lead {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.pop-work-cols {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: 1fr;
+}
+
+.pop-work-col {
+  padding: 1.2rem 1.25rem 1.3rem;
+}
+
+.pop-work-col + .pop-work-col {
+  border-top: 2px solid var(--color-bento-line);
+}
+
+.pop-work-col-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pop-work-col-link:hover .pop-work-name {
+  color: #0b7a3a;
 }
 
 .pop-work-name {
   margin: 0;
-  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  font-size: clamp(1.55rem, 4vw, 2.15rem);
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -0.03em;
 }
 
-.pop-work-summary {
-  margin: 1rem 0 0;
-  font-size: 0.95rem;
-  font-weight: 800;
-  line-height: 1.75;
-}
-
-.pop-work-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 1.1rem;
+.pop-work-role {
+  margin: 0.55rem 0 0;
   font-size: 0.82rem;
   font-weight: 800;
-  color: var(--color-bento-ink);
-  text-decoration: none;
-  border-bottom: 2px solid var(--color-bento-accent);
 }
 
-.pop-work-link:hover {
-  color: #0b7a3a;
+.pop-work-summary {
+  margin: 0.7rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.pop-work-focus {
+  margin: 0.85rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-bento-muted);
+}
+
+.pop-work-sheet-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  padding: 0.85rem 1.25rem;
+  border-top: 2px solid var(--color-bento-line);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.pop-work-sheet-foot span {
+  margin-right: 0.45rem;
+  color: var(--color-bento-muted);
+}
+
+@media (min-width: 768px) {
+  .pop-work-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pop-work-col + .pop-work-col {
+    border-top: 0;
+    border-left: 2px solid var(--color-bento-line);
+  }
 }
 
 @keyframes bentoReveal {
