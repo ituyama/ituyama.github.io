@@ -133,11 +133,11 @@ export default function ProfileHero() {
       <div className="pop-cover-copy">
         <h1 className="pop-cover-name">{profile.nameJa}</h1>
         {profile.tagline ? (
-          <p className="pop-cover-kicker mt-2 max-w-[16rem] text-[0.82rem] font-extrabold leading-snug md:mt-3 md:max-w-sm md:text-[0.95rem]">
+          <p className="pop-cover-kicker mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug">
             {profile.tagline}
           </p>
         ) : null}
-        <div className="pop-cover-copy-rest mt-4 hidden flex-wrap justify-center gap-1.5 md:flex">
+        <div className="pop-cover-copy-rest mt-4 flex flex-wrap justify-center gap-1.5">
           {pills.map((p) => (
             <span key={p} className="pop-chip">
               {p}
@@ -145,7 +145,7 @@ export default function ProfileHero() {
           ))}
         </div>
         {profile.email ? (
-          <a href={`mailto:${profile.email}`} className="pop-cover-copy-rest pop-btn mt-5 hidden w-fit max-md:!hidden md:inline-flex">
+          <a href={`mailto:${profile.email}`} className="pop-cover-copy-rest pop-btn mt-5 w-fit">
             <i className="bi bi-envelope-fill" aria-hidden="true" />
             メールする
           </a>

@@ -299,18 +299,6 @@ body {
   transform-origin: center;
 }
 
-@media (max-width: 767px) {
-  .pop-collage-nw,
-  .pop-collage-ne,
-  .pop-collage-e,
-  .pop-collage-se,
-  .pop-collage-s,
-  .pop-collage-sw,
-  .pop-collage-w {
-    display: none;
-  }
-}
-
 /* Flat geometric field behind the hero; each shape is placed on its own below. */
 .pop-cover-shapes {
   position: absolute;
@@ -478,39 +466,6 @@ body {
   }
 }
 
-/*
-  Mobile: four corner anchors plus one side peek. Accents have nowhere to
-  sit without hitting the copy, so they drop out.
-*/
-@media (max-width: 767px) {
-  .pop-shape-diamond,
-  .pop-shape-cross,
-  .pop-shape-dots,
-  .pop-shape-square,
-  .pop-shape-bar,
-  .pop-shape-pip,
-  .pop-shape-capsule,
-  .pop-shape-triangle,
-  .pop-shape-ring,
-  .pop-shape-arch {
-    display: none;
-  }
-
-  .pop-shape-disc {
-    left: -32%;
-    top: auto;
-    bottom: 8%;
-    width: 42%;
-  }
-
-  .pop-shape-quarter {
-    right: -30%;
-    top: auto;
-    bottom: 6%;
-    width: 44%;
-  }
-}
-
 .pop-cover-copy {
   position: absolute;
   left: 50%;
@@ -635,50 +590,7 @@ body {
 
 @media (max-width: 767px) {
   .pop-cover-copy {
-    top: 44%;
-    bottom: auto;
-    width: calc(100% - 1.4rem);
-    max-width: none;
-    padding: 0;
-  }
-
-  .pop-cover-name {
-    font-size: clamp(2.7rem, 14.5vw, 3.7rem);
-    letter-spacing: 0.01em;
-    transform: skewX(-12deg) rotate(-4deg);
-  }
-
-  .pop-cover-kicker {
-    margin-top: 0.4rem;
-    max-width: 17rem;
-    font-size: 0.8rem;
-    -webkit-text-stroke: 0.18em #ffffff;
-  }
-
-  .pop-cover-shot-wrap {
-    top: 0;
-    right: 0;
-    bottom: -2.4rem;
-    left: 0;
-    height: auto;
-    width: auto;
-    max-width: none;
-    transform: none;
-    justify-content: center;
-    align-items: flex-end;
-  }
-
-  .pop-cover-shot {
-    height: 100%;
-    max-width: none;
-    object-position: center 18%;
-  }
-
-  .pop-cover-halo {
-    left: 50%;
-    top: 11%;
-    width: 48%;
-    transform: translate(-50%, -8%);
+    bottom: calc(8% + 3.6rem + env(safe-area-inset-bottom, 0px));
   }
 
   .pop-policy-mark {
