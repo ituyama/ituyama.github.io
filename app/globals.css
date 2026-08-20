@@ -508,11 +508,11 @@ body {
 .pop-cover-kicker {
   max-width: 22rem;
   color: #111111;
-  font-size: clamp(1.2rem, 3.6vw, 1.9rem);
+  font-size: clamp(0.82rem, 2.1vw, 1.05rem);
   font-weight: 800;
-  line-height: 1.35;
+  line-height: 1.4;
   paint-order: stroke fill;
-  -webkit-text-stroke: 0.18em #ffffff;
+  -webkit-text-stroke: 0.12em #ffffff;
 }
 
 .pop-cover-name {
