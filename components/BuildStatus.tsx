@@ -22,14 +22,14 @@ export default function BuildStatus() {
   const current = STEPS[step];
 
   return (
-    <span className="flex items-center gap-2.5 rounded-full border border-bento-line bg-bento-surface/95 py-2 pl-3 pr-4 text-[0.78rem] font-medium text-bento-soft shadow-[var(--shadow-bento-hover)] backdrop-blur">
+    <span className="flex items-center gap-2.5 rounded-full border-[1.5px] border-bento-ink bg-bento-accent py-2 pl-3 pr-4 text-[0.78rem] font-bold text-bento-ink shadow-[var(--shadow-bento-hover)]">
       <span className="relative flex size-5 items-center justify-center">
-        <span className="absolute inset-0 animate-spin rounded-full border-[1.5px] border-bento-line border-t-bento-ink" />
+        <span className="absolute inset-0 animate-spin rounded-full border-[1.5px] border-bento-ink/20 border-t-bento-ink" />
       </span>
       <span key={step} className="status-swap flex items-center gap-1.5">
-        <i className={`bi bi-${current.icon} text-bento-soft`} aria-hidden="true" />
+        <i className={`bi bi-${current.icon}`} aria-hidden="true" />
         {current.label}
-        <span className="inline-flex w-3 justify-start text-bento-muted">
+        <span className="inline-flex w-3 justify-start">
           <Dots />
         </span>
       </span>

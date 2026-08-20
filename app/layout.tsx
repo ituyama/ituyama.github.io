@@ -9,7 +9,7 @@ import ProfileFacts from "@/components/ProfileFacts";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "700", "900"],
   variable: "--font-noto-sans-jp",
   display: "swap",
 });
@@ -71,7 +71,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#ffffff",
+  themeColor: "#00e676",
 };
 
 const personJsonLd = {

@@ -19,6 +19,7 @@ export type Profile = {
   car: string;
   carImage: string;
   email: string;
+  spotify: string;
   activityGraph: string;
   about: string;
   gallery: GalleryItem[];
@@ -73,7 +74,9 @@ export function profileContext(): string {
       ? `写真:\n${profile.gallery.map((g) => `${g.caption}: ${g.src}`).join("\n")}`
       : "",
     profile.email ? `メール: ${profile.email}` : "",
+    profile.spotify ? `Spotify: ${profile.spotify}` : "",
     profile.activityGraph ? `GitHub草グラフ: ${profile.activityGraph}` : "",
+    `現在時刻: time タイルでJSTのライブ時計を表示できる（body不要）`,
     socials ? `SNS:\n${socials}` : "",
     profile.links.length
       ? `リンク:\n${profile.links.map((l) => `${l.label}: ${l.url}`).join("\n")}`
@@ -111,8 +114,9 @@ export function buildLayout(p: Profile = profile): BentoLayout {
   if (p.avatar) {
     tiles.push({
       type: "image",
-      title: p.nameEn || p.nameJa || "Portrait",
+      title: p.nameJa || p.nameEn || "Portrait",
       body: p.avatar,
+      caption: p.location || p.tagline || undefined,
       accent: "rose",
       span: 4,
       rowSpan: 2,
@@ -182,6 +186,68 @@ export function buildLayout(p: Profile = profile): BentoLayout {
       icon: "geo-alt-fill",
     });
   }
+
+  tiles.push({
+    type: "time",
+    title: "Local time",
+    accent: nextAccent(),
+    span: 4,
+    rowSpan: 1,
+    icon: "clock",
+  });
+
+  if (p.spotify) {
+    tiles.push({
+      type: "music",
+      title: "Now playing",
+      body: p.spotify,
+      accent: nextAccent(),
+      span: 6,
+      rowSpan: 1,
+      icon: "spotify",
+    });
+  }
+
+  const x = p.socials.find((s) => s.name === "X" || s.icon === "twitter-x");
+  if (x) {
+    tiles.push({
+      type: "tweets",
+      title: "X",
+      body: x.handle,
+      href: x.url,
+      accent: nextAccent(),
+      span: 4,
+      rowSpan: 1,
+      icon: "twitter-x",
+    });
+  }
+
+  tiles.push({
+    type: "aquarium",
+    title: "金魚",
+    accent: nextAccent(),
+    span: 4,
+    rowSpan: 1,
+    icon: "water",
+  });
+
+  tiles.push({
+    type: "stock",
+    title: "カブ価",
+    accent: nextAccent(),
+    span: 4,
+    rowSpan: 1,
+    icon: "flower1",
+  });
+
+  tiles.push({
+    type: "dvd",
+    title: "DVD",
+    accent: nextAccent(),
+    span: 6,
+    rowSpan: 1,
+    icon: "disc",
+  });
 
   if (p.skills.length) {
     tiles.push({
@@ -256,6 +322,8 @@ export function buildLayout(p: Profile = profile): BentoLayout {
   }
 
   for (const s of p.socials) {
+    // X already has a dedicated card above; avoid showing it twice.
+    if (s.name === "X" || s.icon === "twitter-x") continue;
     tiles.push({
       type: "link",
       title: s.name,

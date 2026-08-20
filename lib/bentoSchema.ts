@@ -31,6 +31,12 @@ export const tileTypes = [
   "activity",
   "image",
   "map",
+  "time",
+  "music",
+  "aquarium",
+  "tweets",
+  "dvd",
+  "stock",
 ] as const;
 
 export type TileType = (typeof tileTypes)[number];
@@ -39,7 +45,7 @@ export const bentoTileSchema = z.object({
   type: z
     .enum(tileTypes)
     .describe(
-      "Tile renderer. text: short prose. stat: a big value + label. link: clickable card. code: monospace snippet. skills: a set of skill tags (put the skills in body as a comma-separated list, e.g. 'Python, TypeScript, LLM'). profile: name/identity card (no photo). activity: GitHub contribution graph. image: a full-bleed standalone image block (put the image URL/path in body); use for the portrait /media/yamanopic.png. map: an embedded map of a place (put the place name in body, e.g. '神奈川県'); use for location instead of a stat tile.",
+      "Tile renderer. text: short prose. stat: a big value + label. link: clickable card. code: monospace snippet. skills: a set of skill tags (put the skills in body as a comma-separated list, e.g. 'Python, TypeScript, LLM'). profile: name/identity card (no photo). activity: GitHub contribution graph. image: a full-bleed standalone image block (put the image URL/path in body); use for the portrait /media/yamanopic.png. map: an embedded map of a place (put the place name in body, e.g. '神奈川県'); use for location instead of a stat tile. time: a live local clock (no body needed; shows the current time in Japan). music: an embedded Spotify player (put the Spotify URL in body). aquarium: a calm animated goldfish bowl (no body needed); a relaxing decorative tile. tweets: a card linking to the X (Twitter) profile (put the X handle in body and the profile URL in href). dvd: the classic bouncing DVD-logo screensaver (no body needed); a playful decorative tile. stock: an Animal-Crossing-style turnip-price (カブ価) tile that tracks the live Nikkei 225 in Bells (no body needed).",
     ),
   title: z
     .string()
