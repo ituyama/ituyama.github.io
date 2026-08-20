@@ -109,33 +109,6 @@ export function buildLayout(p: Profile = profile): BentoLayout {
   let a = 0;
   const nextAccent = (): Accent => ACCENT_CYCLE[a++ % ACCENT_CYCLE.length];
 
-  if (p.avatar) {
-    tiles.push({
-      type: "image",
-      title: p.nameJa || p.nameEn || "Portrait",
-      body: p.avatar,
-      caption: p.location || p.tagline || undefined,
-      accent: "rose",
-      span: 4,
-      rowSpan: 2,
-    });
-  }
-
-  const name = [p.nameJa, p.nameEn].filter(Boolean).join(" / ");
-  if (name) {
-    const age = p.birthday ? calcAge(p.birthday) : null;
-    tiles.push({
-      type: "profile",
-      title: "Profile",
-      body: name,
-      caption: p.tagline || (age !== null ? `${age}歳` : undefined),
-      accent: nextAccent(),
-      span: p.avatar ? 8 : 12,
-      rowSpan: 1,
-      icon: "person-badge",
-    });
-  }
-
   if (p.about) {
     tiles.push({
       type: "text",
@@ -145,31 +118,6 @@ export function buildLayout(p: Profile = profile): BentoLayout {
       span: 8,
       rowSpan: p.about.length > 80 ? 2 : 1,
       icon: "stars",
-    });
-  }
-
-  if (p.companies.length) {
-    tiles.push({
-      type: "text",
-      title: "Work",
-      body: p.companies.map((c) => `${c.name} — ${c.role}`).join("\n"),
-      accent: nextAccent(),
-      span: 6,
-      rowSpan: p.companies.length > 2 ? 2 : 1,
-      icon: "briefcase",
-    });
-  }
-
-  const education = [p.university, p.highSchool].filter(Boolean);
-  if (education.length) {
-    tiles.push({
-      type: "text",
-      title: "Education",
-      body: education.join("\n"),
-      accent: nextAccent(),
-      span: 6,
-      rowSpan: education.length > 1 ? 2 : 1,
-      icon: "mortarboard",
     });
   }
 
@@ -246,19 +194,6 @@ export function buildLayout(p: Profile = profile): BentoLayout {
     rowSpan: 1,
     icon: "disc",
   });
-
-  if (p.skills.length) {
-    tiles.push({
-      type: "skills",
-      title: "Skills",
-      body: p.skills.join(", "),
-      caption: `${p.skills.length} skills`,
-      accent: nextAccent(),
-      span: 6,
-      rowSpan: 1,
-      icon: "stars",
-    });
-  }
 
   if (p.carImage) {
     tiles.push({

@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 /*
-  DISCOVER theme — mint ticker, ink borders, teal media wells,
-  extra-bold display type. High contrast on an off-white canvas.
+  Profile site — dark cinematic hero, mint accent, ink-bordered cards.
 */
 @theme {
   --color-bento-bg: #f3f5f4;
@@ -46,6 +45,12 @@ body {
   background-color: var(--color-bento-bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.profile-hero {
+  background:
+    radial-gradient(ellipse 50% 60% at 70% 45%, rgba(0, 230, 118, 0.16), transparent 58%),
+    #050807;
 }
 
 @keyframes bentoReveal {
@@ -301,29 +306,11 @@ body {
   .discover-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .discover-card-featured {
-    grid-column: span 2;
-  }
-
-  .discover-card-featured .discover-card-media {
-    aspect-ratio: 2 / 1;
-  }
 }
 
 @media (min-width: 1100px) {
   .discover-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .discover-card-featured {
-    grid-row: span 2;
-  }
-
-  .discover-card-featured .discover-card-media {
-    aspect-ratio: auto;
-    flex: 1;
-    min-height: 18rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

@@ -135,7 +135,7 @@ function CellMedia({ tile }: { tile: BentoTile }) {
             src={profile.avatar}
             alt=""
             loading="lazy"
-            className="absolute left-4 bottom-4 size-16 rounded-full border-[1.5px] border-white object-cover"
+            className="absolute left-4 bottom-4 size-16 rounded-full border-[1.5px] border-white object-cover object-[center_12%]"
           />
         </div>
       );
