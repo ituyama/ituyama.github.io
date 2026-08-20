@@ -10,6 +10,7 @@ export type WorkItem = {
 
 export type WorkFeed = {
   title: string;
+  subtitle?: string;
   items: WorkItem[];
 };
 

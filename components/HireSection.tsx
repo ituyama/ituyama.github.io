@@ -26,7 +26,7 @@ export default function HireSection() {
         <h2 id="hire-title" className="pop-policy-mark">
           {hire.title}
         </h2>
-        {hire.intro ? <p className="pop-hire-intro">{hire.intro}</p> : null}
+        {hire.intro ? <p className="pop-section-intro">{hire.intro}</p> : null}
 
         <article className="pop-work-sheet pop-frame">
           <div className="pop-work-split">

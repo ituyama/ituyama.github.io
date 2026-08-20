@@ -21,6 +21,7 @@ export default function WorkPanel() {
         <h2 id="work-title" className="pop-policy-mark">
           {work.title}
         </h2>
+        {work.subtitle ? <p className="pop-section-intro">{work.subtitle}</p> : null}
 
         <article className="pop-work-sheet pop-frame">
           <div className="pop-work-split">
