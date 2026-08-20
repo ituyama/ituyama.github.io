@@ -115,27 +115,43 @@ export default function ProfileHero() {
       </div>
 
       <div className="pop-cover-copy">
-        <h1 className="font-lineseed text-[clamp(2.8rem,11vw,4.2rem)] font-extrabold leading-[0.88] tracking-tight text-bento-ink md:text-[clamp(2.6rem,6vw,5rem)]">
-          {profile.nameJa}
-        </h1>
-        {profile.tagline ? (
-          <p className="mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
-            {profile.tagline}
-          </p>
-        ) : null}
-        <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-          {pills.map((p) => (
-            <span key={p} className="pop-chip">
-              {p}
-            </span>
-          ))}
+        <svg
+          className="pop-cover-copy-plate"
+          viewBox="0 0 420 260"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M48 86C28 22 118 10 206 28C292 8 392 34 382 108C402 168 346 232 238 242C132 252 22 208 30 132C18 110 56 102 48 86Z"
+            fill="#ffffff"
+            stroke="#000000"
+            strokeWidth="3"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+        <div className="pop-cover-copy-inner">
+          <h1 className="font-lineseed text-[clamp(2.8rem,11vw,4.2rem)] font-extrabold leading-[0.88] tracking-tight text-bento-ink md:text-[clamp(2.6rem,6vw,5rem)]">
+            {profile.nameJa}
+          </h1>
+          {profile.tagline ? (
+            <p className="mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
+              {profile.tagline}
+            </p>
+          ) : null}
+          <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+            {pills.map((p) => (
+              <span key={p} className="pop-chip">
+                {p}
+              </span>
+            ))}
+          </div>
+          {profile.email ? (
+            <a href={`mailto:${profile.email}`} className="pop-btn mt-5 w-fit">
+              <i className="bi bi-envelope-fill" aria-hidden="true" />
+              メールする
+            </a>
+          ) : null}
         </div>
-        {profile.email ? (
-          <a href={`mailto:${profile.email}`} className="pop-btn mt-5 w-fit">
-            <i className="bi bi-envelope-fill" aria-hidden="true" />
-            メールする
-          </a>
-        ) : null}
       </div>
 
       {/* eslint-disable-next-line @next/next/no-img-element */}
