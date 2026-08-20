@@ -60,7 +60,7 @@ export default function Splash() {
     }
 
     const out = window.setTimeout(() => setPhase("out"), 2200);
-    const done = window.setTimeout(() => setPhase("done"), 2750);
+    const done = window.setTimeout(() => setPhase("done"), 3120);
     return () => {
       window.clearTimeout(out);
       window.clearTimeout(done);

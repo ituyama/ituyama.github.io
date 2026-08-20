@@ -1083,8 +1083,12 @@ body {
     animation: none !important;
   }
 
-  .pop-splash {
+  .pop-splash,
+  .pop-splash::before,
+  .pop-splash::after,
+  .pop-splash-row {
     transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -1094,13 +1098,79 @@ body {
   z-index: 80;
   isolation: isolate;
   overflow: hidden;
-  background: var(--color-bento-accent);
-  transform: translateY(0);
-  transition: transform 0.55s var(--ease-bento);
+  pointer-events: none;
+  background: transparent;
 }
 
-.pop-splash.is-out {
-  transform: translateY(-100%);
+.pop-splash::before,
+.pop-splash::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: 50%;
+  background: var(--color-bento-accent);
+  transition: transform 0.64s var(--ease-bento) 0.2s;
+}
+
+.pop-splash::before {
+  top: 0;
+  border-bottom: 2px solid #000000;
+}
+
+.pop-splash::after {
+  bottom: 0;
+  border-top: 2px solid #000000;
+}
+
+.pop-splash.is-out::before {
+  transform: translateY(-105%);
+}
+
+.pop-splash.is-out::after {
+  transform: translateY(105%);
+}
+
+.pop-splash.is-out .pop-policy-dots {
+  opacity: 0;
+  transition: opacity 0.18s linear;
+}
+
+.pop-splash.is-out .pop-splash-track {
+  animation-play-state: paused;
+}
+
+.pop-splash.is-out .pop-splash-row.is-ltr {
+  animation: splashRowOutL 0.52s cubic-bezier(0.7, 0, 0.18, 1) forwards;
+}
+
+.pop-splash.is-out .pop-splash-row.is-rtl {
+  animation: splashRowOutR 0.52s cubic-bezier(0.7, 0, 0.18, 1) forwards;
+}
+
+.pop-splash.is-out .pop-splash-row:nth-child(5) { animation-delay: 0ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(4),
+.pop-splash.is-out .pop-splash-row:nth-child(6) { animation-delay: 45ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(3),
+.pop-splash.is-out .pop-splash-row:nth-child(7) { animation-delay: 90ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(2),
+.pop-splash.is-out .pop-splash-row:nth-child(8) { animation-delay: 135ms; }
+.pop-splash.is-out .pop-splash-row:nth-child(1),
+.pop-splash.is-out .pop-splash-row:nth-child(9) { animation-delay: 180ms; }
+
+@keyframes splashRowOutL {
+  to {
+    transform: translateX(-108%);
+    opacity: 0;
+  }
+}
+
+@keyframes splashRowOutR {
+  to {
+    transform: translateX(108%);
+    opacity: 0;
+  }
 }
 
 .pop-splash-stack {
