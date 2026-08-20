@@ -102,7 +102,11 @@ body {
   align-items: center;
   margin-top: -2.5rem;
   overflow: hidden;
-  background: #ffffff;
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #11111118 1px, transparent 1px),
+    linear-gradient(to bottom, #11111118 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
 /*
