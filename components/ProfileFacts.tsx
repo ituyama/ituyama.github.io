@@ -1,3 +1,4 @@
+import { hire } from "@/lib/hire";
 import { calcAge, profile } from "@/lib/profile";
 
 /**
@@ -77,6 +78,23 @@ export default function ProfileFacts() {
           <ul>
             {profile.university ? <li>{profile.university}</li> : null}
             {profile.highSchool ? <li>{profile.highSchool}</li> : null}
+          </ul>
+        </section>
+      ) : null}
+
+      {hire.openings.length ? (
+        <section aria-label="募集">
+          <h2>募集</h2>
+          {hire.intro ? <p>{hire.intro}</p> : null}
+          <ul>
+            {hire.openings.map((job) => (
+              <li key={`${job.org}-${job.role}`}>
+                <p>
+                  {job.org} — {job.role}
+                </p>
+                {job.summary ? <p>{job.summary}</p> : null}
+              </li>
+            ))}
           </ul>
         </section>
       ) : null}

@@ -1,0 +1,22 @@
+{
+  "title": "HIRE",
+  "intro": "一緒に作る人を探しています。",
+  "openings": [
+    {
+      "org": "Mitologie",
+      "role": "プロダクト / 実装",
+      "summary": "個人会社です。プロダクトをゼロから通す人。設計も実装も、自分で決められる人。",
+      "tags": ["副業可", "リモート"],
+      "cta": "話を聞く",
+      "email": "itsuki-yamano@mitologie.jp"
+    },
+    {
+      "org": "Xtraveler",
+      "role": "事業 / 現場",
+      "summary": "ポルシェのレンタカー事業。現場とプロダクトのあいだを、一緒に走れる人。",
+      "tags": ["創業8期目"],
+      "cta": "話を聞く",
+      "email": "itsuki-yamano@mitologie.jp"
+    }
+  ]
+}

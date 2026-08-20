@@ -846,6 +846,22 @@ body {
   line-height: 1.7;
 }
 
+.pop-hire-intro {
+  margin: -0.6rem 0 0;
+  max-width: 28rem;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.pop-hire-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
 .pop-work-detail.is-flush {
   padding: 0;
   min-height: 0;
