@@ -204,7 +204,7 @@ body {
   }
 }
 
-/* Planted cutouts on top of the geometric photo-windows. */
+/* Planted cutouts on the poster. */
 .pop-cover-collage {
   position: absolute;
   inset: 0;
@@ -284,11 +284,6 @@ body {
   vector-effect: non-scaling-stroke;
 }
 
-.pop-shape image,
-.pop-shape clipPath * {
-  stroke: none;
-}
-
 /*
   Desktop composition: two overlapping clusters that frame the centred copy.
   Large lime disc + mint quarter are the anchors; everything else docks onto
@@ -317,11 +312,11 @@ body {
 }
 
 .pop-shape-diamond {
-  left: 26%;
-  top: 36%;
-  width: 11%;
+  left: 24%;
+  top: 40%;
+  width: 8%;
   z-index: 4;
-  transform: rotate(18deg);
+  transform: rotate(14deg);
 }
 
 .pop-shape-capsule {
@@ -333,19 +328,19 @@ body {
 }
 
 .pop-shape-triangle {
-  left: calc(72px - 2%);
-  bottom: -6%;
-  width: 20%;
+  left: calc(72px - 1%);
+  bottom: -4%;
+  width: 14%;
   z-index: 3;
-  transform: rotate(-12deg);
+  transform: rotate(-8deg);
 }
 
 .pop-shape-arch {
-  right: -4%;
-  top: -8%;
-  width: 20%;
+  right: -3%;
+  top: -6%;
+  width: 16%;
   z-index: 2;
-  transform: rotate(10deg);
+  transform: rotate(7deg);
 }
 
 .pop-shape-cross {
@@ -357,9 +352,9 @@ body {
 }
 
 .pop-shape-square {
-  right: 2%;
-  top: 22%;
-  width: 11%;
+  right: 1%;
+  top: 24%;
+  width: 7.5%;
   z-index: 3;
   transform: rotate(16deg);
 }
@@ -373,17 +368,17 @@ body {
 }
 
 .pop-shape-quarter {
-  right: -10%;
-  bottom: -12%;
-  width: 34%;
+  right: -8%;
+  bottom: -10%;
+  width: 28%;
   z-index: 2;
-  transform: rotate(6deg);
+  transform: rotate(180deg);
 }
 
 .pop-shape-pip {
-  right: 16%;
-  bottom: 6%;
-  width: 13%;
+  right: 18%;
+  bottom: 5%;
+  width: 8%;
   z-index: 4;
 }
 

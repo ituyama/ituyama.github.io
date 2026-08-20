@@ -4,28 +4,15 @@ import { calcAge, profile } from "@/lib/profile";
 
 const LIME = "#00e676";
 const BLUE = "#4d7cff";
-
-type HeroPhoto = {
-  src: string;
-  clip: ReactNode;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
-
-type HeroShape = {
-  id: string;
-  viewBox: string;
-  art: ReactNode;
-  photo?: HeroPhoto;
-};
+const VIOLET = "#7a5cff";
+const MINT = "#ccffe4";
 
 /*
-  Hero backdrop: Bauhaus primitives, some of them windows onto the city.
-  Outlines come from `.pop-shape *`, so the weight stays even when scaled.
+  Hero backdrop: Bauhaus primitives in the site palette. Each shape is its own
+  element so CSS can cluster, overlap, and rotate them. Outlines come from
+  `.pop-shape *`, so the weight stays even no matter how far a shape is scaled.
 */
-const heroShapes: HeroShape[] = [
+const heroShapes: { id: string; viewBox: string; art: ReactNode }[] = [
   {
     id: "disc",
     viewBox: "0 0 100 100",
@@ -34,59 +21,27 @@ const heroShapes: HeroShape[] = [
   {
     id: "quarter",
     viewBox: "0 0 100 100",
-    photo: {
-      src: "/media/city-glass.png",
-      clip: <path d="M98 98 L98 2 A96 96 0 0 0 2 98 Z" />,
-      x: 8,
-      y: -40,
-      width: 110,
-      height: 175,
-    },
-    art: <path d="M98 98 L98 2 A96 96 0 0 0 2 98 Z" fill="none" />,
+    art: <path d="M2 2 L98 2 A96 96 0 0 1 2 98 Z" fill={MINT} />,
   },
   {
     id: "ring",
     viewBox: "0 0 100 100",
-    photo: {
-      src: "/media/city.png",
-      clip: <circle cx="50" cy="50" r="21" />,
-      x: 20,
-      y: 8,
-      width: 60,
-      height: 72,
-    },
     art: (
       <>
         <circle cx="50" cy="50" r="48" fill={BLUE} />
-        <circle cx="50" cy="50" r="21" fill="none" />
+        <circle cx="50" cy="50" r="21" fill="#ffffff" />
       </>
     ),
   },
   {
     id: "arch",
     viewBox: "0 0 100 130",
-    photo: {
-      src: "/media/city-tower.png",
-      clip: <path d="M2 128 L2 52 A48 48 0 0 1 98 52 L98 128 Z" />,
-      x: -10,
-      y: 8,
-      width: 120,
-      height: 150,
-    },
-    art: <path d="M2 128 L2 52 A48 48 0 0 1 98 52 L98 128 Z" fill="none" />,
+    art: <path d="M2 128 L2 52 A48 48 0 0 1 98 52 L98 128 Z" fill={VIOLET} />,
   },
   {
     id: "triangle",
     viewBox: "0 0 100 92",
-    photo: {
-      src: "/media/city.png",
-      clip: <path d="M50 2 L98 90 L2 90 Z" />,
-      x: -20,
-      y: -10,
-      width: 140,
-      height: 120,
-    },
-    art: <path d="M50 2 L98 90 L2 90 Z" fill="none" />,
+    art: <path d="M50 2 L98 90 L2 90 Z" fill={VIOLET} />,
   },
   {
     id: "capsule",
@@ -96,15 +51,7 @@ const heroShapes: HeroShape[] = [
   {
     id: "diamond",
     viewBox: "0 0 100 100",
-    photo: {
-      src: "/media/city-office.png",
-      clip: <path d="M50 2 L98 50 L50 98 L2 50 Z" />,
-      x: -30,
-      y: 10,
-      width: 160,
-      height: 90,
-    },
-    art: <path d="M50 2 L98 50 L50 98 L2 50 Z" fill="none" />,
+    art: <path d="M50 2 L98 50 L50 98 L2 50 Z" fill="#ffffff" />,
   },
   {
     id: "cross",
@@ -132,15 +79,7 @@ const heroShapes: HeroShape[] = [
   {
     id: "square",
     viewBox: "0 0 100 100",
-    photo: {
-      src: "/media/city-signal.png",
-      clip: <rect x="2" y="2" width="96" height="96" rx="8" />,
-      x: -40,
-      y: -10,
-      width: 180,
-      height: 140,
-    },
-    art: <rect x="2" y="2" width="96" height="96" rx="8" fill="none" />,
+    art: <rect x="2" y="2" width="96" height="96" rx="8" fill={MINT} />,
   },
   {
     id: "bar",
@@ -150,15 +89,7 @@ const heroShapes: HeroShape[] = [
   {
     id: "pip",
     viewBox: "0 0 100 100",
-    photo: {
-      src: "/media/city-glass.png",
-      clip: <circle cx="50" cy="50" r="48" />,
-      x: 10,
-      y: -20,
-      width: 80,
-      height: 130,
-    },
-    art: <circle cx="50" cy="50" r="48" fill="none" />,
+    art: <circle cx="50" cy="50" r="48" fill={LIME} />,
   },
 ];
 
@@ -178,22 +109,6 @@ export default function ProfileHero() {
             viewBox={shape.viewBox}
             preserveAspectRatio="xMidYMid meet"
           >
-            {shape.photo ? (
-              <>
-                <defs>
-                  <clipPath id={`hero-clip-${shape.id}`}>{shape.photo.clip}</clipPath>
-                </defs>
-                <image
-                  href={shape.photo.src}
-                  x={shape.photo.x}
-                  y={shape.photo.y}
-                  width={shape.photo.width}
-                  height={shape.photo.height}
-                  preserveAspectRatio="xMidYMid slice"
-                  clipPath={`url(#hero-clip-${shape.id})`}
-                />
-              </>
-            ) : null}
             {shape.art}
           </svg>
         ))}
