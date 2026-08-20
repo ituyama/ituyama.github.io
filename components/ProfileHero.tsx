@@ -132,7 +132,10 @@ export default function ProfileHero() {
 
       <div className="pop-cover-copy">
         <h1 className="pop-cover-name">
-          {profile.nameJa}
+          <span className="pop-cover-name-ink" aria-hidden="true">
+            {profile.nameJa}
+          </span>
+          <span className="pop-cover-name-fill">{profile.nameJa}</span>
         </h1>
         {profile.tagline ? (
           <p className="pop-cover-kicker mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug">
