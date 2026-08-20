@@ -204,8 +204,9 @@ body {
   }
 }
 
-/* City cutouts rooted on the frame. Each one points at the portrait —
-   the top of the photo is the growth direction. */
+/* City cutouts rooted on the frame. The top of each photo is the growth
+   direction, aimed at the portrait. Origin is centre so a 90° turn
+   stays on-canvas instead of swinging off the rim. */
 .pop-cover-collage {
   position: absolute;
   inset: 0;
@@ -221,39 +222,39 @@ body {
 
 /* Top-left → down-right */
 .pop-collage-nw {
-  left: -6%;
-  top: -6%;
-  height: 42%;
+  left: 2%;
+  top: 2%;
+  height: 36%;
   width: auto;
   transform: rotate(135deg);
-  transform-origin: top left;
+  transform-origin: center;
 }
 
 /* Top-right → down-left */
 .pop-collage-ne {
-  top: -6%;
-  right: -6%;
-  height: 44%;
+  top: 2%;
+  right: 2%;
+  height: 38%;
   width: auto;
   transform: rotate(-135deg);
-  transform-origin: top right;
+  transform-origin: center;
 }
 
 /* Right → left */
 .pop-collage-e {
-  top: 26%;
-  right: -10%;
-  height: 38%;
+  top: 30%;
+  right: 2%;
+  height: 34%;
   width: auto;
   transform: rotate(-90deg);
-  transform-origin: center right;
+  transform-origin: center;
 }
 
 /* Bottom-right → up-left */
 .pop-collage-se {
   right: -2%;
-  bottom: -8%;
-  height: 50%;
+  bottom: -4%;
+  height: 48%;
   width: auto;
   transform: rotate(-18deg);
   transform-origin: bottom right;
@@ -262,8 +263,8 @@ body {
 /* Bottom → up */
 .pop-collage-s {
   left: 50%;
-  bottom: -10%;
-  width: 30%;
+  bottom: -4%;
+  width: 28%;
   height: auto;
   transform: translateX(-50%);
   transform-origin: bottom center;
@@ -271,9 +272,9 @@ body {
 
 /* Bottom-left → up-right */
 .pop-collage-sw {
-  left: -4%;
-  bottom: -8%;
-  height: 46%;
+  left: -2%;
+  bottom: -4%;
+  height: 44%;
   width: auto;
   transform: rotate(16deg);
   transform-origin: bottom left;
@@ -281,12 +282,12 @@ body {
 
 /* Left → right */
 .pop-collage-w {
-  left: -10%;
-  top: 22%;
-  height: 38%;
+  left: 2%;
+  top: 26%;
+  height: 34%;
   width: auto;
   transform: rotate(90deg);
-  transform-origin: center left;
+  transform-origin: center;
 }
 
 @media (max-width: 767px) {
@@ -313,8 +314,9 @@ body {
   }
 
   .pop-collage-w {
-    left: -16%;
-    height: 40%;
+    left: 0;
+    top: 28%;
+    height: 28%;
   }
 }
 
