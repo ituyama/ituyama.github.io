@@ -14,7 +14,7 @@
   --color-bento-accent: #00e676;
   --color-bento-panel: #eef1f0;
   --color-bento-nav: #f7f7f7;
-  --color-bento-media: #0c322e;
+  --color-bento-media: #111111;
 
   --radius-bento: 12px;
   --radius-bento-sm: 10px;
@@ -93,7 +93,7 @@ body {
   min-height: 100svh;
   margin-top: -2.5rem;
   overflow: visible;
-  background: #0a1f1c;
+  background: #111111;
 }
 
 .pop-cover-stripes {
@@ -106,7 +106,7 @@ body {
     #111111 34px 42px,
     #f4fff8 42px 76px,
     #111111 76px 84px,
-    #0b2f2b 84px 128px
+    #7dffb0 84px 128px
   );
   animation: stripeSlide 22s linear infinite;
 }
@@ -255,9 +255,8 @@ body {
 
 .discover-media-fill {
   background:
-    radial-gradient(ellipse 90% 80% at 78% 16%, rgba(0, 230, 118, 0.42), transparent 58%),
-    radial-gradient(ellipse 55% 45% at 12% 88%, rgba(0, 160, 140, 0.28), transparent 52%),
-    linear-gradient(165deg, #1b6a62 0%, #0e403b 46%, #08211f 100%);
+    radial-gradient(ellipse 90% 80% at 78% 16%, rgba(0, 230, 118, 0.45), transparent 58%),
+    #111111;
 }
 
 .discover-grid {

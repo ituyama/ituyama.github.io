@@ -68,7 +68,7 @@ export default function SideNav({
           <span className="size-2.5 rounded-full bg-bento-accent" />
           <span className="size-2.5 rounded-full bg-[#4d7cff]" />
           <span className="size-2.5 rounded-full bg-[#7a5cff]" />
-          <span className="size-2.5 rounded-full bg-[#0b2f2b]" />
+          <span className="size-2.5 rounded-full bg-[#111111]" />
         </div>
       </div>
     </aside>
