@@ -22,6 +22,7 @@ export type Profile = {
   spotify: string;
   activityGraph: string;
   about: string;
+  policy: string;
   gallery: GalleryItem[];
   socials: Social[];
   links: ProfileLink[];
@@ -58,6 +59,7 @@ export function profileContext(): string {
     profile.birthday ? `生年月日: ${profile.birthday}` : "",
     age !== null ? `年齢: ${age}歳（この値をそのまま使う。再計算しない）` : "",
     profile.tagline ? `キャッチ: ${profile.tagline}` : "",
+    profile.policy ? `方針: ${profile.policy}` : "",
     profile.about ? `自己紹介: ${profile.about}` : "",
     profile.university || profile.highSchool
       ? `学歴:\n${[profile.university, profile.highSchool].filter(Boolean).join("\n")}`

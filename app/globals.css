@@ -104,6 +104,105 @@ body {
   background: #ffffff;
 }
 
+/*
+  Spoken-policy poster under the KV. Lime field, halftone, a black title plate
+  with a slight chromatic offset — the site saying something in its own voice.
+*/
+.pop-policy {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 2px solid var(--color-bento-line);
+  background: var(--color-bento-accent);
+}
+
+.pop-policy-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#0b3d22 1.15px, transparent 1.25px);
+  background-size: 7px 7px;
+  opacity: 0.18;
+}
+
+.pop-policy-deco {
+  position: absolute;
+  z-index: 1;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.pop-policy-deco-disc {
+  top: -2.5rem;
+  left: calc(72px + 1.5rem);
+  width: 7.5rem;
+}
+
+.pop-policy-deco-mic {
+  right: -1.2rem;
+  top: 18%;
+  width: 6.5rem;
+}
+
+.pop-policy-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(44rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(3.2rem, 8vw, 5.5rem) 0 clamp(3.6rem, 9vw, 6rem);
+  text-align: center;
+}
+
+.pop-policy-mark {
+  margin: 0;
+  padding: 0.18em 0.28em 0.14em;
+  background: #111111;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: clamp(2.4rem, 9vw, 5.4rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 0.88;
+  text-shadow:
+    -3px 0 #4d7cff,
+    3px 0 #7a5cff;
+}
+
+.pop-policy-body {
+  margin: 1.6rem 0 0;
+  color: #111111;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  font-weight: 800;
+  line-height: 1.85;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.pop-policy-fade {
+  color: #157a38;
+}
+
+@media (max-width: 767px) {
+  .pop-policy-deco-disc {
+    left: -1.5rem;
+    width: 5.5rem;
+  }
+
+  .pop-policy-deco-mic {
+    top: auto;
+    bottom: -1rem;
+    width: 4.8rem;
+  }
+
+  .pop-policy-body {
+    text-align: left;
+  }
+}
+
 /* Flat geometric field behind the hero; each shape is placed on its own below. */
 .pop-cover-shapes {
   position: absolute;
