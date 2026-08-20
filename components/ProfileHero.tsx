@@ -161,43 +161,37 @@ export default function ProfileHero() {
         <div className="pop-cover-halo" aria-hidden="true">
           <span className="pop-cover-halo-glow" />
           <svg className="pop-cover-halo-ring" viewBox="0 0 200 200">
-            {/* 円光 — disc of light behind the head */}
-            <circle cx="100" cy="100" r="58" fill="#00e676" fillOpacity="0.2" />
-            <circle cx="100" cy="100" r="46" fill="none" stroke="#000000" strokeWidth="1.8" />
-            <circle cx="100" cy="100" r="58" fill="none" stroke="#000000" strokeWidth="2.6" />
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#000000" strokeWidth="2" />
-
-            {/* 八葉蓮華 — eight-petaled lotus */}
-            {Array.from({ length: 8 }, (_, i) => (
-              <path
-                key={`petal-${i}`}
-                d="M100 8C118 22 116 42 100 50C84 42 82 22 100 8Z"
-                fill="#00e676"
-                stroke="#000000"
-                strokeWidth="2"
-                transform={`rotate(${i * 45} 100 100)`}
-              />
+            {Array.from({ length: 12 }, (_, i) => (
+              <g key={i}>
+                <rect
+                  x="98.2"
+                  y="2"
+                  width="3.6"
+                  height="98"
+                  rx="1.4"
+                  fill="#00e676"
+                  stroke="#000000"
+                  strokeWidth="1.4"
+                  transform={`rotate(${i * 30} 100 100)`}
+                />
+                <rect
+                  x="98.6"
+                  y="22"
+                  width="2.8"
+                  height="62"
+                  rx="1.2"
+                  fill="#7dffb0"
+                  stroke="#000000"
+                  strokeWidth="1.2"
+                  transform={`rotate(${i * 30 + 15} 100 100)`}
+                />
+              </g>
             ))}
-
-            {/* 火焔 — flames between the petals */}
-            {Array.from({ length: 8 }, (_, i) => (
-              <path
-                key={`flame-${i}`}
-                d="M100 2C112 14 108 28 102 40C98 30 90 16 100 2Z"
-                fill="#ccffe4"
-                stroke="#000000"
-                strokeWidth="1.6"
-                transform={`rotate(${i * 45 + 22.5} 100 100)`}
-              />
-            ))}
-
-            {/* 如意宝珠 */}
-            <path
-              d="M100 40C108 46 108 56 100 62C92 56 92 46 100 40Z"
-              fill="#ffffff"
-              stroke="#000000"
-              strokeWidth="2"
-            />
+            <circle cx="100" cy="100" r="54" fill="none" stroke="#000000" strokeWidth="7" />
+            <circle cx="100" cy="100" r="54" fill="none" stroke="#00e676" strokeWidth="4" />
+            <circle cx="100" cy="100" r="40" fill="none" stroke="#000000" strokeWidth="6" />
+            <circle cx="100" cy="100" r="40" fill="none" stroke="#00e676" strokeWidth="3.2" />
+            <circle cx="100" cy="100" r="24" fill="#00e676" stroke="#000000" strokeWidth="3" />
           </svg>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
