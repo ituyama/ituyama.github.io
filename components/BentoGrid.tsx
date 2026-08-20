@@ -5,7 +5,12 @@ export default function BentoGrid({ tiles }: { tiles: BentoTile[] }) {
   return (
     <div className="discover-grid">
       {tiles.map((tile, i) => (
-        <BentoCell key={`${tile.type}-${i}-${tile.title}`} tile={tile} index={i} />
+        <BentoCell
+          key={`${tile.type}-${i}-${tile.title}`}
+          tile={tile}
+          index={i}
+          featured={i === 0}
+        />
       ))}
     </div>
   );

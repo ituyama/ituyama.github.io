@@ -1,80 +1,74 @@
 import { calcAge, profile } from "@/lib/profile";
 
 export default function ProfileHero() {
-  const age = profile.birthday ? calcAge(profile.birthday) : null;
-  const facts = [
-    age !== null ? `${age}歳` : null,
-    profile.location,
-    profile.companies[0] ? `${profile.companies[0].name} ${profile.companies[0].role}` : null,
-  ].filter(Boolean);
+  const pills = [
+    ...profile.companies.map((c) => c.name.replace(/, Inc\.$/, "")),
+    ...profile.skills.slice(0, 3),
+  ];
 
   return (
-    <section className="profile-hero relative overflow-hidden text-white">
-      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1rem,4vw,2.5rem)] py-5">
-        <span className="font-lineseed text-[0.8rem] font-extrabold tracking-[0.22em]">YAMANO</span>
-        <nav className="flex items-center gap-1" aria-label="ソーシャル">
-          {profile.socials.map((s) => (
-            <a
-              key={s.url}
-              href={s.url}
-              target="_blank"
-              rel="me noopener noreferrer"
-              aria-label={s.name}
-              className="flex size-10 items-center justify-center rounded-full text-[1.05rem] text-white/80 hover:bg-white/10 hover:text-white"
-            >
-              <i className={`bi bi-${s.icon}`} aria-hidden="true" />
-            </a>
-          ))}
-          {profile.email ? (
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="メール"
-              className="flex size-10 items-center justify-center rounded-full text-[1.05rem] text-white/80 hover:bg-white/10 hover:text-white"
-            >
-              <i className="bi bi-envelope" aria-hidden="true" />
-            </a>
-          ) : null}
-        </nav>
-      </header>
+    <div className="pop-frame">
+      <div className="pop-cover">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={profile.avatar}
+          alt={profile.nameJa}
+          className="absolute bottom-0 right-[6%] h-[135%] w-auto max-w-[min(52%,420px)] object-contain object-bottom"
+        />
+      </div>
 
-      <div className="mx-auto flex min-h-[100svh] max-w-[1120px] flex-col lg:flex-row lg:items-stretch">
-        <div className="relative flex min-h-[58svh] flex-1 items-end justify-center pt-16 lg:min-h-[100svh] lg:order-2 lg:items-end lg:justify-end lg:pt-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={profile.avatar}
-            alt={profile.nameJa}
-            className="h-[58svh] w-auto max-w-[min(92vw,420px)] object-contain object-bottom lg:h-[100svh] lg:max-w-[min(48vw,560px)]"
-          />
-        </div>
-
-        <div className="relative z-10 flex flex-1 flex-col justify-end px-[clamp(1.15rem,4vw,2.5rem)] pb-12 pt-6 lg:order-1 lg:justify-center lg:pb-20 lg:pt-24">
-          <p className="text-[0.78rem] font-bold uppercase tracking-[0.22em] text-bento-accent">
-            {profile.nameEn}
-          </p>
-          <h1 className="mt-3 font-lineseed text-[clamp(2.6rem,8vw,5.8rem)] font-extrabold leading-[0.94] tracking-tight">
+      <div className="flex flex-col gap-4 px-[clamp(1rem,3vw,1.75rem)] py-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="font-lineseed text-[clamp(1.8rem,5vw,2.75rem)] font-extrabold leading-[1.05] tracking-tight text-bento-ink">
             {profile.nameJa}
           </h1>
+          <p className="mt-1 text-[0.88rem] font-bold text-bento-soft">{profile.nameEn}</p>
           {profile.tagline ? (
-            <p className="mt-5 max-w-md text-[1.02rem] font-medium leading-relaxed text-white/75">
-              {profile.tagline}
-            </p>
+            <p className="mt-2 max-w-xl text-[0.9rem] font-medium text-bento-muted">{profile.tagline}</p>
           ) : null}
-          {facts.length ? (
-            <p className="mt-4 text-[0.84rem] font-medium text-white/55">{facts.join(" ・ ")}</p>
-          ) : null}
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {profile.companies.map((c) => (
-              <span
-                key={c.name}
-                className="rounded-full border border-white/20 bg-white/5 px-3.5 py-1.5 text-[0.75rem] font-bold text-white/90"
-              >
-                {c.name}
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {pills.map((p) => (
+              <span key={p} className="pop-chip pop-chip-ghost">
+                {p}
               </span>
             ))}
           </div>
         </div>
+
+        {profile.email ? (
+          <a href={`mailto:${profile.email}`} className="pop-btn shrink-0">
+            <i className="bi bi-envelope-fill" aria-hidden="true" />
+            メールする
+          </a>
+        ) : null}
       </div>
-    </section>
+
+      <MetricsRow />
+    </div>
+  );
+}
+
+function MetricsRow() {
+  const age = profile.birthday ? calcAge(profile.birthday) : null;
+  const items = [
+    { label: "年齢", value: age !== null ? `${age}歳` : "—" },
+    { label: "拠点", value: profile.location || "—" },
+    { label: "所属", value: `${profile.companies.length}社` },
+    { label: "学歴", value: profile.university ? "大卒" : "—" },
+    { label: "スキル", value: `${profile.skills.length}` },
+  ];
+
+  return (
+    <dl className="grid grid-cols-2 border-t-2 border-bento-ink sm:grid-cols-5">
+      {items.map((item, i) => (
+        <div
+          key={item.label}
+          className={`flex flex-col gap-1 px-4 py-3 ${i > 0 ? "border-l-2 border-bento-ink/15 sm:border-l-2" : ""}`}
+        >
+          <dt className="text-[0.66rem] font-bold text-bento-muted">{item.label}</dt>
+          <dd className="m-0 text-[0.92rem] font-extrabold text-bento-ink">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }

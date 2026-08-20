@@ -70,7 +70,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#050807",
+  themeColor: "#00e676",
 };
 
 const personJsonLd = {

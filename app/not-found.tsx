@@ -12,7 +12,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="mt-6 inline-flex items-center gap-2 rounded-full bg-bento-accent px-5 py-2.5 text-[0.9rem] font-extrabold text-bento-ink no-underline"
+        className="pop-btn mt-6"
       >
         <i className="bi bi-compass" aria-hidden="true" />
         ホームへ戻る
