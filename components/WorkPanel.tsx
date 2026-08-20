@@ -53,6 +53,17 @@ export default function WorkPanel() {
             >
               <p className="pop-work-role">{company.role}</p>
               {company.summary ? <p className="pop-work-summary">{company.summary}</p> : null}
+              {company.url ? (
+                <a
+                  href={company.url}
+                  className="pop-btn pop-work-link mt-5 w-fit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                  サイトを見る
+                </a>
+              ) : null}
             </div>
           </div>
         </article>

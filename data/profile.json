@@ -12,21 +12,33 @@
       "name": "DMM.com",
       "role": "テックリード室",
       "url": "https://dmm.com",
-      "summary": "大きなプロダクトの技術側に立つ。",
-      "focus": ["テックリード", "プロダクト", "LLM"]
+      "summary": "25新卒入社。テックリード室に所属。",
+      "focus": [
+        "テックリード",
+        "プロダクト",
+        "LLM"
+      ]
     },
     {
       "name": "Mitologie, Inc.",
       "role": "Co-CEO",
       "url": "https://mitologie.jp",
-      "summary": "共同代表。つくる側の会社。",
-      "focus": ["経営", "プロダクト", "実装"]
+      "summary": "個人会社です　色々やってます",
+      "focus": [
+        "経営",
+        "プロダクト",
+        "実装"
+      ]
     },
     {
       "name": "Xtraveler, Inc.",
       "role": "Co-Founder",
-      "summary": "共同創業者。ゼロから先まで通す。",
-      "focus": ["創業", "プロダクト"]
+      "url": "https://xtraveler.jp",
+      "summary": "共同創業者。技術周り全般やっています　8年目",
+      "focus": [
+        "創業",
+        "プロダクト"
+      ]
     }
   ],
   "skills": [
@@ -43,7 +55,12 @@
   "activityGraph": "https://ghchart.rshah.org/00e676/ituyama",
   "about": "山野イツキ。2002年10月3日生まれ。拠点は武蔵小杉駅。私立水城高校を出て、武蔵野大学データサイエンス学部を卒業した。DMM.comではテックリード室に立ち、Mitologieの共同代表と、Xtravelerの共同創業者もやっている。",
   "policy": "テックリードとか共同代表とか創業者とか、いろんな肩書きやってるけど、結局は「揺るぎなく緩やかな世界を実現する」だけで動いてる。急がなくていいものと、絶対に曲げないものを分ける。だから仕事の説明をすると長い。DMMにもいるし、Mitologieもやってるし、Xtravelerもやってる。LLMも書くし、プロダクトもつくる。",
-  "gallery": [{ "src": "/media/room.png", "caption": "家を掃除した" }],
+  "gallery": [
+    {
+      "src": "/media/room.png",
+      "caption": "家を掃除した"
+    }
+  ],
   "socials": [
     {
       "name": "X",
