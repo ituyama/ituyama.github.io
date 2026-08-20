@@ -9,8 +9,6 @@ export default function ProfileHero() {
   return (
     <section className="pop-kv">
       <div className="pop-cover-marble" aria-hidden="true" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
 
       <div className="pop-cover-copy">
         <p className="text-[0.78rem] font-extrabold uppercase tracking-[0.22em] text-bento-ink">
@@ -24,7 +22,7 @@ export default function ProfileHero() {
             {profile.tagline}
           </p>
         ) : null}
-        <div className="mt-4 flex flex-wrap gap-1.5">
+        <div className="mt-4 flex flex-wrap justify-center gap-1.5">
           {pills.map((p) => (
             <span key={p} className="pop-chip">
               {p}
@@ -38,6 +36,9 @@ export default function ProfileHero() {
           </a>
         ) : null}
       </div>
+
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
     </section>
   );
 }
