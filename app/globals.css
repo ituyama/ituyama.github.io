@@ -222,8 +222,8 @@ body {
 
 /* Top-left → down-right */
 .pop-collage-nw {
-  left: 2%;
-  top: 2%;
+  left: -4%;
+  top: -4%;
   height: 36%;
   width: auto;
   transform: rotate(135deg);
@@ -232,8 +232,8 @@ body {
 
 /* Top-right → down-left */
 .pop-collage-ne {
-  top: 2%;
-  right: 2%;
+  top: -4%;
+  right: -4%;
   height: 38%;
   width: auto;
   transform: rotate(-135deg);
@@ -243,7 +243,7 @@ body {
 /* Right → left */
 .pop-collage-e {
   top: 30%;
-  right: 2%;
+  right: -6%;
   height: 34%;
   width: auto;
   transform: rotate(-90deg);
@@ -252,8 +252,8 @@ body {
 
 /* Bottom-right → up-left */
 .pop-collage-se {
-  right: -2%;
-  bottom: -4%;
+  right: -4%;
+  bottom: -12%;
   height: 48%;
   width: auto;
   transform: rotate(-18deg);
@@ -263,7 +263,7 @@ body {
 /* Bottom → up */
 .pop-collage-s {
   left: 50%;
-  bottom: -4%;
+  bottom: -12%;
   width: 28%;
   height: auto;
   transform: translateX(-50%);
@@ -272,8 +272,8 @@ body {
 
 /* Bottom-left → up-right */
 .pop-collage-sw {
-  left: -2%;
-  bottom: -4%;
+  left: -6%;
+  bottom: -12%;
   height: 44%;
   width: auto;
   transform: rotate(16deg);
@@ -282,7 +282,7 @@ body {
 
 /* Left → right */
 .pop-collage-w {
-  left: 2%;
+  left: -6%;
   top: 26%;
   height: 34%;
   width: auto;
