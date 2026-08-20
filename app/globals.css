@@ -97,6 +97,7 @@ body {
   isolation: isolate;
   display: flex;
   min-height: 100svh;
+  height: 100svh;
   flex-direction: column;
   align-items: center;
   margin-top: -2.5rem;
@@ -423,28 +424,29 @@ body {
 }
 
 .pop-cover-copy {
-  position: relative;
+  position: absolute;
+  right: 0;
+  bottom: 12%;
+  left: 0;
   z-index: 21;
   display: flex;
-  width: 100%;
-  max-width: 46rem;
+  width: auto;
+  max-width: none;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: clamp(1.2rem, 4vw, 2.4rem);
-  /* Clear the sticky ticker that the KV is pulled up under. */
-  padding-top: calc(2.5rem + clamp(1.2rem, 5vw, 2rem));
+  padding: 0 clamp(1.2rem, 4vw, 2.4rem);
 }
 
-/* Takes whatever height the copy leaves, so the two never collide. */
+/* Fills the KV; the floor of the section clips the legs. */
 .pop-cover-shot {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 20;
-  flex: 1 1 0;
-  min-height: 0;
   width: 100%;
-  object-fit: contain;
-  object-position: bottom center;
+  height: 118%;
+  object-fit: cover;
+  object-position: top center;
   pointer-events: none;
 }
 
@@ -456,6 +458,17 @@ body {
   /* The nav is a floating rail, so the shape field still spans the whole KV. */
   .pop-cover-shapes {
     left: 0;
+  }
+
+  .pop-cover-copy {
+    left: 72px;
+    bottom: 10%;
+  }
+}
+
+@media (max-width: 767px) {
+  .pop-cover-copy {
+    bottom: calc(4.2rem + env(safe-area-inset-bottom));
   }
 }
 
