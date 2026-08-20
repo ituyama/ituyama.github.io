@@ -879,11 +879,27 @@ body {
 @media (min-width: 768px) {
   .pop-work-split {
     grid-template-columns: minmax(13rem, 0.38fr) 1fr;
+    align-items: stretch;
   }
 
   .pop-work-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     border-bottom: 0;
     border-right: 2px solid var(--color-bento-line);
+  }
+
+  .pop-work-list li {
+    display: flex;
+    flex: 1 1 0;
+    min-height: 0;
+  }
+
+  .pop-work-tab {
+    display: flex;
+    flex: 1;
+    align-items: center;
   }
 
   .pop-work-detail {
