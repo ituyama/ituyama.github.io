@@ -219,46 +219,46 @@ body {
 }
 
 .pop-collage-office {
-  left: -10%;
-  bottom: -14%;
-  width: 44%;
+  left: -16%;
+  bottom: -18%;
+  width: 30%;
   height: auto;
-  transform: rotate(-8deg);
+  transform: rotate(-6deg);
 }
 
 .pop-collage-glass {
-  right: -10%;
-  bottom: -8%;
-  height: 118%;
+  right: -22%;
+  bottom: -14%;
+  height: 72%;
   width: auto;
-  transform: rotate(4deg);
+  transform: rotate(3deg);
 }
 
 .pop-collage-signal {
-  right: -4%;
-  bottom: -20%;
-  height: 88%;
+  right: -10%;
+  bottom: -28%;
+  height: 58%;
   width: auto;
-  transform: rotate(-7deg);
+  transform: rotate(-6deg);
 }
 
 @media (max-width: 767px) {
   .pop-collage-office {
-    left: -20%;
-    bottom: -10%;
-    width: 64%;
+    left: -24%;
+    bottom: -16%;
+    width: 48%;
   }
 
   .pop-collage-glass {
-    right: -24%;
-    bottom: -10%;
-    height: 82%;
+    right: -32%;
+    bottom: -14%;
+    height: 52%;
   }
 
   .pop-collage-signal {
-    right: -14%;
-    bottom: -16%;
-    height: 58%;
+    right: -18%;
+    bottom: -22%;
+    height: 42%;
   }
 }
 
