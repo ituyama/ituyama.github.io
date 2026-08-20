@@ -1,21 +1,29 @@
 {
   "title": "HIRE",
-  "intro": "一緒に作る人を探しています。",
+  "intro": "いま探しているのは、この3つです。",
   "openings": [
     {
-      "org": "Mitologie",
-      "role": "プロダクト / 実装",
-      "summary": "個人会社です。プロダクトをゼロから通す人。設計も実装も、自分で決められる人。",
-      "tags": ["副業可", "リモート"],
+      "org": "飲み友達",
+      "role": "酒 / 話",
+      "summary": "仕事の話でも、どうでもいい話でもいい。夜に一杯やれる人。",
+      "tags": ["武蔵小杉"],
+      "cta": "連絡する",
+      "email": "itsuki-yamano@mitologie.jp"
+    },
+    {
+      "org": "一緒に働く人",
+      "role": "プロダクト / 事業",
+      "summary": "作ることも、決めることも、自分でやる人。会社の枠は問わない。",
+      "tags": ["Mitologie", "Xtraveler"],
       "cta": "話を聞く",
       "email": "itsuki-yamano@mitologie.jp"
     },
     {
-      "org": "Xtraveler",
-      "role": "事業 / 現場",
-      "summary": "ポルシェのレンタカー事業。現場とプロダクトのあいだを、一緒に走れる人。",
-      "tags": ["創業8期目"],
-      "cta": "話を聞く",
+      "org": "彼女",
+      "role": "話し合いができる人",
+      "summary": "感情で終わらせない。言いたいことを言って、聞ける人。",
+      "tags": [],
+      "cta": "連絡する",
       "email": "itsuki-yamano@mitologie.jp"
     }
   ]
