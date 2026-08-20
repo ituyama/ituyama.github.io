@@ -3,7 +3,13 @@ import profileData from "@/data/profile.json";
 
 export type Social = { name: string; handle: string; url: string; icon: string };
 export type ProfileLink = { label: string; url: string; icon: string };
-export type Company = { name: string; role: string };
+export type Company = {
+  name: string;
+  role: string;
+  summary?: string;
+  url?: string;
+  focus?: string[];
+};
 export type GalleryItem = { src: string; caption: string };
 export type Profile = {
   nameJa: string;
@@ -65,7 +71,13 @@ export function profileContext(): string {
       ? `学歴:\n${[profile.university, profile.highSchool].filter(Boolean).join("\n")}`
       : "",
     profile.companies.length
-      ? `所属:\n${profile.companies.map((c) => `${c.name} — ${c.role}`).join("\n")}`
+      ? `所属:\n${profile.companies
+          .map((c) =>
+            [`${c.name} — ${c.role}`, c.summary, c.focus?.length ? `フォーカス: ${c.focus.join(", ")}` : ""]
+              .filter(Boolean)
+              .join("\n"),
+          )
+          .join("\n\n")}`
       : "",
     profile.location ? `拠点: ${profile.location}` : "",
     profile.skills.length ? `スキル: ${profile.skills.join(", ")}` : "",

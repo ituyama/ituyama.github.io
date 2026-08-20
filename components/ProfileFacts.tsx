@@ -52,7 +52,18 @@ export default function ProfileFacts() {
           <ul>
             {profile.companies.map((c) => (
               <li key={c.name}>
-                {c.name} — {c.role}
+                <p>
+                  {c.name} — {c.role}
+                </p>
+                {c.summary ? <p>{c.summary}</p> : null}
+                {c.focus?.length ? <p>{c.focus.join("、")}</p> : null}
+                {c.url ? (
+                  <p>
+                    <a href={c.url} rel="noopener noreferrer">
+                      {c.url}
+                    </a>
+                  </p>
+                ) : null}
               </li>
             ))}
           </ul>
