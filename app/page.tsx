@@ -5,6 +5,7 @@ import BentoGrid from "@/components/BentoGrid";
 import OverviewPanel from "@/components/OverviewPanel";
 import ProfileHero, { MetricsRow } from "@/components/ProfileHero";
 import SideNav, { type NavId } from "@/components/SideNav";
+import TalkSection from "@/components/TalkSection";
 import TickerBar from "@/components/TickerBar";
 import WorkPanel from "@/components/WorkPanel";
 import { initialLayout, profile } from "@/lib/profile";
@@ -23,6 +24,7 @@ export default function Home() {
       <TickerBar />
       <SideNav active={tab} onNavigate={setTab} />
       <ProfileHero />
+      <TalkSection />
       <main className="relative z-10 mx-auto flex max-w-[1120px] flex-col gap-6 px-[clamp(0.85rem,3vw,1.75rem)] pb-24 pt-8 md:ml-[72px] md:pb-12">
         <MetricsRow />
 
