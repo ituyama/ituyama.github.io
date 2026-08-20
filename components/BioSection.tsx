@@ -1,4 +1,3 @@
-import SectionHead from "./SectionHead";
 import { profile } from "@/lib/profile";
 
 export default function BioSection() {
@@ -13,7 +12,9 @@ export default function BioSection() {
   return (
     <section id="bio" className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby="bio-title">
       <div className="pop-policy-inner">
-        <SectionHead id="bio-title" title="BIOGRAPHY" long />
+        <h2 id="bio-title" className="pop-policy-mark pop-policy-mark-long">
+          BIOGRAPHY
+        </h2>
         <p className="pop-policy-body">
           {head}
           {tail ? <span className="pop-policy-fade"> {tail}</span> : null}

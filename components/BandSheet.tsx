@@ -2,8 +2,6 @@
 
 import type { ReactNode } from "react";
 
-import SectionHead from "./SectionHead";
-
 export default function BandSheet({
   id,
   title,
@@ -33,7 +31,9 @@ export default function BandSheet({
     >
       {tone === "lime" ? <div className="pop-policy-dots" aria-hidden="true" /> : null}
       <div className="pop-work-inner">
-        <SectionHead id={`${id}-title`} title={title} />
+        <h2 id={`${id}-title`} className="pop-policy-mark">
+          {title}
+        </h2>
         <article className="pop-work-sheet pop-frame">
           <div className="pop-work-split">
             <ul className="pop-work-list" role="tablist" aria-label={label}>

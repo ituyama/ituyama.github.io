@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import SectionHead from "./SectionHead";
 import { hire } from "@/lib/hire";
 
 function mailto(email: string, org: string, role: string) {
@@ -24,7 +23,10 @@ export default function HireSection() {
   return (
     <section id="hire" className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby="hire-title">
       <div className="pop-work-inner">
-        <SectionHead id="hire-title" title={hire.title} subtitle={hire.intro} />
+        <h2 id="hire-title" className="pop-policy-mark">
+          {hire.title}
+        </h2>
+        {hire.intro ? <p className="pop-section-intro">{hire.intro}</p> : null}
 
         <article className="pop-work-sheet pop-frame">
           <div className="pop-work-split">

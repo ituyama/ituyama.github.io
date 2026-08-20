@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import SectionHead from "./SectionHead";
 import { work } from "@/lib/work";
 
 function displayName(name: string) {
@@ -19,7 +18,10 @@ export default function WorkPanel() {
   return (
     <section id="work" className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby="work-title">
       <div className="pop-work-inner">
-        <SectionHead id="work-title" title={work.title} subtitle={work.subtitle} />
+        <h2 id="work-title" className="pop-policy-mark">
+          {work.title}
+        </h2>
+        {work.subtitle ? <p className="pop-section-intro">{work.subtitle}</p> : null}
 
         <article className="pop-work-sheet pop-frame">
           <div className="pop-work-split">
