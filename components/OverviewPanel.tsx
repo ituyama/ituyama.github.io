@@ -34,7 +34,7 @@ export default function OverviewPanel() {
               {age ?? "—"}
             </p>
             <p className="mt-1 text-[0.8rem] font-bold text-bento-muted">歳 · {profile.location}</p>
-            <dl className="mt-5 divide-y divide-bento-line">
+            <dl className="mt-5 divide-y-2 divide-bento-line">
               {facts.map((f) => (
                 <div key={f.label} className="flex justify-between gap-3 py-2.5 text-[0.8rem]">
                   <dt className="shrink-0 font-bold text-bento-muted">{f.label}</dt>

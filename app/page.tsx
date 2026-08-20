@@ -26,13 +26,13 @@ export default function Home() {
       <main className="relative z-10 mx-auto flex max-w-[1120px] flex-col gap-6 px-[clamp(0.85rem,3vw,1.75rem)] pb-24 pt-8 md:ml-[72px] md:pb-12">
         <MetricsRow />
 
-        <div className="flex gap-5 border-b border-bento-line">
+        <div className="flex gap-5 border-b-2 border-bento-line">
           {TABS.map((t) => (
             <button
               key={t.id}
               type="button"
               onClick={() => setTab(t.id)}
-              className={`-mb-px border-b-2 pb-2 text-[0.9rem] font-extrabold ${
+              className={`-mb-0.5 border-b-2 pb-2 text-[0.9rem] font-extrabold ${
                 tab === t.id
                   ? "border-bento-accent text-bento-ink"
                   : "border-transparent text-bento-muted"
@@ -52,7 +52,7 @@ export default function Home() {
           </section>
         ) : null}
       </main>
-      <footer className="border-t border-bento-line py-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px]">
+      <footer className="border-t-2 border-bento-line py-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px]">
         {profile.nameJa} / {profile.nameEn}
       </footer>
     </>

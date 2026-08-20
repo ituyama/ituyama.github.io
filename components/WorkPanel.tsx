@@ -20,7 +20,7 @@ export default function WorkPanel() {
             </thead>
             <tbody>
               {profile.companies.map((c) => (
-                <tr key={c.name} className="border-t border-bento-line">
+                <tr key={c.name} className="border-t-2 border-bento-line">
                   <td className="px-4 py-3.5 text-[0.92rem] font-extrabold">{c.name}</td>
                   <td className="px-4 py-3.5 text-[0.88rem] font-medium text-bento-soft">{c.role}</td>
                 </tr>
@@ -43,7 +43,7 @@ export default function WorkPanel() {
               </thead>
               <tbody>
                 {education.map((e) => (
-                  <tr key={e.label} className="border-t border-bento-line">
+                  <tr key={e.label} className="border-t-2 border-bento-line">
                     <td className="px-4 py-3.5 text-[0.88rem] font-bold text-bento-muted">{e.label}</td>
                     <td className="px-4 py-3.5 text-[0.92rem] font-extrabold">{e.value}</td>
                   </tr>

@@ -85,7 +85,7 @@ export default function TickerBar() {
   if (items.length === 0) return null;
 
   return (
-    <div className="sticky top-0 z-40 h-10 overflow-hidden border-b border-bento-ink bg-bento-accent text-bento-ink">
+    <div className="sticky top-0 z-40 h-10 overflow-hidden border-b-2 border-bento-ink bg-bento-accent text-bento-ink">
       <div className="ticker-track flex w-max items-center">
         <Row items={items} />
         <Row items={items} duplicate />

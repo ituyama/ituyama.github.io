@@ -10,8 +10,8 @@
   --color-bento-ink: #111111;
   --color-bento-soft: #3d3d3d;
   --color-bento-muted: #6b6b6b;
-  --color-bento-line: #111111;
-  --color-bento-line-strong: #111111;
+  --color-bento-line: #000000;
+  --color-bento-line-strong: #000000;
   --color-bento-accent: #00e676;
   --color-bento-panel: #eef1f0;
   --color-bento-nav: #f7f7f7;
@@ -52,14 +52,14 @@ body {
 .pop-frame {
   overflow: hidden;
   background: var(--color-bento-surface);
-  border: 1px solid var(--color-bento-line);
+  border: 2px solid var(--color-bento-line);
   border-radius: var(--radius-bento);
 }
 
 .pop-chip {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #111111;
+  border: 2px solid #000000;
   border-radius: 999px;
   background: var(--color-bento-accent);
   padding: 0.28rem 0.85rem;
@@ -78,7 +78,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  border: 1px solid #111111;
+  border: 2px solid #000000;
   border-radius: 10px;
   background: var(--color-bento-accent);
   padding: 0.55rem 1.05rem;
@@ -274,7 +274,7 @@ body {
   height: 100%;
   overflow: hidden;
   background: var(--color-bento-surface);
-  border: 1px solid var(--color-bento-line);
+  border: 2px solid var(--color-bento-line);
   border-radius: var(--radius-bento);
   text-decoration: none;
   color: inherit;
