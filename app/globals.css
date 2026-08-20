@@ -646,7 +646,7 @@ body {
 
 @media (max-width: 767px) {
   .pop-cover-copy {
-    top: 52%;
+    top: 58%;
     bottom: auto;
     width: calc(100% - 1.6rem);
     max-width: none;
@@ -667,14 +667,24 @@ body {
   }
 
   .pop-cover-shot-wrap {
-    height: 100svh;
-    bottom: 0;
+    inset: 0;
+    height: auto;
+    width: auto;
     max-width: none;
+    transform: none;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .pop-cover-shot {
+    height: 100%;
+    max-width: none;
+    object-position: center bottom;
   }
 
   .pop-cover-halo {
-    width: 90%;
-    top: 16%;
+    width: 78%;
+    top: 12%;
   }
 
   .pop-policy-mark {
