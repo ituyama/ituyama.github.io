@@ -159,30 +159,31 @@ export default function ProfileHero() {
 
       <div className="pop-cover-shot-wrap">
         <div className="pop-cover-halo" aria-hidden="true">
-          <svg viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="78" fill="none" stroke="#000000" strokeWidth="5" />
-            <circle cx="100" cy="100" r="74" fill="none" stroke="#00e676" strokeWidth="7" />
+          <span className="pop-cover-halo-glow" />
+          <svg className="pop-cover-halo-ring" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="96" fill="#00e676" fillOpacity="0.22" />
+            <circle cx="100" cy="100" r="96" fill="none" stroke="#000000" strokeWidth="3.5" />
             <circle
               cx="100"
               cy="100"
-              r="58"
+              r="82"
               fill="none"
               stroke="#000000"
-              strokeWidth="2.5"
-              strokeDasharray="5 8"
+              strokeWidth="2"
+              strokeDasharray="12 10"
             />
-            {Array.from({ length: 16 }, (_, i) => (
+            {Array.from({ length: 12 }, (_, i) => (
               <rect
                 key={i}
-                x="97"
-                y="10"
-                width="6"
-                height="18"
-                rx="1"
+                x="98.2"
+                y="6"
+                width="3.6"
+                height="28"
+                rx="1.2"
                 fill="#00e676"
                 stroke="#000000"
-                strokeWidth="1.5"
-                transform={`rotate(${i * 22.5} 100 100)`}
+                strokeWidth="1.4"
+                transform={`rotate(${i * 30} 100 100)`}
               />
             ))}
           </svg>
