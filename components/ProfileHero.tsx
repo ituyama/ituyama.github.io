@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { calcAge, profile } from "@/lib/profile";
+import { profile } from "@/lib/profile";
 
 const LIME = "#00e676";
 const BLUE = "#4d7cff";
@@ -194,30 +194,5 @@ export default function ProfileHero() {
         <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
       </div>
     </section>
-  );
-}
-
-export function MetricsRow() {
-  const age = profile.birthday ? calcAge(profile.birthday) : null;
-  const items = [
-    { label: "年齢", value: age !== null ? `${age}歳` : "—" },
-    { label: "拠点", value: profile.location || "—" },
-    { label: "所属", value: `${profile.companies.length}社` },
-    { label: "学歴", value: profile.university ? "大卒" : "—" },
-    { label: "スキル", value: `${profile.skills.length}` },
-  ];
-
-  return (
-    <dl className="pop-frame grid grid-cols-2 sm:grid-cols-5">
-      {items.map((item, i) => (
-        <div
-          key={item.label}
-          className={`flex flex-col gap-1 px-4 py-3 ${i > 0 ? "border-l-2 border-bento-line" : ""}`}
-        >
-          <dt className="text-[0.66rem] font-bold text-bento-muted">{item.label}</dt>
-          <dd className="m-0 text-[0.92rem] font-extrabold text-bento-ink">{item.value}</dd>
-        </div>
-      ))}
-    </dl>
   );
 }

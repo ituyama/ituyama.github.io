@@ -771,6 +771,47 @@ body {
   line-height: 1.7;
 }
 
+.pop-work-detail.is-flush {
+  padding: 0;
+  min-height: 0;
+}
+
+.pop-work-stage {
+  position: relative;
+  height: 16.5rem;
+  overflow: hidden;
+  background: #111111;
+}
+
+.pop-work-stage.is-light {
+  background: #ffffff;
+}
+
+.pop-work-stage.is-music {
+  background: #ffffff;
+  height: 10rem;
+}
+
+.pop-work-cap {
+  padding: 1.1rem 1.3rem 1.25rem;
+  border-top: 2px solid var(--color-bento-line);
+}
+
+.pop-skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.pop-lime {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 2px solid var(--color-bento-line);
+  background: var(--color-bento-accent);
+}
+
 @media (min-width: 768px) {
   .pop-work-split {
     grid-template-columns: minmax(13rem, 0.38fr) 1fr;
@@ -784,6 +825,29 @@ body {
   .pop-work-detail {
     padding: 1.6rem 1.7rem 1.75rem;
     min-height: 14rem;
+  }
+
+  .pop-work-detail.is-flush {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    min-height: 20rem;
+  }
+
+  .pop-work-stage {
+    height: auto;
+    flex: 1;
+    min-height: 16rem;
+  }
+
+  .pop-work-stage.is-music {
+    height: auto;
+    min-height: 11rem;
+    flex: 0 0 11rem;
+  }
+
+  .pop-work-cap {
+    padding: 1.2rem 1.5rem 1.35rem;
   }
 }
 
