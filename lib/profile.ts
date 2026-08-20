@@ -13,7 +13,6 @@ export type Profile = {
   location: string;
   highSchool: string;
   university: string;
-  skills: string[];
   car: string;
   carImage: string;
   email: string;

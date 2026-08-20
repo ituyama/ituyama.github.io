@@ -12,13 +12,6 @@
   "location": "武蔵小杉駅",
   "highSchool": "私立水城高校 卒業",
   "university": "武蔵野大学 データサイエンス学部 卒業",
-  "skills": [
-    "LLM",
-    "Python",
-    "TypeScript",
-    "JavaScript",
-    "HTML/CSS"
-  ],
   "car": "MINI Cooper D (F56)",
   "carImage": "/media/car.png",
   "email": "itsuki-yamano@mitologie.jp",

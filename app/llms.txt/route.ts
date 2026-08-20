@@ -1,4 +1,5 @@
 import { calcAge, profile } from "@/lib/profile";
+import { tags } from "@/lib/tags";
 import { work } from "@/lib/work";
 
 export const dynamic = "force-static";
@@ -31,8 +32,8 @@ export function GET() {
     for (const c of work.items) lines.push(`- ${c.name} — ${c.role}`);
   }
 
-  if (profile.skills.length) {
-    lines.push("", "## スキル", `- ${profile.skills.join(", ")}`);
+  if (tags.items.length) {
+    lines.push("", "## スキル", `- ${tags.items.join(", ")}`);
   }
 
   lines.push("", "## 連絡先・リンク");

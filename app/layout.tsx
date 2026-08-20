@@ -5,6 +5,7 @@ import "@fontsource/line-seed-jp/700.css";
 import "@fontsource/line-seed-jp/800.css";
 import "./globals.css";
 import { profile } from "@/lib/profile";
+import { tags } from "@/lib/tags";
 import { work } from "@/lib/work";
 import ProfileFacts from "@/components/ProfileFacts";
 import Splash from "@/components/Splash";
@@ -38,7 +39,7 @@ const factDescription = [
     : "",
   profile.university ? `${profile.university}。` : "",
   profile.location ? `拠点は${profile.location}。` : "",
-  profile.skills.length ? `主なスキル: ${profile.skills.join("、")}。` : "",
+  tags.items.length ? `主なスキル: ${tags.items.join("、")}。` : "",
 ]
   .filter(Boolean)
   .join("");
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     profile.nameJa,
     profile.nameEn,
     ...work.items.map((c) => c.name),
-    ...profile.skills,
+    ...tags.items,
     "ポートフォリオ",
     "portfolio",
   ],
@@ -96,7 +97,7 @@ const personJsonLd = {
   address: profile.location
     ? { "@type": "PostalAddress", addressLocality: profile.location }
     : undefined,
-  knowsAbout: profile.skills,
+  knowsAbout: tags.items,
   sameAs: profile.socials.map((s) => s.url),
 };
 

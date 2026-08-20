@@ -1,5 +1,6 @@
 import { hire } from "@/lib/hire";
 import { calcAge, profile } from "@/lib/profile";
+import { tags } from "@/lib/tags";
 import { work } from "@/lib/work";
 
 /**
@@ -100,11 +101,11 @@ export default function ProfileFacts() {
         </section>
       ) : null}
 
-      {profile.skills.length ? (
+      {tags.items.length ? (
         <section aria-label="スキル">
           <h2>スキル</h2>
           <ul>
-            {profile.skills.map((s) => (
+            {tags.items.map((s) => (
               <li key={s}>{s}</li>
             ))}
           </ul>
