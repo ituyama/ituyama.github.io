@@ -115,51 +115,46 @@ export default function ProfileHero() {
       </div>
 
       <div className="pop-cover-copy">
-        <div className="pop-cover-copy-plate" aria-hidden="true">
-          <svg className="pop-cover-copy-dot" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="46"
-              fill="#00e676"
-              stroke="#000000"
-              strokeWidth="3"
-              vectorEffect="non-scaling-stroke"
-            />
-          </svg>
-          <svg className="pop-cover-copy-dia" viewBox="0 0 100 100">
-            <path
-              d="M50 6 L94 50 L50 94 L6 50 Z"
-              fill="#ffffff"
-              stroke="#000000"
-              strokeWidth="3"
-              vectorEffect="non-scaling-stroke"
-            />
-          </svg>
-        </div>
-        <div className="pop-cover-copy-inner">
+        <div className="pop-cover-copy-title">
+          <div className="pop-cover-copy-cluster" aria-hidden="true">
+            <svg className="pop-copy-g pop-copy-g-sq" viewBox="0 0 100 100">
+              <rect x="4" y="4" width="92" height="92" rx="8" fill="#ffffff" stroke="#000" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            </svg>
+            <svg className="pop-copy-g pop-copy-g-cir" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="#ffffff" stroke="#000" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            </svg>
+            <svg className="pop-copy-g pop-copy-g-sq2" viewBox="0 0 100 100">
+              <rect x="4" y="4" width="92" height="92" rx="8" fill="#ccffe4" stroke="#000" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            </svg>
+            <svg className="pop-copy-g pop-copy-g-dia" viewBox="0 0 100 100">
+              <path d="M50 6 L94 50 L50 94 L6 50 Z" fill="#ffffff" stroke="#000" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            </svg>
+            <svg className="pop-copy-g pop-copy-g-pip" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="#00e676" stroke="#000" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+            </svg>
+          </div>
           <h1 className="font-lineseed text-[clamp(2.8rem,11vw,4.2rem)] font-extrabold leading-[0.88] tracking-tight text-bento-ink md:text-[clamp(2.6rem,6vw,5rem)]">
             {profile.nameJa}
           </h1>
-          {profile.tagline ? (
-            <p className="mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
-              {profile.tagline}
-            </p>
-          ) : null}
-          <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-            {pills.map((p) => (
-              <span key={p} className="pop-chip">
-                {p}
-              </span>
-            ))}
-          </div>
-          {profile.email ? (
-            <a href={`mailto:${profile.email}`} className="pop-btn mt-5 w-fit">
-              <i className="bi bi-envelope-fill" aria-hidden="true" />
-              メールする
-            </a>
-          ) : null}
         </div>
+        {profile.tagline ? (
+          <p className="mt-3 max-w-sm text-[0.95rem] font-extrabold leading-snug text-bento-ink">
+            {profile.tagline}
+          </p>
+        ) : null}
+        <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+          {pills.map((p) => (
+            <span key={p} className="pop-chip">
+              {p}
+            </span>
+          ))}
+        </div>
+        {profile.email ? (
+          <a href={`mailto:${profile.email}`} className="pop-btn mt-5 w-fit">
+            <i className="bi bi-envelope-fill" aria-hidden="true" />
+            メールする
+          </a>
+        ) : null}
       </div>
 
       {/* eslint-disable-next-line @next/next/no-img-element */}
