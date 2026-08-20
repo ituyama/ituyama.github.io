@@ -61,7 +61,7 @@ export function MetricsRow() {
       {items.map((item, i) => (
         <div
           key={item.label}
-          className={`flex flex-col gap-1 px-4 py-3 ${i > 0 ? "border-l-2 border-bento-ink/15" : ""}`}
+          className={`flex flex-col gap-1 px-4 py-3 ${i > 0 ? "border-l border-bento-line" : ""}`}
         >
           <dt className="text-[0.66rem] font-bold text-bento-muted">{item.label}</dt>
           <dd className="m-0 text-[0.92rem] font-extrabold text-bento-ink">{item.value}</dd>

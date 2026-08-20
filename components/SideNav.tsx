@@ -20,7 +20,7 @@ export default function SideNav({
   onNavigate: (id: NavId) => void;
 }) {
   return (
-    <aside className="fixed bottom-0 left-0 right-0 z-30 flex h-[3.6rem] items-center justify-around border-t-2 border-bento-ink bg-bento-nav px-2 pb-[env(safe-area-inset-bottom)] md:bottom-auto md:top-10 md:h-[calc(100dvh-2.5rem)] md:w-[72px] md:flex-col md:justify-start md:gap-2 md:border-r-2 md:border-t-0 md:px-0 md:py-5">
+    <aside className="fixed bottom-0 left-0 right-0 z-30 flex h-[3.6rem] items-center justify-around border-t border-bento-line bg-bento-nav px-2 pb-[env(safe-area-inset-bottom)] md:bottom-auto md:top-10 md:h-[calc(100dvh-2.5rem)] md:w-[72px] md:flex-col md:justify-start md:gap-2 md:border-r md:border-t-0 md:px-0 md:py-5">
       <nav className="flex w-full items-center justify-around md:flex-col md:gap-2 md:pt-1" aria-label="サイト内移動">
         {NAV.map((item) => {
           const isActive = active === item.id;
