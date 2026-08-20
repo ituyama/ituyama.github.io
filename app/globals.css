@@ -639,32 +639,31 @@ body {
   }
 
   .pop-collage-e {
-    height: 24%;
-    top: 26%;
-    right: -2%;
+    height: 20%;
+    top: 28%;
+    right: -8%;
   }
 
   .pop-collage-w {
-    height: 24%;
-    left: -2%;
-    top: 22%;
+    height: 20%;
+    left: -8%;
+    top: 24%;
   }
 
   .pop-collage-se {
-    height: 30%;
-    right: -4%;
-    bottom: 10%;
+    height: 20%;
+    right: -12%;
+    bottom: -8%;
   }
 
   .pop-collage-sw {
-    height: 28%;
-    left: -4%;
-    bottom: 10%;
+    height: 18%;
+    left: -12%;
+    bottom: -8%;
   }
 
   .pop-collage-s {
-    width: 42%;
-    bottom: 2%;
+    display: none;
   }
 
   .pop-shape-diamond,
@@ -672,7 +671,8 @@ body {
   .pop-shape-dots,
   .pop-shape-square,
   .pop-shape-capsule,
-  .pop-shape-pip {
+  .pop-shape-pip,
+  .pop-shape-triangle {
     display: none;
   }
 
@@ -700,16 +700,10 @@ body {
     width: 11%;
   }
 
-  .pop-shape-triangle {
-    left: 6%;
-    bottom: 8%;
-    width: 18%;
-  }
-
   .pop-shape-quarter {
-    right: -6%;
-    bottom: -2%;
-    width: 40%;
+    right: -10%;
+    bottom: -8%;
+    width: 28%;
   }
 
   .pop-policy-mark {
