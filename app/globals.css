@@ -625,43 +625,46 @@ body {
     font-size: 0.68rem;
   }
 
+  /* Buildings hug the portrait instead of sitting past the phone bezel. */
   .pop-collage-nw {
-    height: 22%;
-    left: -6%;
-    top: -2%;
+    height: 20%;
+    left: -2%;
+    top: 1%;
   }
 
   .pop-collage-ne {
-    height: 24%;
-    top: -8%;
-    right: -10%;
+    height: 22%;
+    top: -2%;
+    right: -2%;
   }
 
   .pop-collage-e {
-    height: 20%;
-    right: -8%;
+    height: 24%;
+    top: 26%;
+    right: -2%;
   }
 
   .pop-collage-w {
-    height: 20%;
-    left: -8%;
+    height: 24%;
+    left: -2%;
+    top: 22%;
   }
 
   .pop-collage-se {
-    height: 26%;
-    right: -16%;
-    bottom: -20%;
+    height: 30%;
+    right: -4%;
+    bottom: 10%;
   }
 
   .pop-collage-sw {
-    height: 24%;
-    left: -16%;
-    bottom: -18%;
+    height: 28%;
+    left: -4%;
+    bottom: 10%;
   }
 
   .pop-collage-s {
-    width: 18%;
-    bottom: -14%;
+    width: 42%;
+    bottom: 2%;
   }
 
   .pop-shape-diamond,
@@ -674,25 +677,39 @@ body {
   }
 
   .pop-shape-disc {
-    left: -10%;
-    top: 22%;
-    width: 20%;
+    left: -6%;
+    top: 18%;
+    width: 32%;
   }
 
   .pop-shape-ring {
-    left: 2%;
-    top: 4%;
-    width: 11%;
+    left: 6%;
+    top: 9%;
+    width: 16%;
   }
 
   .pop-shape-arch {
-    right: -12%;
+    right: -4%;
+    top: -2%;
+    width: 26%;
+  }
+
+  .pop-shape-cross {
+    right: 8%;
+    top: 14%;
+    width: 11%;
+  }
+
+  .pop-shape-triangle {
+    left: 6%;
+    bottom: 8%;
     width: 18%;
   }
 
   .pop-shape-quarter {
-    right: -18%;
-    width: 26%;
+    right: -6%;
+    bottom: -2%;
+    width: 40%;
   }
 
   .pop-policy-mark {
