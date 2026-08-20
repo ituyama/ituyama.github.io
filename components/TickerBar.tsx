@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ticker, type TickerItem } from "@/lib/ticker";
+import { ticker } from "@/lib/ticker";
 
 type Quote = {
   ok: boolean;
@@ -9,40 +9,23 @@ type Quote = {
   changePercent?: number;
 };
 
-function withLiveQuote(quote: Quote | null): TickerItem[] {
+function withLiveQuote(quote: Quote | null): string[] {
   const items = [...ticker.items];
   if (!ticker.liveNikkei || !quote?.ok || quote.price == null) return items;
 
   const up = (quote.changePercent ?? 0) >= 0;
-  return [
-    {
-      symbol: "N225",
-      name: "日経平均",
-      value: `${quote.price.toLocaleString("ja-JP", { maximumFractionDigits: 2 })}円`,
-      delta: `${up ? "+" : ""}${(quote.changePercent ?? 0).toFixed(2)}%`,
-      up,
-    },
-    ...items,
-  ];
+  const price = quote.price.toLocaleString("ja-JP", { maximumFractionDigits: 2 });
+  const delta = `${up ? "+" : ""}${(quote.changePercent ?? 0).toFixed(2)}%`;
+  return [`N225 日経平均 ${price}円 ${up ? "▲" : "▼"}${delta}`, ...items];
 }
 
-function Row({ items, duplicate }: { items: TickerItem[]; duplicate?: boolean }) {
+function Row({ items, duplicate }: { items: string[]; duplicate?: boolean }) {
   return (
     <ul className="flex h-full shrink-0 items-stretch px-2" aria-hidden={duplicate || undefined}>
-      {items.map((item, i) => (
-        <li key={`${item.symbol}-${item.value}-${i}`} className="flex h-full shrink-0 items-center">
+      {items.map((value, i) => (
+        <li key={`${value}-${i}`} className="flex h-full shrink-0 items-center">
           <span className="mx-3 h-full w-0.5 bg-bento-ink" aria-hidden="true" />
-          <span className="flex shrink-0 items-baseline gap-2 whitespace-nowrap">
-            <span className="text-[0.7rem] font-extrabold tracking-[0.1em]">{item.symbol}</span>
-            <span className="text-[0.7rem] font-bold">{item.name}</span>
-            <span className="text-[0.76rem] font-extrabold tabular-nums">{item.value}</span>
-            {item.delta ? (
-              <span className="text-[0.7rem] font-extrabold tabular-nums">
-                {item.up === false ? "▼" : "▲"}
-                {item.delta}
-              </span>
-            ) : null}
-          </span>
+          <span className="shrink-0 whitespace-nowrap text-[0.76rem] font-extrabold">{value}</span>
         </li>
       ))}
     </ul>
