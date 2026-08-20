@@ -123,24 +123,6 @@ body {
   animation: stripeSlide 9s linear infinite reverse;
 }
 
-.pop-cover-mark {
-  position: absolute;
-  left: -6%;
-  top: 48%;
-  z-index: 1;
-  margin: 0;
-  font-family: "LINE Seed JP", var(--font-sans);
-  font-size: clamp(6rem, 26vw, 18rem);
-  font-weight: 800;
-  line-height: 0.78;
-  letter-spacing: -0.06em;
-  color: transparent;
-  -webkit-text-stroke: 4px rgba(0, 0, 0, 0.5);
-  white-space: nowrap;
-  pointer-events: none;
-  transform: translateY(-50%) rotate(-8deg);
-}
-
 .pop-cover-shot {
   position: absolute;
   right: -12vw;

@@ -10,9 +10,6 @@ export default function ProfileHero() {
     <section className="pop-kv">
       <div className="pop-cover-stripes" aria-hidden="true" />
       <div className="pop-cover-speed" aria-hidden="true" />
-      <p className="pop-cover-mark" aria-hidden="true">
-        YAMANO
-      </p>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={profile.avatar} alt={profile.nameJa} className="pop-cover-shot" />
 
