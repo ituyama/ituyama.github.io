@@ -681,24 +681,37 @@ body {
   background: var(--color-bento-accent);
 }
 
-.pop-work-sheet-head {
-  padding: 1.1rem 1.25rem 1rem;
-  background: var(--color-bento-accent);
-  border-bottom: 2px solid var(--color-bento-line);
+/*
+  Work band under MY POLICY. Same black title plate, white field,
+  companies as one sheet.
+*/
+.pop-work {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 2px solid var(--color-bento-line);
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #11111118 1px, transparent 1px),
+    linear-gradient(to bottom, #11111118 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
-.pop-work-sheet-kicker {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+.pop-work-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(64rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5.2rem) 0 clamp(3.4rem, 8vw, 5.6rem);
+  gap: 1.8rem;
 }
 
-.pop-work-sheet-lead {
-  margin: 0.35rem 0 0;
-  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
-  font-weight: 800;
-  line-height: 1.35;
+.pop-work-sheet {
+  width: 100%;
+  background: #ffffff;
 }
 
 .pop-work-cols {
@@ -710,7 +723,7 @@ body {
 }
 
 .pop-work-col {
-  padding: 1.2rem 1.25rem 1.3rem;
+  padding: 1.35rem 1.3rem 1.45rem;
 }
 
 .pop-work-col + .pop-work-col {

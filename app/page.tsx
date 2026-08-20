@@ -13,9 +13,9 @@ export default function Home() {
       <SideNav />
       <ProfileHero />
       <TalkSection />
+      <WorkPanel />
       <main className="relative z-10 mx-auto flex max-w-[1120px] flex-col gap-10 px-[clamp(0.85rem,3vw,1.75rem)] pb-24 pt-8 md:ml-[72px] md:pb-12">
         <MetricsRow />
-        <WorkPanel />
         <section id="more">
           <BentoGrid tiles={initialLayout.tiles} />
         </section>
