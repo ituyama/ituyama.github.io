@@ -17,6 +17,7 @@ export type MatchFeed = {
   hint: string;
   stamps: { like: string; nope: string };
   viewerLabel: string;
+  viewerAvatar: string;
   mailto: { subject: string; body: string };
   matched: MatchScreen;
   nope: MatchScreen;

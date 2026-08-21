@@ -101,14 +101,20 @@ function MatchCelebrate({ onClose, titleId }: { onClose: () => void; titleId: st
       </div>
 
       <div className="pop-match-celebrate-photos">
+        {match.viewerAvatar ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={match.viewerAvatar}
+            alt=""
+            className="pop-match-celebrate-photo pop-match-celebrate-photo-you"
+          />
+        ) : (
+          <div className="pop-match-celebrate-photo pop-match-celebrate-photo-you pop-match-celebrate-photo-placeholder" aria-hidden="true">
+            <i className="bi bi-person-fill" />
+          </div>
+        )}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={profile.avatar} alt="" className="pop-match-celebrate-photo pop-match-celebrate-photo-you" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={match.photos[0] ?? profile.avatar}
-          alt=""
-          className="pop-match-celebrate-photo pop-match-celebrate-photo-them"
-        />
+        <img src={profile.avatar} alt={profile.nameJa} className="pop-match-celebrate-photo pop-match-celebrate-photo-them" />
         <span className="pop-match-celebrate-heart" aria-hidden="true">
           ♥
         </span>

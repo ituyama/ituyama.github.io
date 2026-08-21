@@ -1644,6 +1644,16 @@ html:has(.og-card) body {
   animation: matchPhotoYou 0.65s var(--ease-bento-snappy) 0.08s both;
 }
 
+.pop-match-celebrate-photo-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.96);
+  color: #007a33;
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
 .pop-match-celebrate-photo-them {
   right: 0;
   z-index: 2;
