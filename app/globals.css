@@ -1310,11 +1310,14 @@ body {
 }
 
 .pop-splash-row {
-  overflow-x: hidden;
+  display: flex;
+  flex: 0 0 calc(100vh / 9);
+  align-items: center;
+  height: calc(100vh / 9);
+  overflow-x: clip;
   overflow-y: visible;
   padding-block: 0;
   white-space: nowrap;
-  line-height: 1;
 }
 
 .pop-splash-track {
@@ -1344,10 +1347,10 @@ body {
   flex: none;
   color: #ffffff;
   font-family: var(--font-noto-serif-jp), "Noto Serif JP", serif;
-  font-size: clamp(3.75rem, calc((100vh - 0.25rem) / 9 / 1.02), 14rem);
+  font-size: clamp(3.25rem, calc(100vh / 9 * 0.84), 12rem);
   font-weight: 900;
   letter-spacing: 0.08em;
-  line-height: 1.02;
+  line-height: 1;
 }
 
 @keyframes splashTickerL {
