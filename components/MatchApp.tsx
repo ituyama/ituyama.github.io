@@ -90,7 +90,7 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
           </span>
           <div className="pop-match-avatar-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={profile.avatar} alt="" className="pop-match-avatar" />
+            <img src={profile.matchPhotos[0] ?? profile.avatar} alt="" className="pop-match-avatar" />
             <span className="pop-match-avatar-label">{profile.nameJa}</span>
           </div>
         </div>
@@ -148,6 +148,86 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
         </button>
       </div>
     </>
+  );
+}
+
+const PHOTO_SWIPE_THRESHOLD = 42;
+
+function MatchPhotos({
+  name,
+  age,
+  location,
+}: {
+  name: string;
+  age: number | null;
+  location: string;
+}) {
+  const photos = profile.matchPhotos;
+  const [index, setIndex] = useState(0);
+  const dragRef = useRef<{ x: number; pointerId: number } | null>(null);
+
+  const goPrev = () => setIndex((i) => Math.max(0, i - 1));
+  const goNext = () => setIndex((i) => Math.min(photos.length - 1, i + 1));
+
+  const onPhotoPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    dragRef.current = { x: e.clientX, pointerId: e.pointerId };
+    e.stopPropagation();
+  };
+
+  const onPhotoPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== e.pointerId) return;
+    dragRef.current = null;
+    e.stopPropagation();
+
+    const delta = e.clientX - drag.x;
+    if (delta > PHOTO_SWIPE_THRESHOLD) goPrev();
+    else if (delta < -PHOTO_SWIPE_THRESHOLD) goNext();
+  };
+
+  return (
+    <div
+      className="pop-match-card-media"
+      onPointerDown={onPhotoPointerDown}
+      onPointerUp={onPhotoPointerUp}
+      onPointerCancel={onPhotoPointerUp}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={photos[index]} alt={`${name} ${index + 1}/${photos.length}`} className="pop-match-card-photo" draggable={false} />
+      <div className="pop-match-photo-dots" aria-hidden="true">
+        {photos.map((_, i) => (
+          <span key={i} className={`pop-match-photo-dot ${i === index ? "is-on" : ""}`} />
+        ))}
+      </div>
+      <button
+        type="button"
+        className="pop-match-photo-hit pop-match-photo-hit-prev"
+        aria-label="前の写真"
+        onPointerDown={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          goPrev();
+        }}
+      />
+      <button
+        type="button"
+        className="pop-match-photo-hit pop-match-photo-hit-next"
+        aria-label="次の写真"
+        onPointerDown={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          goNext();
+        }}
+      />
+      <div className="pop-match-card-gradient" aria-hidden="true" />
+      <div className="pop-match-card-copy">
+        <p className="pop-match-card-name">
+          {name}
+          {age != null ? `, ${age}` : ""}
+        </p>
+        {location ? <p className="pop-match-card-meta">{location}</p> : null}
+      </div>
+    </div>
   );
 }
 
@@ -251,18 +331,8 @@ function SwipeableCard({
           NOPE
         </span>
 
-        <div className="pop-match-card-media">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={profile.avatar} alt={profile.nameJa} className="pop-match-card-photo" draggable={false} />
-          <div className="pop-match-card-gradient" aria-hidden="true" />
-          <div className="pop-match-card-copy">
-            <p className="pop-match-card-name">
-              {profile.nameJa}
-              {age != null ? `, ${age}` : ""}
-            </p>
-            {profile.location ? <p className="pop-match-card-meta">{profile.location}</p> : null}
-          </div>
-        </div>
+        <MatchPhotos name={profile.nameJa} age={age} location={profile.location} />
+
         <div className="pop-match-card-body">
           {profile.tagline ? <p className="pop-match-card-tagline">{profile.tagline}</p> : null}
           <div className="pop-match-card-tags">
@@ -277,7 +347,7 @@ function SwipeableCard({
           </p>
         </div>
       </div>
-      <p className="pop-match-hint">左右にスワイプ</p>
+      <p className="pop-match-hint">写真は左右スワイプ / カードも左右スワイプ</p>
     </div>
   );
 }

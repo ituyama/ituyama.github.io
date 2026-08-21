@@ -1692,6 +1692,48 @@ html:has(.og-card) body {
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background: #eef1f0;
+  touch-action: pan-y;
+}
+
+.pop-match-photo-dots {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  left: 0.55rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.28rem;
+}
+
+.pop-match-photo-dot {
+  flex: 1;
+  height: 0.22rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.pop-match-photo-dot.is-on {
+  background: #ffffff;
+}
+
+.pop-match-photo-hit {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 34%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pop-match-photo-hit-prev {
+  left: 0;
+}
+
+.pop-match-photo-hit-next {
+  right: 0;
 }
 
 .pop-match-card-photo {
