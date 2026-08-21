@@ -178,6 +178,7 @@ body {
 }
 
 .pop-policy-mark {
+  display: inline-block;
   margin: 0;
   padding: 0.18em 0.28em 0.14em;
   background: #111111;
@@ -728,6 +729,9 @@ body {
   .pop-policy-mark,
   .pop-policy-mark-long {
     align-self: center;
+    width: fit-content;
+    max-width: 100%;
+    text-align: center;
   }
 
   .pop-section-intro {
@@ -740,7 +744,18 @@ body {
   .pop-policy-body {
     margin-top: 1.15rem;
     font-size: 0.98rem;
-    line-height: 1.75;
+    line-height: 1.8;
+    text-wrap: pretty;
+  }
+
+  #bio .pop-policy-inner {
+    text-align: center;
+  }
+
+  #bio .pop-policy-body {
+    text-align: left;
+    max-width: 22rem;
+    margin-inline: auto;
   }
 
   .pop-policy-slogan {
