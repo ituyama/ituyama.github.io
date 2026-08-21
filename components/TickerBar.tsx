@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ticker } from "@/lib/ticker";
 
 type Quote = {
@@ -9,26 +9,75 @@ type Quote = {
   changePercent?: number;
 };
 
+const NIKKEI_PLACEHOLDER = "N225 日経平均 ---,---.--円 ▲+0.00%";
+
+function formatNikkei(quote: Quote): string {
+  const up = (quote.changePercent ?? 0) >= 0;
+  const price = quote.price!.toLocaleString("ja-JP", { maximumFractionDigits: 2 });
+  const delta = `${up ? "+" : ""}${(quote.changePercent ?? 0).toFixed(2)}%`;
+  return `N225 日経平均 ${price}円 ${up ? "▲" : "▼"}${delta}`;
+}
+
 function withLiveQuote(quote: Quote | null): string[] {
   const items = [...ticker.items];
-  if (!ticker.liveNikkei || !quote?.ok || quote.price == null) return items;
+  if (!ticker.liveNikkei) return items;
+  if (quote?.ok && quote.price != null) return [formatNikkei(quote), ...items];
+  return [NIKKEI_PLACEHOLDER, ...items];
+}
 
-  const up = (quote.changePercent ?? 0) >= 0;
-  const price = quote.price.toLocaleString("ja-JP", { maximumFractionDigits: 2 });
-  const delta = `${up ? "+" : ""}${(quote.changePercent ?? 0).toFixed(2)}%`;
-  return [`N225 日経平均 ${price}円 ${up ? "▲" : "▼"}${delta}`, ...items];
+function repeatItems(items: string[], times: number): string[] {
+  return Array.from({ length: times }, () => items).flat();
 }
 
 function Row({ items, duplicate }: { items: string[]; duplicate?: boolean }) {
   return (
     <ul className="flex h-full shrink-0 items-stretch px-2" aria-hidden={duplicate || undefined}>
       {items.map((value, i) => (
-        <li key={`${value}-${i}`} className="flex h-full shrink-0 items-center">
+        <li key={i} className="flex h-full shrink-0 items-center">
           <span className="mx-3 h-full w-0.5 bg-bento-ink" aria-hidden="true" />
-          <span className="shrink-0 whitespace-nowrap text-[0.76rem] font-extrabold">{value}</span>
+          <span className="shrink-0 whitespace-nowrap text-[0.76rem] font-extrabold tabular-nums">{value}</span>
         </li>
       ))}
     </ul>
+  );
+}
+
+function TickerTape({ items }: { items: string[] }) {
+  const maskRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [repeatCount, setRepeatCount] = useState(2);
+
+  useEffect(() => {
+    const mask = maskRef.current;
+    const measure = measureRef.current;
+    if (!mask || !measure) return;
+
+    const syncRepeatCount = () => {
+      const viewport = mask.clientWidth;
+      const cycle = measure.scrollWidth;
+      if (!viewport || !cycle) return;
+      setRepeatCount(Math.max(2, Math.ceil(viewport / cycle) + 1));
+    };
+
+    syncRepeatCount();
+    const observer = new ResizeObserver(syncRepeatCount);
+    observer.observe(mask);
+    observer.observe(measure);
+    return () => observer.disconnect();
+  }, [items]);
+
+  const loopItems = useMemo(() => repeatItems(items, repeatCount), [items, repeatCount]);
+
+  return (
+    <div ref={maskRef} className="ticker-mask relative min-w-0 flex-1 overflow-hidden">
+      <div ref={measureRef} className="pointer-events-none absolute h-0 overflow-hidden opacity-0" aria-hidden="true">
+        <Row items={items} />
+      </div>
+      <div className="ticker-track flex h-full w-max items-stretch">
+        <Row items={loopItems} />
+        <Row items={loopItems} duplicate />
+      </div>
+    </div>
   );
 }
 
@@ -85,12 +134,7 @@ export default function TickerBar() {
         <span className="ticker-live size-1.5 rounded-full bg-bento-ink" aria-hidden="true" />
         <span className="text-[0.72rem] font-extrabold tracking-[0.14em]">{ticker.brand}</span>
       </div>
-      <div className="ticker-mask min-w-0 flex-1 overflow-hidden">
-        <div className="ticker-track flex h-full w-max items-stretch">
-          <Row items={items} />
-          <Row items={items} duplicate />
-        </div>
-      </div>
+      <TickerTape items={items} />
       <TapeClock />
     </div>
   );
