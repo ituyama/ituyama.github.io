@@ -37,18 +37,6 @@ export const siteKeywords = [
   "デザイナー",
 ];
 
-const x = profile.socials.find((s) => s.icon === "twitter-x" || s.name === "X");
-export const twitterHandle = x?.handle.replace(/^@/, "") ?? undefined;
-
-const ogImage = {
-  url: "/media/ogp.png",
-  width: 1200,
-  height: 630,
-  alt: siteTitle,
-};
-
-export const ogImages = [ogImage];
-
 export function jsonLdGraph() {
   const personId = `${SITE_URL}/#person`;
   const websiteId = `${SITE_URL}/#website`;

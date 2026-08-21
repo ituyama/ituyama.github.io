@@ -9,12 +9,10 @@ import Splash from "@/components/Splash";
 import { profile } from "@/lib/profile";
 import {
   jsonLdGraph,
-  ogImages,
   SITE_URL,
   siteDescription,
   siteKeywords,
   siteTitle,
-  twitterHandle,
 } from "@/lib/seo";
 
 const notoSansJp = Noto_Sans_JP({
@@ -66,26 +64,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: profile.avatar, type: "image/png" }],
     apple: profile.avatar,
-  },
-  openGraph: {
-    title: siteTitle,
-    description: siteDescription,
-    url: SITE_URL,
-    siteName: siteTitle,
-    locale: "ja_JP",
-    images: ogImages,
-    type: "profile",
-    firstName: "Itsuki",
-    lastName: "Yamano",
-    username: "ituyama",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
-    images: ogImages,
-    creator: twitterHandle ? `@${twitterHandle}` : undefined,
-    site: twitterHandle ? `@${twitterHandle}` : undefined,
   },
 };
 
