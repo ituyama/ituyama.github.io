@@ -1254,12 +1254,12 @@ body {
 
 .pop-splash.is-out .pop-splash-bg {
   opacity: 0;
-  transition: opacity 0.5s ease-out 1.15s;
+  transition: opacity 0.55s ease-out 2.1s;
 }
 
 .pop-splash.is-out .pop-policy-dots {
   opacity: 0;
-  transition: opacity 0.45s ease-out 1.05s;
+  transition: opacity 0.5s ease-out 2s;
 }
 
 /* Exit: track keeps scrolling off-screen via Web Animations in Splash.tsx */

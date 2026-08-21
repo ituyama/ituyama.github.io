@@ -8,10 +8,9 @@ const CENTER_ROW = Math.floor(ROW_COUNT / 2);
 
 /** Hold tickers, then exit. Outer rows leave last. */
 const HOLD_MS = 2200;
-const ROW_OUT_MS = 1700;
+const ROW_OUT_MS = 2200;
 const ROW_STAGGER_MS = 110;
 const LAST_ROW_DELAY_MS = 4 * ROW_STAGGER_MS;
-const DONE_MS = HOLD_MS + LAST_ROW_DELAY_MS + ROW_OUT_MS + 120;
 
 const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
   const word = splash.phrase[row % splash.phrase.length] ?? "";
@@ -21,6 +20,11 @@ const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
 
 function rowExitDelay(index: number): number {
   return Math.abs(index - CENTER_ROW) * ROW_STAGGER_MS;
+}
+
+function exitTargetX(currentX: number, trackWidth: number, rtl: boolean): number {
+  const viewport = window.innerWidth;
+  return rtl ? currentX + viewport + trackWidth : currentX - viewport - trackWidth;
 }
 
 export default function Splash() {
@@ -35,11 +39,7 @@ export default function Splash() {
     }
 
     const out = window.setTimeout(() => setPhase("out"), HOLD_MS);
-    const done = window.setTimeout(() => setPhase("done"), DONE_MS);
-    return () => {
-      window.clearTimeout(out);
-      window.clearTimeout(done);
-    };
+    return () => window.clearTimeout(out);
   }, []);
 
   useEffect(() => {
@@ -47,38 +47,57 @@ export default function Splash() {
     const stack = stackRef.current;
     if (!stack) return;
 
-    const rows = stack.querySelectorAll<HTMLElement>(".pop-splash-row");
+    let cancelled = false;
     const animations: Animation[] = [];
-    const travel = window.innerWidth * 1.2;
+    let fallbackId = 0;
 
-    rows.forEach((row, index) => {
-      const track = row.querySelector<HTMLElement>(".pop-splash-track");
-      if (!track) return;
+    const finish = () => {
+      if (!cancelled) setPhase("done");
+    };
 
-      const currentX = new DOMMatrix(getComputedStyle(track).transform).m41;
-      const rtl = row.classList.contains("is-rtl");
-      const targetX = rtl ? currentX + travel : currentX - travel;
+    const raf = requestAnimationFrame(() => {
+      if (cancelled) return;
 
-      track.style.animation = "none";
-      track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      const rows = stack.querySelectorAll<HTMLElement>(".pop-splash-row");
 
-      animations.push(
-        track.animate(
-          [
-            { transform: `translate3d(${currentX}px, 0, 0)` },
-            { transform: `translate3d(${targetX}px, 0, 0)` },
-          ],
-          {
-            duration: ROW_OUT_MS,
-            delay: rowExitDelay(index),
-            easing: "cubic-bezier(0.33, 0, 0.12, 1)",
-            fill: "forwards",
-          },
-        ),
-      );
+      rows.forEach((row, index) => {
+        const track = row.querySelector<HTMLElement>(".pop-splash-track");
+        if (!track) return;
+
+        const trackWidth = track.scrollWidth;
+        const currentX = new DOMMatrix(getComputedStyle(track).transform).m41;
+        const rtl = row.classList.contains("is-rtl");
+        const targetX = exitTargetX(currentX, trackWidth, rtl);
+
+        track.style.animation = "none";
+        track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+
+        animations.push(
+          track.animate(
+            [
+              { transform: `translate3d(${currentX}px, 0, 0)` },
+              { transform: `translate3d(${targetX}px, 0, 0)` },
+            ],
+            {
+              duration: ROW_OUT_MS,
+              delay: rowExitDelay(index),
+              easing: "cubic-bezier(0.22, 0, 0.08, 1)",
+              fill: "forwards",
+            },
+          ),
+        );
+      });
+
+      Promise.all(animations.map((a) => a.finished)).then(finish).catch(finish);
+      fallbackId = window.setTimeout(finish, LAST_ROW_DELAY_MS + ROW_OUT_MS + 400);
     });
 
-    return () => animations.forEach((a) => a.cancel());
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      window.clearTimeout(fallbackId);
+      animations.forEach((a) => a.cancel());
+    };
   }, [phase]);
 
   if (phase === "done") return null;
