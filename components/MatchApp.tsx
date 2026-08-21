@@ -114,7 +114,11 @@ function MatchCelebrate({ onClose, titleId }: { onClose: () => void; titleId: st
           </div>
         )}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={profile.avatar} alt={profile.nameJa} className="pop-match-celebrate-photo pop-match-celebrate-photo-them" />
+        <img
+          src={match.avatar || match.photos[0] || profile.avatar}
+          alt={profile.nameJa}
+          className="pop-match-celebrate-photo pop-match-celebrate-photo-them"
+        />
         <span className="pop-match-celebrate-heart" aria-hidden="true">
           ♥
         </span>

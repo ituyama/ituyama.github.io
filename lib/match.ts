@@ -14,6 +14,7 @@ export type MatchFeed = {
   photos: string[];
   area: string;
   bio: string;
+  avatar: string;
   hint: string;
   stamps: { like: string; nope: string };
   viewerLabel: string;
