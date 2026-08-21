@@ -129,7 +129,7 @@ export default function TickerBar() {
   if (items.length === 0) return null;
 
   return (
-    <div className="sticky top-0 z-40 flex h-10 overflow-hidden border-b-2 border-bento-ink bg-bento-accent text-bento-ink">
+    <div className="pop-z-chrome sticky top-0 flex h-10 overflow-hidden border-b-2 border-bento-ink bg-bento-accent text-bento-ink">
       <TickerTape items={items} />
       <TapeClock />
     </div>

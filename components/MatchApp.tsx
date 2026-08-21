@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { match } from "@/lib/match";
 import { calcAge, profile } from "@/lib/profile";
@@ -28,6 +29,11 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
   const titleId = useId();
   const age = profile.birthday ? calcAge(profile.birthday) : null;
   const [phase, setPhase] = useState<Phase>("card");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -47,11 +53,11 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
     if (!open) setPhase("card");
   }, [open]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
   const isCelebrate = phase === "matched";
 
-  return (
+  return createPortal(
     <div
       className={`pop-match-root ${isCelebrate ? "is-celebrate" : ""}`}
       role="presentation"
@@ -87,7 +93,8 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
           <MatchFlow age={age} phase={phase} setPhase={setPhase} onClose={onClose} />
         </div>
       )}
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -384,14 +391,14 @@ function SwipeableCard({
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
       >
+        <MatchPhotos name={profile.nameJa} age={age} photoIndex={photoIndex} />
+
         <span className="pop-match-stamp pop-match-stamp-like" style={{ opacity: likeOpacity }} aria-hidden="true">
           {match.stamps.like}
         </span>
         <span className="pop-match-stamp pop-match-stamp-nope" style={{ opacity: nopeOpacity }} aria-hidden="true">
           {match.stamps.nope}
         </span>
-
-        <MatchPhotos name={profile.nameJa} age={age} photoIndex={photoIndex} />
       </div>
       <p className="pop-match-hint">{match.hint}</p>
     </div>

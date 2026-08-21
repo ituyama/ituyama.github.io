@@ -4,7 +4,7 @@ const github = profile.socials.find((s) => s.icon === "github" || s.name === "Gi
 
 export default function SideNav() {
   return (
-    <aside className="fixed top-10 left-0 z-30 hidden h-[calc(100dvh-2.5rem)] w-[72px] flex-col items-center justify-start gap-2 border-r-2 border-bento-line bg-bento-nav py-5 md:flex">
+    <aside className="pop-z-chrome fixed top-10 left-0 hidden h-[calc(100dvh-2.5rem)] w-[72px] flex-col items-center justify-start gap-2 border-r-2 border-bento-line bg-bento-nav py-5 md:flex">
       <nav className="flex flex-col gap-2 pt-1" aria-label="サイト内移動">
         <a
           href="#top"
