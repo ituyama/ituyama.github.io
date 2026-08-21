@@ -1,15 +1,15 @@
 {
   "title": "YAMANO MATCH",
   "photos": [
-    "/media/match/match-1.png",
     "/media/match/match-2.png",
+    "/media/match/match-1.png",
     "/media/match/match-3.png",
     "/media/match/match-4.png",
     "/media/match/match-5.png",
     "/media/match/match-6.png"
   ],
-  "area": "武蔵小杉",
-  "bio": "話し合いができる彼女を探しています。他はもうなんでもいいです。",
+  "area": "神奈川、東京、茨城",
+  "bio": "よろしくお願いします。",
   "hint": "左右スワイプ",
   "stamps": {
     "like": "LIKE",
@@ -23,7 +23,7 @@
   "matched": {
     "kicker": "It's a Match!",
     "title": "マッチしました",
-    "copy": "話し合い、から始めよう。",
+    "copy": "さあ、メッセージを送ろう。",
     "messageCta": "メッセージを送る",
     "closeCta": "閉じる"
   },

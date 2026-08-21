@@ -27,6 +27,7 @@ function mailtoMatch() {
 export default function MatchApp({ open, onClose }: MatchAppProps) {
   const titleId = useId();
   const age = profile.birthday ? calcAge(profile.birthday) : null;
+  const [phase, setPhase] = useState<Phase>("card");
 
   useEffect(() => {
     if (!open) return;
@@ -42,73 +43,107 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
     };
   }, [open, onClose]);
 
+  useEffect(() => {
+    if (!open) setPhase("card");
+  }, [open]);
+
   if (!open) return null;
 
+  const isCelebrate = phase === "matched";
+
   return (
-    <div className="pop-match-root" role="presentation" onClick={onClose}>
+    <div className={`pop-match-root ${isCelebrate ? "is-celebrate" : ""}`} role="presentation" onClick={onClose}>
       <div
-        className="pop-match-shell"
+        className={`pop-match-shell ${isCelebrate ? "is-celebrate" : ""}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         onClick={(e) => e.stopPropagation()}
       >
-        <header className="pop-match-header">
-          <span className="pop-match-logo" id={titleId}>
-            {match.title}
-          </span>
-          <button type="button" className="pop-match-close" onClick={onClose} aria-label={match.actions.close}>
-            <i className="bi bi-x-lg" aria-hidden="true" />
-          </button>
-        </header>
+        {!isCelebrate ? (
+          <header className="pop-match-header">
+            <span className="pop-match-logo" id={titleId}>
+              {match.title}
+            </span>
+            <button type="button" className="pop-match-close" onClick={onClose} aria-label={match.actions.close}>
+              <i className="bi bi-x-lg" aria-hidden="true" />
+            </button>
+          </header>
+        ) : null}
 
-        <MatchFlow age={age} onClose={onClose} />
+        <MatchFlow age={age} phase={phase} setPhase={setPhase} onClose={onClose} titleId={titleId} />
       </div>
     </div>
   );
 }
 
-function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }) {
-  const [phase, setPhase] = useState<Phase>("card");
+function MatchCelebrate({ onClose, titleId }: { onClose: () => void; titleId: string }) {
+  return (
+    <div className="pop-match-celebrate" role="status" aria-labelledby={titleId}>
+      <div className="pop-match-celebrate-sparkles" aria-hidden="true">
+        {Array.from({ length: 14 }, (_, i) => (
+          <span key={i} className="pop-match-celebrate-spark" style={{ "--spark-i": i } as React.CSSProperties} />
+        ))}
+      </div>
+
+      <div className="pop-match-celebrate-photos">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={profile.avatar} alt="" className="pop-match-celebrate-photo pop-match-celebrate-photo-you" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={match.photos[0] ?? profile.avatar}
+          alt=""
+          className="pop-match-celebrate-photo pop-match-celebrate-photo-them"
+        />
+        <span className="pop-match-celebrate-heart" aria-hidden="true">
+          ♥
+        </span>
+      </div>
+
+      <h2 className="pop-match-celebrate-headline" id={titleId}>
+        {match.matched.kicker}
+      </h2>
+      <p className="pop-match-celebrate-title">{match.matched.title}</p>
+      <p className="pop-match-celebrate-copy">{match.matched.copy}</p>
+
+      <div className="pop-match-celebrate-actions">
+        <a href={mailtoMatch()} className="pop-match-celebrate-btn pop-match-celebrate-btn-primary">
+          <i className="bi bi-chat-heart-fill" aria-hidden="true" />
+          {match.matched.messageCta}
+        </a>
+        <button type="button" className="pop-match-celebrate-btn pop-match-celebrate-btn-secondary" onClick={onClose}>
+          {match.matched.closeCta}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function MatchFlow({
+  age,
+  phase,
+  setPhase,
+  onClose,
+  titleId,
+}: {
+  age: number | null;
+  phase: Phase;
+  setPhase: (phase: Phase) => void;
+  onClose: () => void;
+  titleId: string;
+}) {
   const [swipeRequest, setSwipeRequest] = useState<ExitDir | null>(null);
 
-  const finishSwipe = useCallback((dir: ExitDir) => {
-    setSwipeRequest(null);
-    setPhase(dir === "right" ? "matched" : "nope");
-  }, []);
+  const finishSwipe = useCallback(
+    (dir: ExitDir) => {
+      setSwipeRequest(null);
+      setPhase(dir === "right" ? "matched" : "nope");
+    },
+    [setPhase],
+  );
 
   if (phase === "matched") {
-    return (
-      <div className="pop-match-panel pop-match-panel-celebrate">
-        <p className="pop-match-kicker">{match.matched.kicker}</p>
-        <h3 className="pop-match-title">{match.matched.title}</h3>
-        <div className="pop-match-pair">
-          <div className="pop-match-avatar-wrap">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={profile.avatar} alt="" className="pop-match-avatar" />
-            <span className="pop-match-avatar-label">{match.viewerLabel}</span>
-          </div>
-          <span className="pop-match-heart" aria-hidden="true">
-            ♥
-          </span>
-          <div className="pop-match-avatar-wrap">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={match.photos[0] ?? profile.avatar} alt="" className="pop-match-avatar" />
-            <span className="pop-match-avatar-label">{profile.nameJa}</span>
-          </div>
-        </div>
-        <p className="pop-match-copy">{match.matched.copy}</p>
-        <div className="pop-match-actions pop-match-actions-stack">
-          <a href={mailtoMatch()} className="pop-btn pop-match-btn-primary">
-            <i className="bi bi-chat-heart-fill" aria-hidden="true" />
-            {match.matched.messageCta}
-          </a>
-          <button type="button" className="pop-btn pop-match-btn-ghost" onClick={onClose}>
-            {match.matched.closeCta}
-          </button>
-        </div>
-      </div>
-    );
+    return <MatchCelebrate onClose={onClose} titleId={titleId} />;
   }
 
   if (phase === "nope") {
