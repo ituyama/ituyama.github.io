@@ -1,0 +1,43 @@
+{
+  "title": "YAMANO MATCH",
+  "photos": [
+    "/media/match/match-1.png",
+    "/media/match/match-2.png",
+    "/media/match/match-3.png",
+    "/media/match/match-4.png",
+    "/media/match/match-5.png",
+    "/media/match/match-6.png"
+  ],
+  "bio": "話し合いができる彼女を探しています。他はもうなんでもいいです。",
+  "hint": "写真は左右スワイプ / カードも左右スワイプ",
+  "stamps": {
+    "like": "LIKE",
+    "nope": "NOPE"
+  },
+  "viewerLabel": "あなた",
+  "mailto": {
+    "subject": "マッチングしました",
+    "body": "話し合いができる彼女枠、マッチングアプリから連絡しました。"
+  },
+  "matched": {
+    "kicker": "It's a Match!",
+    "title": "マッチしました",
+    "copy": "話し合い、から始めよう。",
+    "messageCta": "メッセージを送る",
+    "closeCta": "閉じる"
+  },
+  "nope": {
+    "kicker": "Pass",
+    "title": "残念...",
+    "copy": "また今度。いつでも右スワイプ待ってます。",
+    "retryCta": "もう一度見る",
+    "closeCta": "閉じる"
+  },
+  "actions": {
+    "like": "いいね",
+    "nope": "パス",
+    "photoPrev": "前の写真",
+    "photoNext": "次の写真",
+    "close": "閉じる"
+  }
+}

@@ -1689,7 +1689,8 @@ html:has(.og-card) body {
 
 .pop-match-card-media {
   position: relative;
-  aspect-ratio: 3 / 4;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
   background: #eef1f0;
   touch-action: pan-y;
@@ -1737,6 +1738,8 @@ html:has(.og-card) body {
 }
 
 .pop-match-card-photo {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -1747,8 +1750,9 @@ html:has(.og-card) body {
 .pop-match-card-gradient {
   position: absolute;
   inset: auto 0 0;
-  height: 45%;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.72));
+  z-index: 1;
+  height: 62%;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.82));
 }
 
 .pop-match-card-copy {
@@ -1756,7 +1760,12 @@ html:has(.og-card) body {
   right: 0.85rem;
   bottom: 0.85rem;
   left: 0.85rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
   color: #ffffff;
+  pointer-events: none;
 }
 
 .pop-match-card-name {
@@ -1764,26 +1773,22 @@ html:has(.og-card) body {
   font-size: 1.35rem;
   font-weight: 900;
   line-height: 1.15;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
 }
 
 .pop-match-card-meta {
-  margin: 0.25rem 0 0;
+  margin: 0;
   font-size: 0.82rem;
   font-weight: 800;
-}
-
-.pop-match-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  padding: 0.85rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 .pop-match-card-tagline {
   margin: 0;
   font-size: 0.82rem;
   font-weight: 800;
-  line-height: 1.5;
+  line-height: 1.45;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 .pop-match-card-tags {
@@ -1792,11 +1797,16 @@ html:has(.og-card) body {
   gap: 0.35rem;
 }
 
+.pop-chip-on-photo {
+  background: rgba(255, 255, 255, 0.92);
+}
+
 .pop-match-card-bio {
   margin: 0;
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   font-weight: 800;
-  line-height: 1.65;
+  line-height: 1.55;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 .pop-match-actions {

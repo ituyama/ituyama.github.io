@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
+import { match } from "@/lib/match";
 import { calcAge, profile } from "@/lib/profile";
 
 type MatchAppProps = {
@@ -16,8 +17,8 @@ const SWIPE_THRESHOLD = 88;
 const EXIT_MS = 260;
 
 function mailtoMatch() {
-  const subject = encodeURIComponent("マッチングしました");
-  const body = encodeURIComponent("話し合いができる彼女枠、マッチングアプリから連絡しました。");
+  const subject = encodeURIComponent(match.mailto.subject);
+  const body = encodeURIComponent(match.mailto.body);
   return `mailto:${profile.email}?subject=${subject}&body=${body}`;
 }
 
@@ -52,9 +53,9 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
       >
         <header className="pop-match-header">
           <span className="pop-match-logo" id={titleId}>
-            YAMANO MATCH
+            {match.title}
           </span>
-          <button type="button" className="pop-match-close" onClick={onClose} aria-label="閉じる">
+          <button type="button" className="pop-match-close" onClick={onClose} aria-label={match.actions.close}>
             <i className="bi bi-x-lg" aria-hidden="true" />
           </button>
         </header>
@@ -77,31 +78,31 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
   if (phase === "matched") {
     return (
       <div className="pop-match-panel pop-match-panel-celebrate">
-        <p className="pop-match-kicker">It&apos;s a Match!</p>
-        <h3 className="pop-match-title">マッチしました</h3>
+        <p className="pop-match-kicker">{match.matched.kicker}</p>
+        <h3 className="pop-match-title">{match.matched.title}</h3>
         <div className="pop-match-pair">
           <div className="pop-match-avatar-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={profile.avatar} alt="" className="pop-match-avatar" />
-            <span className="pop-match-avatar-label">あなた</span>
+            <span className="pop-match-avatar-label">{match.viewerLabel}</span>
           </div>
           <span className="pop-match-heart" aria-hidden="true">
             ♥
           </span>
           <div className="pop-match-avatar-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={profile.matchPhotos[0] ?? profile.avatar} alt="" className="pop-match-avatar" />
+            <img src={match.photos[0] ?? profile.avatar} alt="" className="pop-match-avatar" />
             <span className="pop-match-avatar-label">{profile.nameJa}</span>
           </div>
         </div>
-        <p className="pop-match-copy">話し合い、から始めよう。</p>
+        <p className="pop-match-copy">{match.matched.copy}</p>
         <div className="pop-match-actions pop-match-actions-stack">
           <a href={mailtoMatch()} className="pop-btn pop-match-btn-primary">
             <i className="bi bi-chat-heart-fill" aria-hidden="true" />
-            メッセージを送る
+            {match.matched.messageCta}
           </a>
           <button type="button" className="pop-btn pop-match-btn-ghost" onClick={onClose}>
-            閉じる
+            {match.matched.closeCta}
           </button>
         </div>
       </div>
@@ -111,15 +112,15 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
   if (phase === "nope") {
     return (
       <div className="pop-match-panel">
-        <p className="pop-match-kicker">Pass</p>
-        <h3 className="pop-match-title">残念...</h3>
-        <p className="pop-match-copy">また今度。いつでも右スワイプ待ってます。</p>
+        <p className="pop-match-kicker">{match.nope.kicker}</p>
+        <h3 className="pop-match-title">{match.nope.title}</h3>
+        <p className="pop-match-copy">{match.nope.copy}</p>
         <div className="pop-match-actions pop-match-actions-stack">
           <button type="button" className="pop-btn" onClick={() => setPhase("card")}>
-            もう一度見る
+            {match.nope.retryCta}
           </button>
           <button type="button" className="pop-btn pop-match-btn-ghost" onClick={onClose}>
-            閉じる
+            {match.nope.closeCta}
           </button>
         </div>
       </div>
@@ -133,7 +134,7 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
         <button
           type="button"
           className="pop-match-action pop-match-action-nope"
-          aria-label="パス"
+          aria-label={match.actions.nope}
           onClick={() => setSwipeRequest("left")}
         >
           <i className="bi bi-x-lg" aria-hidden="true" />
@@ -141,7 +142,7 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
         <button
           type="button"
           className="pop-match-action pop-match-action-like"
-          aria-label="いいね"
+          aria-label={match.actions.like}
           onClick={() => setSwipeRequest("right")}
         >
           <i className="bi bi-heart-fill" aria-hidden="true" />
@@ -162,7 +163,7 @@ function MatchPhotos({
   age: number | null;
   location: string;
 }) {
-  const photos = profile.matchPhotos;
+  const photos = match.photos;
   const [index, setIndex] = useState(0);
   const dragRef = useRef<{ x: number; pointerId: number } | null>(null);
 
@@ -202,7 +203,7 @@ function MatchPhotos({
       <button
         type="button"
         className="pop-match-photo-hit pop-match-photo-hit-prev"
-        aria-label="前の写真"
+        aria-label={match.actions.photoPrev}
         onPointerDown={(e) => e.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation();
@@ -212,7 +213,7 @@ function MatchPhotos({
       <button
         type="button"
         className="pop-match-photo-hit pop-match-photo-hit-next"
-        aria-label="次の写真"
+        aria-label={match.actions.photoNext}
         onPointerDown={(e) => e.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation();
@@ -226,6 +227,15 @@ function MatchPhotos({
           {age != null ? `, ${age}` : ""}
         </p>
         {location ? <p className="pop-match-card-meta">{location}</p> : null}
+        {profile.tagline ? <p className="pop-match-card-tagline">{profile.tagline}</p> : null}
+        <div className="pop-match-card-tags">
+          {profile.roles.map((role) => (
+            <span key={role} className="pop-chip pop-chip-on-photo">
+              {role}
+            </span>
+          ))}
+        </div>
+        <p className="pop-match-card-bio">{match.bio}</p>
       </div>
     </div>
   );
@@ -325,29 +335,15 @@ function SwipeableCard({
         onPointerCancel={onPointerUp}
       >
         <span className="pop-match-stamp pop-match-stamp-like" style={{ opacity: likeOpacity }} aria-hidden="true">
-          LIKE
+          {match.stamps.like}
         </span>
         <span className="pop-match-stamp pop-match-stamp-nope" style={{ opacity: nopeOpacity }} aria-hidden="true">
-          NOPE
+          {match.stamps.nope}
         </span>
 
         <MatchPhotos name={profile.nameJa} age={age} location={profile.location} />
-
-        <div className="pop-match-card-body">
-          {profile.tagline ? <p className="pop-match-card-tagline">{profile.tagline}</p> : null}
-          <div className="pop-match-card-tags">
-            {profile.roles.map((role) => (
-              <span key={role} className="pop-chip">
-                {role}
-              </span>
-            ))}
-          </div>
-          <p className="pop-match-card-bio">
-            話し合いができる彼女を探しています。他はもうなんでもいいです。
-          </p>
-        </div>
       </div>
-      <p className="pop-match-hint">写真は左右スワイプ / カードも左右スワイプ</p>
+      <p className="pop-match-hint">{match.hint}</p>
     </div>
   );
 }
