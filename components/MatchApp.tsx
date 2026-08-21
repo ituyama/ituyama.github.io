@@ -152,8 +152,6 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
   );
 }
 
-const PHOTO_SWIPE_THRESHOLD = 42;
-
 function MatchPhotos({
   name,
   age,
@@ -165,34 +163,12 @@ function MatchPhotos({
 }) {
   const photos = match.photos;
   const [index, setIndex] = useState(0);
-  const dragRef = useRef<{ x: number; pointerId: number } | null>(null);
 
   const goPrev = () => setIndex((i) => Math.max(0, i - 1));
   const goNext = () => setIndex((i) => Math.min(photos.length - 1, i + 1));
 
-  const onPhotoPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    dragRef.current = { x: e.clientX, pointerId: e.pointerId };
-    e.stopPropagation();
-  };
-
-  const onPhotoPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    const drag = dragRef.current;
-    if (!drag || drag.pointerId !== e.pointerId) return;
-    dragRef.current = null;
-    e.stopPropagation();
-
-    const delta = e.clientX - drag.x;
-    if (delta > PHOTO_SWIPE_THRESHOLD) goPrev();
-    else if (delta < -PHOTO_SWIPE_THRESHOLD) goNext();
-  };
-
   return (
-    <div
-      className="pop-match-card-media"
-      onPointerDown={onPhotoPointerDown}
-      onPointerUp={onPhotoPointerUp}
-      onPointerCancel={onPhotoPointerUp}
-    >
+    <div className="pop-match-card-media">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={photos[index]} alt={`${name} ${index + 1}/${photos.length}`} className="pop-match-card-photo" draggable={false} />
       <div className="pop-match-photo-dots" aria-hidden="true">
@@ -204,7 +180,6 @@ function MatchPhotos({
         type="button"
         className="pop-match-photo-hit pop-match-photo-hit-prev"
         aria-label={match.actions.photoPrev}
-        onPointerDown={(e) => e.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation();
           goPrev();
@@ -214,7 +189,6 @@ function MatchPhotos({
         type="button"
         className="pop-match-photo-hit pop-match-photo-hit-next"
         aria-label={match.actions.photoNext}
-        onPointerDown={(e) => e.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation();
           goNext();

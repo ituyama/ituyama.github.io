@@ -1699,7 +1699,6 @@ html:has(.og-card) body {
   width: 100%;
   overflow: hidden;
   background: #eef1f0;
-  touch-action: pan-y;
 }
 
 .pop-match-photo-dots {
@@ -1710,6 +1709,7 @@ html:has(.og-card) body {
   z-index: 2;
   display: flex;
   gap: 0.28rem;
+  pointer-events: none;
 }
 
 .pop-match-photo-dot {
@@ -1759,6 +1759,7 @@ html:has(.og-card) body {
   z-index: 1;
   height: 62%;
   background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.82));
+  pointer-events: none;
 }
 
 .pop-match-card-copy {
