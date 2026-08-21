@@ -27,10 +27,6 @@ function exitTargetX(currentX: number, trackWidth: number, rtl: boolean): number
   return rtl ? currentX + viewport + trackWidth : currentX - viewport - trackWidth;
 }
 
-function snapX(value: number): number {
-  return Math.round(value * 2) / 2;
-}
-
 export default function Splash() {
   const stackRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<"in" | "out" | "done">("in");
@@ -52,17 +48,11 @@ export default function Splash() {
     if (!stack) return;
 
     let cancelled = false;
+    const animations: Animation[] = [];
     let fallbackId = 0;
-    let pending = 0;
 
     const finish = () => {
       if (!cancelled) setPhase("done");
-    };
-
-    const onTrackExitEnd = (event: AnimationEvent) => {
-      if (event.animationName !== "splashTrackExit") return;
-      pending -= 1;
-      if (pending === 0) finish();
     };
 
     const raf = requestAnimationFrame(() => {
@@ -75,21 +65,30 @@ export default function Splash() {
         if (!track) return;
 
         const trackWidth = track.scrollWidth;
-        const currentX = snapX(new DOMMatrix(getComputedStyle(track).transform).m41);
+        const currentX = new DOMMatrix(getComputedStyle(track).transform).m41;
         const rtl = row.classList.contains("is-rtl");
-        const targetX = snapX(exitTargetX(currentX, trackWidth, rtl));
-        const delay = rowExitDelay(index);
+        const targetX = exitTargetX(currentX, trackWidth, rtl);
 
-        track.style.setProperty("--splash-x-from", `${currentX}px`);
-        track.style.setProperty("--splash-x-to", `${targetX}px`);
-        track.style.setProperty("--splash-exit-ms", `${ROW_OUT_MS}ms`);
-        track.style.setProperty("--splash-exit-delay", `${delay}ms`);
-        track.addEventListener("animationend", onTrackExitEnd);
-        track.classList.add("is-exiting");
-        pending += 1;
+        track.style.animation = "none";
+        track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+
+        animations.push(
+          track.animate(
+            [
+              { transform: `translate3d(${currentX}px, 0, 0)` },
+              { transform: `translate3d(${targetX}px, 0, 0)` },
+            ],
+            {
+              duration: ROW_OUT_MS,
+              delay: rowExitDelay(index),
+              easing: "cubic-bezier(0.22, 0, 0.08, 1)",
+              fill: "forwards",
+            },
+          ),
+        );
       });
 
-      if (pending === 0) finish();
+      Promise.all(animations.map((a) => a.finished)).then(finish).catch(finish);
       fallbackId = window.setTimeout(finish, LAST_ROW_DELAY_MS + ROW_OUT_MS + 400);
     });
 
@@ -97,9 +96,7 @@ export default function Splash() {
       cancelled = true;
       cancelAnimationFrame(raf);
       window.clearTimeout(fallbackId);
-      stack.querySelectorAll<HTMLElement>(".pop-splash-track").forEach((track) => {
-        track.removeEventListener("animationend", onTrackExitEnd);
-      });
+      animations.forEach((a) => a.cancel());
     };
   }, [phase]);
 
