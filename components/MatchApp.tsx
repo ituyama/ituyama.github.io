@@ -157,12 +157,10 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
 function MatchPhotos({
   name,
   age,
-  location,
   photoIndex,
 }: {
   name: string;
   age: number | null;
-  location: string;
   photoIndex: number;
 }) {
   const photos = match.photos;
@@ -185,18 +183,8 @@ function MatchPhotos({
       <div className="pop-match-card-copy">
         <p className="pop-match-card-name">
           {name}
-          {age != null ? `, ${age}` : ""}
+          {age != null ? <span className="pop-match-card-age">{age}</span> : null}
         </p>
-        {location ? <p className="pop-match-card-meta">{location}</p> : null}
-        {profile.tagline ? <p className="pop-match-card-tagline">{profile.tagline}</p> : null}
-        <div className="pop-match-card-tags">
-          {profile.roles.map((role) => (
-            <span key={role} className="pop-chip pop-chip-on-photo">
-              {role}
-            </span>
-          ))}
-        </div>
-        <p className="pop-match-card-bio">{match.bio}</p>
       </div>
     </div>
   );
@@ -348,7 +336,7 @@ function SwipeableCard({
           {match.stamps.nope}
         </span>
 
-        <MatchPhotos name={profile.nameJa} age={age} location={profile.location} photoIndex={photoIndex} />
+        <MatchPhotos name={profile.nameJa} age={age} photoIndex={photoIndex} />
       </div>
       <p className="pop-match-hint">{match.hint}</p>
     </div>

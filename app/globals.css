@@ -1737,63 +1737,35 @@ html:has(.og-card) body {
   position: absolute;
   inset: auto 0 0;
   z-index: 1;
-  height: 62%;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.82));
+  height: 38%;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.75));
   pointer-events: none;
 }
 
 .pop-match-card-copy {
   position: absolute;
-  right: 0.85rem;
-  bottom: 0.85rem;
-  left: 0.85rem;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
   color: #ffffff;
   pointer-events: none;
 }
 
 .pop-match-card-name {
-  margin: 0;
-  font-size: 1.35rem;
-  font-weight: 900;
-  line-height: 1.15;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
-}
-
-.pop-match-card-meta {
-  margin: 0;
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-}
-
-.pop-match-card-tagline {
-  margin: 0;
-  font-size: 0.82rem;
-  font-weight: 800;
-  line-height: 1.45;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-}
-
-.pop-match-card-tags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
-.pop-chip-on-photo {
-  background: rgba(255, 255, 255, 0.92);
-}
-
-.pop-match-card-bio {
+  align-items: baseline;
+  gap: 0.45rem;
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1.1;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pop-match-card-age {
+  font-size: 1.25rem;
   font-weight: 800;
-  line-height: 1.55;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 .pop-match-actions {

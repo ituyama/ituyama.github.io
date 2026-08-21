@@ -12,7 +12,6 @@ export type MatchScreen = {
 export type MatchFeed = {
   title: string;
   photos: string[];
-  bio: string;
   hint: string;
   stamps: { like: string; nope: string };
   viewerLabel: string;
