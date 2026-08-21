@@ -1,72 +1,58 @@
 User-Agent: *
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: GPTBot
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: OAI-SearchBot
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: ChatGPT-User
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: ClaudeBot
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: Claude-Web
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: anthropic-ai
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: PerplexityBot
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: Google-Extended
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: Applebot-Extended
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: CCBot
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: Bytespider
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: Amazonbot
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 User-Agent: Meta-ExternalAgent
 Allow: /
 Disallow: /api/
-Disallow: /og
 
 Host: https://ituyama.com
 Sitemap: https://ituyama.com/sitemap.xml
