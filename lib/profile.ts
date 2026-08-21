@@ -20,6 +20,7 @@ export type Profile = {
   activityGraph: string;
   about: string;
   policy: string;
+  policyTitle: string;
   gallery: GalleryItem[];
   socials: Social[];
   links: ProfileLink[];

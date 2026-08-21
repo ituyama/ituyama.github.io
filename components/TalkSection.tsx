@@ -25,7 +25,7 @@ export default function TalkSection() {
 
       <div className="pop-policy-inner">
         <h2 id="talk-title" className="pop-policy-mark">
-          MY POLICY
+          {profile.policyTitle}
         </h2>
         <p className="pop-policy-slogan">
           {body.split("\n").map((line, i) => (
