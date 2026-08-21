@@ -52,15 +52,29 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
   const isCelebrate = phase === "matched";
 
   return (
-    <div className={`pop-match-root ${isCelebrate ? "is-celebrate" : ""}`} role="presentation" onClick={onClose}>
-      <div
-        className={`pop-match-shell ${isCelebrate ? "is-celebrate" : ""}`}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {!isCelebrate ? (
+    <div
+      className={`pop-match-root ${isCelebrate ? "is-celebrate" : ""}`}
+      role="presentation"
+      onClick={isCelebrate ? undefined : onClose}
+    >
+      {isCelebrate ? (
+        <div
+          className="pop-match-celebrate-screen"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <MatchCelebrate onClose={onClose} titleId={titleId} />
+        </div>
+      ) : (
+        <div
+          className="pop-match-shell"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          onClick={(e) => e.stopPropagation()}
+        >
           <header className="pop-match-header">
             <span className="pop-match-logo" id={titleId}>
               {match.title}
@@ -69,10 +83,10 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
               <i className="bi bi-x-lg" aria-hidden="true" />
             </button>
           </header>
-        ) : null}
 
-        <MatchFlow age={age} phase={phase} setPhase={setPhase} onClose={onClose} titleId={titleId} />
-      </div>
+          <MatchFlow age={age} phase={phase} setPhase={setPhase} onClose={onClose} />
+        </div>
+      )}
     </div>
   );
 }
@@ -124,13 +138,11 @@ function MatchFlow({
   phase,
   setPhase,
   onClose,
-  titleId,
 }: {
   age: number | null;
   phase: Phase;
   setPhase: (phase: Phase) => void;
   onClose: () => void;
-  titleId: string;
 }) {
   const [swipeRequest, setSwipeRequest] = useState<ExitDir | null>(null);
 
@@ -141,10 +153,6 @@ function MatchFlow({
     },
     [setPhase],
   );
-
-  if (phase === "matched") {
-    return <MatchCelebrate onClose={onClose} titleId={titleId} />;
-  }
 
   if (phase === "nope") {
     return (
