@@ -8,6 +8,7 @@ type ThreadRow = {
   title: string;
   name: string;
   body: string;
+  label: string;
   created_at: number;
   bumped_at: number;
   reply_count: number;
@@ -25,6 +26,7 @@ type JsonBody = {
   title?: unknown;
   name?: unknown;
   body?: unknown;
+  label?: unknown;
 };
 
 function json(data: unknown, status = 200, extraHeaders: HeadersInit = {}): Response {
@@ -51,12 +53,28 @@ function parseName(value: unknown): string {
   return name || "名無し";
 }
 
+const VALID_LABELS = new Set(["chat", "question", "discuss", "live"]);
+const VALID_SORTS = new Set(["bumped", "created", "replies"]);
+
+function parseLabel(value: unknown): string {
+  if (typeof value === "string" && VALID_LABELS.has(value)) return value;
+  return "chat";
+}
+
+function makeExcerpt(body: string): string {
+  const flat = body.replace(/\s+/g, " ").trim();
+  if (flat.length <= 120) return flat;
+  return `${flat.slice(0, 120)}…`;
+}
+
 function formatThread(row: ThreadRow) {
   return {
     id: row.id,
     title: row.title,
     name: row.name,
     body: row.body,
+    label: parseLabel(row.label),
+    excerpt: makeExcerpt(row.body),
     replyCount: row.reply_count,
     createdAt: row.created_at * 1000,
     bumpedAt: row.bumped_at * 1000,
@@ -75,18 +93,32 @@ function formatPost(row: PostRow) {
 async function listThreads(db: D1Database, url: URL, headers: HeadersInit): Promise<Response> {
   const offset = Math.max(0, Number(url.searchParams.get("offset") ?? 0) || 0);
   const limit = Math.min(PAGE_SIZE, Math.max(1, Number(url.searchParams.get("limit") ?? PAGE_SIZE) || PAGE_SIZE));
+  const sort = url.searchParams.get("sort") ?? "bumped";
+  const label = url.searchParams.get("label");
 
-  const { results } = await db
-    .prepare(
-      `SELECT
-        t.id, t.title, t.name, t.body, t.created_at, t.bumped_at,
-        (SELECT COUNT(*) FROM posts p WHERE p.thread_id = t.id) AS reply_count
-      FROM threads t
-      ORDER BY t.bumped_at DESC
-      LIMIT ? OFFSET ?`,
-    )
-    .bind(limit, offset)
-    .all<ThreadRow>();
+  const orderBy =
+    sort === "created"
+      ? "t.created_at DESC"
+      : sort === "replies"
+        ? "reply_count DESC, t.bumped_at DESC"
+        : "t.bumped_at DESC";
+
+  const filterLabel = label && VALID_LABELS.has(label) ? label : null;
+  const where = filterLabel ? "WHERE t.label = ?" : "";
+
+  const statement = db.prepare(
+    `SELECT
+      t.id, t.title, t.name, t.body, t.label, t.created_at, t.bumped_at,
+      (SELECT COUNT(*) FROM posts p WHERE p.thread_id = t.id) AS reply_count
+    FROM threads t
+    ${where}
+    ORDER BY ${orderBy}
+    LIMIT ? OFFSET ?`,
+  );
+
+  const { results } = filterLabel
+    ? await statement.bind(filterLabel, limit, offset).all<ThreadRow>()
+    : await statement.bind(limit, offset).all<ThreadRow>();
 
   return json(
     {
@@ -105,7 +137,7 @@ async function getThread(db: D1Database, id: number, headers: HeadersInit): Prom
   const thread = await db
     .prepare(
       `SELECT
-        t.id, t.title, t.name, t.body, t.created_at, t.bumped_at,
+        t.id, t.title, t.name, t.body, t.label, t.created_at, t.bumped_at,
         (SELECT COUNT(*) FROM posts p WHERE p.thread_id = t.id) AS reply_count
       FROM threads t
       WHERE t.id = ?`,
@@ -142,13 +174,14 @@ async function createThread(request: Request, db: D1Database, headers: HeadersIn
   const title = clip(payload.title, MAX_TITLE);
   const body = clip(payload.body, MAX_BODY);
   const name = parseName(payload.name);
+  const label = parseLabel(payload.label);
 
   if (!title) return badRequest("title required", headers);
   if (!body) return badRequest("body required", headers);
 
   const result = await db
-    .prepare("INSERT INTO threads (title, name, body) VALUES (?, ?, ?) RETURNING id")
-    .bind(title, name, body)
+    .prepare("INSERT INTO threads (title, name, body, label) VALUES (?, ?, ?, ?) RETURNING id")
+    .bind(title, name, body, label)
     .first<{ id: number }>();
 
   if (!result) return json({ ok: false, error: "insert failed" }, 500, headers);
