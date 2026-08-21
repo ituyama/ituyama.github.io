@@ -128,7 +128,7 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
   }
 
   return (
-    <>
+    <div className="pop-match-body">
       <SwipeableCard age={age} request={swipeRequest} onSwipe={finishSwipe} />
       <div className="pop-match-actions">
         <button
@@ -148,7 +148,7 @@ function MatchFlow({ age, onClose }: { age: number | null; onClose: () => void }
           <i className="bi bi-heart-fill" aria-hidden="true" />
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

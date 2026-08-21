@@ -1545,6 +1545,13 @@ html:has(.og-card) body {
   cursor: pointer;
 }
 
+.pop-match-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .pop-match-panel {
   display: flex;
   flex: 1;
@@ -1622,9 +1629,8 @@ html:has(.og-card) body {
 .pop-match-card {
   position: relative;
   display: flex;
-  flex: 1;
+  width: 100%;
   flex-direction: column;
-  min-height: 0;
   margin: 0;
   overflow: hidden;
   border: 2px solid var(--color-bento-line);
@@ -1689,8 +1695,8 @@ html:has(.og-card) body {
 
 .pop-match-card-media {
   position: relative;
-  flex: 1;
-  min-height: 0;
+  aspect-ratio: 3 / 4;
+  width: 100%;
   overflow: hidden;
   background: #eef1f0;
   touch-action: pan-y;
