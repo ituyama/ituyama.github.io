@@ -14,6 +14,14 @@ export default function SideNav() {
           <i className="bi bi-compass" aria-hidden="true" />
         </a>
 
+        <a
+          href="/board"
+          aria-label="掲示板"
+          className="flex size-11 items-center justify-center rounded-[10px] text-[1.2rem] text-bento-ink hover:bg-white"
+        >
+          <i className="bi bi-chat-square-text" aria-hidden="true" />
+        </a>
+
         {github ? (
           <a
             href={github.url}

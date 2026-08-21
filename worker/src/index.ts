@@ -1,3 +1,5 @@
+import { handleBoard } from "./board";
+
 export type NikkeiPayload = {
   ok: boolean;
   price?: number;
@@ -10,14 +12,16 @@ const ALLOWED_ORIGINS = new Set([
   "https://www.ituyama.com",
   "http://localhost:3000",
   "http://127.0.0.1:3000",
+  "http://localhost:8787",
+  "http://127.0.0.1:8787",
 ]);
 
-function corsHeaders(origin: string | null): HeadersInit {
+function corsHeaders(origin: string | null, methods = "GET, OPTIONS"): HeadersInit {
   const allow =
     origin && ALLOWED_ORIGINS.has(origin) ? origin : "https://ituyama.com";
   return {
     "Access-Control-Allow-Origin": allow,
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Methods": methods,
     "Access-Control-Allow-Headers": "Content-Type",
   };
 }
@@ -64,6 +68,9 @@ async function fetchNikkei(): Promise<NikkeiPayload> {
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+    const origin = request.headers.get("Origin");
+    const apiMethods = "GET, POST, OPTIONS";
+    const headers = corsHeaders(origin, apiMethods);
 
     if (url.hostname === "www.ituyama.com") {
       url.hostname = "ituyama.com";
@@ -71,20 +78,23 @@ export default {
     }
 
     if (request.method === "OPTIONS") {
-      return new Response(null, { headers: corsHeaders(request.headers.get("Origin")) });
+      return new Response(null, { headers });
     }
 
+    const board = await handleBoard(request, env, url, headers);
+    if (board) return board;
+
     if (url.pathname === "/api/nikkei") {
-      const headers = {
-        ...corsHeaders(request.headers.get("Origin")),
+      const nikkeiHeaders = {
+        ...headers,
         "Cache-Control": "public, max-age=60",
       };
       try {
-        return Response.json(await fetchNikkei(), { headers });
+        return Response.json(await fetchNikkei(), { headers: nikkeiHeaders });
       } catch {
         return Response.json({ ok: false } satisfies NikkeiPayload, {
           status: 502,
-          headers,
+          headers: nikkeiHeaders,
         });
       }
     }
@@ -95,4 +105,5 @@ export default {
 
 interface Env {
   ASSETS: Fetcher;
+  DB: D1Database;
 }
