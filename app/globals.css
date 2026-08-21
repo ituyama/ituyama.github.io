@@ -2004,17 +2004,212 @@ body {
   top: calc(2.5rem + 0.75rem);
   max-height: calc(100dvh - 3.5rem);
   overflow: auto;
+  padding: 1rem;
 }
 
 .pop-board-main {
   display: flex;
   min-height: 28rem;
   flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.pop-board-main-inner {
+  display: flex;
+  height: calc(100dvh - 8.5rem);
+  min-height: 28rem;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.pop-board-main-inner.is-compose-only {
+  height: auto;
+  min-height: 28rem;
 }
 
 .pop-board-side .pop-board-list {
-  max-height: calc(100dvh - 8rem);
+  max-height: calc(100dvh - 11rem);
   overflow: auto;
+}
+
+.pop-board-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pop-board-icon-btn {
+  display: inline-flex;
+  width: 2.35rem;
+  height: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-bento-line);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--color-bento-ink);
+  cursor: pointer;
+}
+
+.pop-board-icon-btn:hover:not(:disabled) {
+  background: #e9fff3;
+}
+
+.pop-board-icon-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.pop-board-icon-btn .is-spin {
+  animation: popBoardSpin 0.8s linear infinite;
+}
+
+@keyframes popBoardSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pop-board-search {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.85rem;
+  padding: 0.62rem 0.75rem;
+  border: 2px solid var(--color-bento-line);
+  border-radius: 10px;
+  background: #ffffff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.pop-board-row-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.pop-board-badge {
+  flex: none;
+  min-width: 1.5rem;
+  padding: 0.1rem 0.4rem;
+  border: 2px solid var(--color-bento-line);
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.pop-board-row.is-active .pop-board-badge {
+  background: #ffffff;
+}
+
+.pop-board-thread-head {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.pop-board-thread-meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--color-bento-muted);
+}
+
+.pop-board-thread-end {
+  height: 1px;
+}
+
+.pop-board-form-sticky {
+  flex-shrink: 0;
+  margin-top: 0;
+  padding-top: 0.85rem;
+  border-top: 2px solid var(--color-bento-line);
+  background: var(--color-bento-surface);
+}
+
+.pop-board-form-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 0.75rem;
+}
+
+.pop-board-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.pop-board-hint {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--color-bento-muted);
+}
+
+.pop-board-count {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--color-bento-muted);
+  text-align: right;
+}
+
+.pop-board-count.is-warn {
+  color: #b00020;
+}
+
+.pop-board-link-btn {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 900;
+  color: #b00020;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.pop-board-skeleton {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pop-board-skeleton-row,
+.pop-board-skeleton-post {
+  height: 3.4rem;
+  border: 2px solid #00000012;
+  border-radius: var(--radius-bento-sm);
+  background: linear-gradient(90deg, #eef1f0 0%, #f8f9f8 50%, #eef1f0 100%);
+  background-size: 200% 100%;
+  animation: popBoardShimmer 1.2s ease-in-out infinite;
+}
+
+.pop-board-skeleton-post {
+  width: 72%;
+  height: 5.5rem;
+}
+
+.pop-board-skeleton-post.is-right {
+  justify-self: end;
+}
+
+.pop-board-skeleton-thread {
+  padding-top: 0.5rem;
+}
+
+@keyframes popBoardShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 .pop-board-row.is-active {
@@ -2104,6 +2299,11 @@ body {
     display: flex;
   }
 
+  .pop-board-main-inner {
+    height: calc(100dvh - 7rem);
+    min-height: 22rem;
+  }
+
   .pop-board-side {
     position: static;
     max-height: none;
@@ -2153,6 +2353,11 @@ body {
   border: 2px solid var(--color-bento-line);
   border-radius: var(--radius-bento);
   background: var(--color-bento-surface);
+}
+
+.pop-board-side,
+.pop-board-main-inner,
+.pop-board-empty {
   padding: 1rem;
 }
 
@@ -2204,7 +2409,9 @@ body {
 }
 
 .pop-board-row-title {
-  font-size: 0.96rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.92rem;
   font-weight: 900;
   line-height: 1.45;
 }

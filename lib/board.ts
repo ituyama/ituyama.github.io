@@ -78,3 +78,39 @@ export function formatBoardTime(ms: number): string {
     hour12: false,
   }).format(new Date(ms));
 }
+
+export function formatBoardRelative(ms: number): string {
+  const diff = Date.now() - ms;
+  if (diff < 45_000) return "たった今";
+  const minutes = Math.floor(diff / 60_000);
+  if (minutes < 60) return `${minutes}分前`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}時間前`;
+  const days = Math.floor(hours / 24);
+  if (days < 7) return `${days}日前`;
+  return formatBoardTime(ms);
+}
+
+export function formatBoardDateTime(ms: number): string {
+  return new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(new Date(ms));
+}
+
+const BOARD_NAME_KEY = "ituyama-board-name";
+
+export function readBoardName(): string {
+  if (typeof window === "undefined") return "";
+  return window.localStorage.getItem(BOARD_NAME_KEY) ?? "";
+}
+
+export function writeBoardName(name: string): void {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(BOARD_NAME_KEY, name);
+}
