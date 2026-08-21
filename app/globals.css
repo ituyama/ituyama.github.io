@@ -756,13 +756,15 @@ body {
   }
 
   #bio .pop-policy-inner {
+    align-items: center;
     text-align: center;
   }
 
   #bio .pop-policy-body {
-    text-align: left;
-    max-width: 22rem;
+    width: min(100%, 22rem);
     margin-inline: auto;
+    text-align: justify;
+    text-justify: inter-ideograph;
   }
 
   .pop-policy-slogan {
