@@ -27,7 +27,14 @@ export default function TalkSection() {
         <h2 id="talk-title" className="pop-policy-mark">
           MY POLICY
         </h2>
-        <p className="pop-policy-slogan">{body}</p>
+        <p className="pop-policy-slogan">
+          {body.split("\n").map((line, i) => (
+            <span key={i}>
+              {i > 0 ? <br /> : null}
+              {line}
+            </span>
+          ))}
+        </p>
       </div>
     </section>
   );
