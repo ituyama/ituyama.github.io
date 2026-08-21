@@ -114,7 +114,7 @@ export default function TickerBar() {
   useEffect(() => {
     if (!ticker.liveNikkei) return;
     let alive = true;
-    fetch("/api/nikkei")
+    fetch("/data/nikkei.json")
       .then((r) => r.json())
       .then((data: Quote) => {
         if (alive && data.ok) setQuote(data);
