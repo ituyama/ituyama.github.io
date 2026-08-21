@@ -27,7 +27,7 @@ export default function Home() {
         <HireSection />
         <LifePanel />
       </main>
-      <footer className="border-t-2 border-bento-line px-4 pb-[max(2rem,env(safe-area-inset-bottom,0px))] pt-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px] md:pb-8">
+      <footer className="border-t-2 border-bento-line px-4 pb-[max(4.5rem,calc(env(safe-area-inset-bottom,0px)+3.5rem))] pt-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px] md:pb-8">
         <p>
           © {year} {profile.nameJa} / {profile.nameEn}
         </p>

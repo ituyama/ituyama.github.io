@@ -222,14 +222,16 @@ body {
 
 @media (max-width: 767px) {
   .pop-policy-deco-disc {
-    left: -1.5rem;
-    width: 5.5rem;
+    top: -1.5rem;
+    left: -1rem;
+    width: 4.5rem;
   }
 
   .pop-policy-deco-mic {
     top: auto;
-    bottom: -1rem;
-    width: 4.8rem;
+    bottom: 0.5rem;
+    right: -0.75rem;
+    width: 4rem;
   }
 
   .pop-policy-body {
@@ -717,9 +719,22 @@ body {
 
   .pop-policy-inner,
   .pop-work-inner {
-    width: calc(100% - 1.4rem);
-    padding: 2.4rem 0 2.6rem;
-    gap: 1.2rem;
+    width: 100%;
+    align-items: stretch;
+    padding: 2rem 1rem 2.25rem;
+    gap: 1rem;
+  }
+
+  .pop-policy-mark,
+  .pop-policy-mark-long {
+    align-self: center;
+  }
+
+  .pop-section-intro {
+    margin-top: -0.2rem;
+    max-width: none;
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 
   .pop-policy-body {
@@ -730,14 +745,25 @@ body {
 
   .pop-policy-slogan {
     margin-top: 1.15rem;
-    font-size: clamp(1.45rem, 7.2vw, 2.1rem);
+    font-size: clamp(1.35rem, 6.5vw, 1.85rem);
+    line-height: 1.35;
+  }
+
+  .pop-work-sheet {
+    width: calc(100% + 2rem);
+    margin-inline: -1rem;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
   }
 
   .pop-work-list {
     display: flex;
     overflow-x: auto;
     border-bottom: 2px solid var(--color-bento-line);
+    scroll-padding-inline: 1rem;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .pop-work-list::-webkit-scrollbar {
@@ -748,11 +774,23 @@ body {
     flex: 0 0 auto;
   }
 
+  .pop-work-list li:last-child {
+    padding-right: 1rem;
+  }
+
   .pop-work-tab {
     border-bottom: 0;
     border-right: 2px solid var(--color-bento-line);
-    padding: 0.8rem 1rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.1rem;
     white-space: nowrap;
+  }
+
+  .pop-work-tab.is-on {
+    margin-bottom: -2px;
+    border-bottom: 2px solid var(--color-bento-accent);
+    position: relative;
+    z-index: 1;
   }
 
   .pop-work-list li:last-child .pop-work-tab {
@@ -760,7 +798,20 @@ body {
   }
 
   .pop-work-tab-name {
-    font-size: 1.05rem;
+    font-size: 1rem;
+  }
+
+  .pop-work-detail {
+    padding: 1.15rem 1rem 1.35rem;
+  }
+
+  .pop-work-detail.is-flush {
+    padding: 0;
+  }
+
+  .pop-tag-list {
+    justify-content: flex-start;
+    gap: 0.45rem;
   }
 
   .pop-work-stage {
