@@ -185,6 +185,8 @@ function MatchPhotos({
           {name}
           {age != null ? <span className="pop-match-card-age">{age}</span> : null}
         </p>
+        {match.area ? <p className="pop-match-card-area">{match.area}</p> : null}
+        {match.bio ? <p className="pop-match-card-bio">{match.bio}</p> : null}
       </div>
     </div>
   );
