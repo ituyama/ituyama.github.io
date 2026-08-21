@@ -1293,8 +1293,14 @@ body {
   align-items: center;
   width: max-content;
   gap: 0.55em;
-  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
   animation: splashTickerL 22s linear infinite;
+}
+
+.pop-splash-track.is-exiting {
+  animation: splashTrackExit var(--splash-exit-ms, 2200ms) cubic-bezier(0.22, 0, 0.08, 1) forwards;
+  animation-delay: var(--splash-exit-delay, 0ms);
 }
 
 .pop-splash-row.is-rtl .pop-splash-track {
@@ -1317,25 +1323,37 @@ body {
   font-family: var(--font-noto-serif-jp), "Noto Serif JP", serif;
   font-size: clamp(3.25rem, calc(100vh / 9 * 0.84), 12rem);
   font-weight: 900;
+  font-synthesis: none;
   letter-spacing: 0.08em;
   line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes splashTrackExit {
+  from {
+    transform: translate3d(var(--splash-x-from, 0px), 0, 0);
+  }
+  to {
+    transform: translate3d(var(--splash-x-to, 0px), 0, 0);
+  }
 }
 
 @keyframes splashTickerL {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 @keyframes splashTickerR {
   from {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
   to {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
