@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import MatchApp from "@/components/MatchApp";
 import { hire } from "@/lib/hire";
 
 function mailto(email: string, org: string, role: string) {
@@ -12,13 +13,12 @@ function mailto(email: string, org: string, role: string) {
 export default function HireSection() {
   const openings = hire.openings;
   const [active, setActive] = useState(0);
+  const [matchOpen, setMatchOpen] = useState(false);
   const job = openings[active] ?? openings[0];
 
   if (!job) return null;
 
-  const href = job.email
-    ? mailto(job.email, job.org, job.role)
-    : job.url;
+  const href = job.email ? mailto(job.email, job.org, job.role) : job.url;
 
   return (
     <section id="hire" className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby="hire-title">
@@ -68,22 +68,30 @@ export default function HireSection() {
                   ))}
                 </div>
               ) : null}
-              {href ? (
-                <a
-                  href={href}
-                  className="pop-btn pop-work-link mt-5 w-fit"
-                  {...(job.url && !job.email
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  <i className="bi bi-envelope-fill" aria-hidden="true" />
-                  {job.cta}
-                </a>
-              ) : null}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {job.match ? (
+                  <button type="button" className="pop-btn pop-match-open" onClick={() => setMatchOpen(true)}>
+                    <i className="bi bi-heart-fill" aria-hidden="true" />
+                    マッチング
+                  </button>
+                ) : null}
+                {href ? (
+                  <a
+                    href={href}
+                    className="pop-btn pop-work-link w-fit"
+                    {...(job.url && !job.email ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    <i className="bi bi-envelope-fill" aria-hidden="true" />
+                    {job.cta}
+                  </a>
+                ) : null}
+              </div>
             </div>
           </div>
         </article>
       </div>
+
+      <MatchApp open={matchOpen} onClose={() => setMatchOpen(false)} />
     </section>
   );
 }

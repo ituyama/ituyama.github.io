@@ -8,6 +8,7 @@ export type HireOpening = {
   cta: string;
   email?: string;
   url?: string;
+  match?: boolean;
 };
 
 export type HireFeed = {
