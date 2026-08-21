@@ -9,6 +9,7 @@
     "prebuild": "node scripts/fetch-nikkei.mjs",
     "start": "next start",
     "lint": "next lint",
+    "deploy:cf": "node scripts/deploy-cf.mjs",
     "deploy:pages": "node scripts/deploy-pages.mjs"
   },
   "dependencies": {
@@ -25,6 +26,8 @@
     "eslint": "^9.36.0",
     "eslint-config-next": "^15.5.4",
     "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.125.0",
+    "@cloudflare/workers-types": "^5.20260821.0"
   }
 }

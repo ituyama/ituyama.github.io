@@ -114,12 +114,21 @@ export default function TickerBar() {
   useEffect(() => {
     if (!ticker.liveNikkei) return;
     let alive = true;
-    fetch("/data/nikkei.json")
-      .then((r) => r.json())
-      .then((data: Quote) => {
-        if (alive && data.ok) setQuote(data);
-      })
-      .catch(() => {});
+
+    const apply = (data: Quote) => {
+      if (alive && data.ok) setQuote(data);
+    };
+
+    fetch("/api/nikkei")
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then(apply)
+      .catch(() =>
+        fetch("/data/nikkei.json")
+          .then((r) => r.json())
+          .then(apply)
+          .catch(() => {}),
+      );
+
     return () => {
       alive = false;
     };
