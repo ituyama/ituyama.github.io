@@ -749,14 +749,6 @@ body {
     line-height: 1.35;
   }
 
-  .pop-work-sheet {
-    width: calc(100% + 2rem);
-    margin-inline: -1rem;
-    border-radius: 0;
-    border-left: 0;
-    border-right: 0;
-  }
-
   .pop-work-list {
     display: flex;
     overflow-x: auto;
