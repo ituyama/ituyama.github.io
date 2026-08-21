@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { splash } from "@/lib/splash";
 
 const ROW_COUNT = 9;
@@ -19,9 +20,12 @@ const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
 });
 
 export default function Splash() {
+  const pathname = usePathname();
+  const skip = pathname === "/og";
   const [phase, setPhase] = useState<"in" | "out" | "done">("in");
 
   useEffect(() => {
+    if (skip) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       setPhase("done");
@@ -34,9 +38,9 @@ export default function Splash() {
       window.clearTimeout(out);
       window.clearTimeout(done);
     };
-  }, []);
+  }, [skip]);
 
-  if (phase === "done") return null;
+  if (skip || phase === "done") return null;
 
   return (
     <div className={`pop-splash ${phase === "out" ? "is-out" : ""}`} aria-hidden="true">
