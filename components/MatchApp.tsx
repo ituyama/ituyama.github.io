@@ -14,6 +14,8 @@ type Phase = "card" | "matched" | "nope";
 type ExitDir = "left" | "right";
 
 const SWIPE_THRESHOLD = 88;
+const PHOTO_SWIPE_THRESHOLD = 42;
+const PHOTO_TAP_ZONE = 0.34;
 const EXIT_MS = 260;
 
 function mailtoMatch() {
@@ -156,44 +158,29 @@ function MatchPhotos({
   name,
   age,
   location,
+  photoIndex,
 }: {
   name: string;
   age: number | null;
   location: string;
+  photoIndex: number;
 }) {
   const photos = match.photos;
-  const [index, setIndex] = useState(0);
-
-  const goPrev = () => setIndex((i) => Math.max(0, i - 1));
-  const goNext = () => setIndex((i) => Math.min(photos.length - 1, i + 1));
 
   return (
     <div className="pop-match-card-media">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={photos[index]} alt={`${name} ${index + 1}/${photos.length}`} className="pop-match-card-photo" draggable={false} />
+      <img
+        src={photos[photoIndex]}
+        alt={`${name} ${photoIndex + 1}/${photos.length}`}
+        className="pop-match-card-photo"
+        draggable={false}
+      />
       <div className="pop-match-photo-dots" aria-hidden="true">
         {photos.map((_, i) => (
-          <span key={i} className={`pop-match-photo-dot ${i === index ? "is-on" : ""}`} />
+          <span key={i} className={`pop-match-photo-dot ${i === photoIndex ? "is-on" : ""}`} />
         ))}
       </div>
-      <button
-        type="button"
-        className="pop-match-photo-hit pop-match-photo-hit-prev"
-        aria-label={match.actions.photoPrev}
-        onClick={(e) => {
-          e.stopPropagation();
-          goPrev();
-        }}
-      />
-      <button
-        type="button"
-        className="pop-match-photo-hit pop-match-photo-hit-next"
-        aria-label={match.actions.photoNext}
-        onClick={(e) => {
-          e.stopPropagation();
-          goNext();
-        }}
-      />
       <div className="pop-match-card-gradient" aria-hidden="true" />
       <div className="pop-match-card-copy">
         <p className="pop-match-card-name">
@@ -224,11 +211,28 @@ function SwipeableCard({
   request: ExitDir | null;
   onSwipe: (dir: ExitDir) => void;
 }) {
-  const dragRef = useRef<{ x: number; y: number; pointerId: number } | null>(null);
+  const photos = match.photos;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{
+    startX: number;
+    startY: number;
+    baseX: number;
+    baseY: number;
+    pointerId: number;
+  } | null>(null);
   const exitingRef = useRef(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [exit, setExit] = useState<ExitDir | null>(null);
+
+  const goPrevPhoto = useCallback(() => {
+    setPhotoIndex((i) => Math.max(0, i - 1));
+  }, []);
+
+  const goNextPhoto = useCallback(() => {
+    setPhotoIndex((i) => Math.min(photos.length - 1, i + 1));
+  }, [photos.length]);
 
   const animateOut = useCallback(
     (dir: ExitDir) => {
@@ -253,9 +257,34 @@ function SwipeableCard({
     dragRef.current = null;
   }, []);
 
+  const tryPhotoChange = useCallback(
+    (dx: number, startX: number) => {
+      const absDx = Math.abs(dx);
+
+      if (absDx >= PHOTO_SWIPE_THRESHOLD) {
+        if (dx > 0) goPrevPhoto();
+        else goNextPhoto();
+        return;
+      }
+
+      const card = cardRef.current;
+      if (!card) return;
+      const relX = (startX - card.getBoundingClientRect().left) / card.clientWidth;
+      if (relX < PHOTO_TAP_ZONE) goPrevPhoto();
+      else if (relX > 1 - PHOTO_TAP_ZONE) goNextPhoto();
+    },
+    [goNextPhoto, goPrevPhoto],
+  );
+
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (exit) return;
-    dragRef.current = { x: e.clientX - offset.x, y: e.clientY - offset.y, pointerId: e.pointerId };
+    dragRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      baseX: offset.x,
+      baseY: offset.y,
+      pointerId: e.pointerId,
+    };
     setDragging(true);
     e.currentTarget.setPointerCapture(e.pointerId);
   };
@@ -264,8 +293,8 @@ function SwipeableCard({
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== e.pointerId || exit) return;
     setOffset({
-      x: e.clientX - drag.x,
-      y: (e.clientY - drag.y) * 0.35,
+      x: e.clientX - drag.startX + drag.baseX,
+      y: (e.clientY - drag.startY) * 0.35 + drag.baseY,
     });
   };
 
@@ -275,18 +304,21 @@ function SwipeableCard({
     if (e.currentTarget.hasPointerCapture(e.pointerId)) {
       e.currentTarget.releasePointerCapture(e.pointerId);
     }
+
+    const dx = e.clientX - drag.startX;
     dragRef.current = null;
     setDragging(false);
 
-    const finalX = e.clientX - drag.x;
-    if (finalX > SWIPE_THRESHOLD) {
+    if (dx > SWIPE_THRESHOLD) {
       animateOut("right");
       return;
     }
-    if (finalX < -SWIPE_THRESHOLD) {
+    if (dx < -SWIPE_THRESHOLD) {
       animateOut("left");
       return;
     }
+
+    tryPhotoChange(dx, drag.startX);
     resetCard();
   };
 
@@ -301,6 +333,7 @@ function SwipeableCard({
   return (
     <div className="pop-match-stage">
       <div
+        ref={cardRef}
         className={`pop-match-card ${dragging ? "is-dragging" : ""} ${exit ? "is-exiting" : ""}`}
         style={{ transform }}
         onPointerDown={onPointerDown}
@@ -315,7 +348,7 @@ function SwipeableCard({
           {match.stamps.nope}
         </span>
 
-        <MatchPhotos name={profile.nameJa} age={age} location={profile.location} />
+        <MatchPhotos name={profile.nameJa} age={age} location={profile.location} photoIndex={photoIndex} />
       </div>
       <p className="pop-match-hint">{match.hint}</p>
     </div>

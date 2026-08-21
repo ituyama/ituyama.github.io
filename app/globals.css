@@ -1723,26 +1723,6 @@ html:has(.og-card) body {
   background: #ffffff;
 }
 
-.pop-match-photo-hit {
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  width: 34%;
-  height: 100%;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.pop-match-photo-hit-prev {
-  left: 0;
-}
-
-.pop-match-photo-hit-next {
-  right: 0;
-}
-
 .pop-match-card-photo {
   position: absolute;
   inset: 0;
