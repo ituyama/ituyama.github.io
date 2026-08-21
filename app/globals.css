@@ -1254,47 +1254,15 @@ body {
 
 .pop-splash.is-out .pop-splash-bg {
   opacity: 0;
+  transition: opacity 0.5s ease-out 1.15s;
 }
 
 .pop-splash.is-out .pop-policy-dots {
   opacity: 0;
-  transition: opacity 0.4s ease-out;
+  transition: opacity 0.45s ease-out 1.05s;
 }
 
-.pop-splash.is-out .pop-splash-track {
-  animation-play-state: paused;
-}
-
-/* Slide until the last glyph clears the frame — no mid-fade on the type. */
-.pop-splash.is-out .pop-splash-row.is-ltr {
-  animation: splashRowOutL 1.7s cubic-bezier(0.33, 0, 0.2, 1) forwards;
-}
-
-.pop-splash.is-out .pop-splash-row.is-rtl {
-  animation: splashRowOutR 1.7s cubic-bezier(0.33, 0, 0.2, 1) forwards;
-}
-
-.pop-splash.is-out .pop-splash-row:nth-child(5) { animation-delay: 0ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(4),
-.pop-splash.is-out .pop-splash-row:nth-child(6) { animation-delay: 110ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(3),
-.pop-splash.is-out .pop-splash-row:nth-child(7) { animation-delay: 220ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(2),
-.pop-splash.is-out .pop-splash-row:nth-child(8) { animation-delay: 330ms; }
-.pop-splash.is-out .pop-splash-row:nth-child(1),
-.pop-splash.is-out .pop-splash-row:nth-child(9) { animation-delay: 440ms; }
-
-@keyframes splashRowOutL {
-  to {
-    transform: translateX(-115%);
-  }
-}
-
-@keyframes splashRowOutR {
-  to {
-    transform: translateX(115%);
-  }
-}
+/* Exit: track keeps scrolling off-screen via Web Animations in Splash.tsx */
 
 .pop-splash-stack {
   position: absolute;
