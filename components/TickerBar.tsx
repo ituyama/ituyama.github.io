@@ -130,10 +130,6 @@ export default function TickerBar() {
 
   return (
     <div className="sticky top-0 z-40 flex h-10 overflow-hidden border-b-2 border-bento-ink bg-bento-accent text-bento-ink">
-      <div className="relative z-10 flex h-full shrink-0 items-center gap-2 border-r-2 border-bento-ink px-3">
-        <span className="ticker-live size-1.5 rounded-full bg-bento-ink" aria-hidden="true" />
-        <span className="text-[0.72rem] font-extrabold tracking-[0.14em]">{ticker.brand}</span>
-      </div>
       <TickerTape items={items} />
       <TapeClock />
     </div>
