@@ -14,8 +14,8 @@ const LAST_ROW_DELAY_MS = 4 * ROW_STAGGER_MS;
 const DONE_MS = HOLD_MS + LAST_ROW_DELAY_MS + ROW_OUT_MS + 120;
 
 const ROWS = Array.from({ length: ROW_COUNT }, (_, row) => {
-  const words = splash.words.filter((_, i) => i % ROW_COUNT === row);
-  const loop = [...words, ...words];
+  const word = splash.phrase[row % splash.phrase.length] ?? "";
+  const loop = Array(6).fill(word);
   return [...loop, ...loop];
 });
 
