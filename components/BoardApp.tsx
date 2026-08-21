@@ -13,8 +13,6 @@ import {
   type BoardThreadSummary,
 } from "@/lib/board";
 
-type View = "list" | "thread" | "compose";
-
 function Field({
   label,
   id,
@@ -35,32 +33,38 @@ function Field({
 function ThreadList({
   threads,
   loading,
+  activeId,
   onOpen,
   onCompose,
 }: {
   threads: BoardThreadSummary[];
   loading: boolean;
+  activeId: number | null;
   onOpen: (id: number) => void;
   onCompose: () => void;
 }) {
   return (
-    <section className="pop-board-panel">
+    <section className="pop-board-panel pop-board-side">
       <div className="pop-board-toolbar">
-        <h2 className="pop-board-title">スレッド一覧</h2>
+        <h2 className="pop-board-title">スレッド</h2>
         <button type="button" className="pop-btn" onClick={onCompose}>
-          新規スレッド
+          ＋ 新規
         </button>
       </div>
 
       {loading ? <p className="pop-board-muted">読み込み中…</p> : null}
       {!loading && threads.length === 0 ? (
-        <p className="pop-board-muted">まだスレッドがありません。最初の投稿をどうぞ。</p>
+        <p className="pop-board-muted">まだスレッドがありません。</p>
       ) : null}
 
       <ul className="pop-board-list">
         {threads.map((thread) => (
           <li key={thread.id}>
-            <button type="button" className="pop-board-row" onClick={() => onOpen(thread.id)}>
+            <button
+              type="button"
+              className={`pop-board-row ${activeId === thread.id ? "is-active" : ""}`}
+              onClick={() => onOpen(thread.id)}
+            >
               <span className="pop-board-row-title">{thread.title}</span>
               <span className="pop-board-row-meta">
                 <span>{thread.name}</span>
@@ -80,16 +84,16 @@ function PostCard({
   name,
   body,
   createdAt,
-  isOp = false,
+  align,
 }: {
   num: number;
   name: string;
   body: string;
   createdAt: number;
-  isOp?: boolean;
+  align: "left" | "right";
 }) {
   return (
-    <article className={`pop-board-post ${isOp ? "is-op" : ""}`}>
+    <article className={`pop-board-post is-${align}`}>
       <header className="pop-board-post-head">
         <span className="pop-board-post-num">{num}</span>
         <strong className="pop-board-post-name">{name}</strong>
@@ -102,7 +106,7 @@ function PostCard({
   );
 }
 
-function ThreadView({
+function ThreadPane({
   thread,
   replies,
   loading,
@@ -116,7 +120,7 @@ function ThreadView({
   loading: boolean;
   submitting: boolean;
   error: string | null;
-  onBack: () => void;
+  onBack?: () => void;
   onSubmitReply: (name: string, body: string) => Promise<void>;
 }) {
   const [name, setName] = useState("");
@@ -133,24 +137,35 @@ function ThreadView({
   }
 
   return (
-    <section className="pop-board-panel">
-      <div className="pop-board-toolbar">
-        <button type="button" className="pop-btn pop-btn-ghost" onClick={onBack}>
-          ← 一覧へ
-        </button>
+    <>
+      <div className="pop-board-toolbar pop-board-toolbar-thread">
+        {onBack ? (
+          <button type="button" className="pop-btn pop-btn-ghost pop-board-back" onClick={onBack}>
+            ← 一覧
+          </button>
+        ) : null}
         <h2 className="pop-board-title">{thread.title}</h2>
       </div>
 
-      <PostCard num={1} name={thread.name} body={thread.body} createdAt={thread.createdAt} isOp />
-      {replies.map((reply, index) => (
+      <div className="pop-board-thread">
         <PostCard
-          key={reply.id}
-          num={index + 2}
-          name={reply.name}
-          body={reply.body}
-          createdAt={reply.createdAt}
+          num={1}
+          name={thread.name}
+          body={thread.body}
+          createdAt={thread.createdAt}
+          align="left"
         />
-      ))}
+        {replies.map((reply, index) => (
+          <PostCard
+            key={reply.id}
+            num={index + 2}
+            name={reply.name}
+            body={reply.body}
+            createdAt={reply.createdAt}
+            align={index % 2 === 0 ? "right" : "left"}
+          />
+        ))}
+      </div>
 
       <form className="pop-board-form" onSubmit={handleSubmit}>
         <h3 className="pop-board-form-title">返信する</h3>
@@ -173,18 +188,18 @@ function ThreadView({
             onChange={(e) => setBody(e.target.value)}
             required
             maxLength={2000}
-            rows={5}
+            rows={4}
           />
         </Field>
         <button type="submit" className="pop-btn" disabled={submitting}>
           {submitting ? "送信中…" : "返信する"}
         </button>
       </form>
-    </section>
+    </>
   );
 }
 
-function ComposeView({
+function ComposePane({
   submitting,
   error,
   onBack,
@@ -192,7 +207,7 @@ function ComposeView({
 }: {
   submitting: boolean;
   error: string | null;
-  onBack: () => void;
+  onBack?: () => void;
   onSubmit: (title: string, name: string, body: string) => Promise<void>;
 }) {
   const [title, setTitle] = useState("");
@@ -205,15 +220,17 @@ function ComposeView({
   };
 
   return (
-    <section className="pop-board-panel">
+    <>
       <div className="pop-board-toolbar">
-        <button type="button" className="pop-btn pop-btn-ghost" onClick={onBack}>
-          ← 一覧へ
-        </button>
+        {onBack ? (
+          <button type="button" className="pop-btn pop-btn-ghost pop-board-back" onClick={onBack}>
+            ← 一覧
+          </button>
+        ) : null}
         <h2 className="pop-board-title">新規スレッド</h2>
       </div>
 
-      <form className="pop-board-form" onSubmit={handleSubmit}>
+      <form className="pop-board-form is-compose" onSubmit={handleSubmit}>
         {error ? <p className="pop-board-error">{error}</p> : null}
         <Field label="タイトル" id="thread-title">
           <input
@@ -250,7 +267,16 @@ function ComposeView({
           {submitting ? "送信中…" : "スレッドを立てる"}
         </button>
       </form>
-    </section>
+    </>
+  );
+}
+
+function EmptyPane() {
+  return (
+    <div className="pop-board-empty">
+      <p className="pop-board-empty-title">スレッドを選択</p>
+      <p className="pop-board-muted">左の一覧からスレッドを選ぶか、新規スレッドを作成してください。</p>
+    </div>
   );
 }
 
@@ -258,14 +284,14 @@ export default function BoardApp() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const threadParam = searchParams.get("t");
-  const composeParam = searchParams.get("new") === "1";
+  const isCompose = searchParams.get("new") === "1";
 
   const threadId = useMemo(() => {
     const id = Number(threadParam);
     return Number.isFinite(id) && id > 0 ? id : null;
   }, [threadParam]);
 
-  const view: View = composeParam ? "compose" : threadId ? "thread" : "list";
+  const hasMain = isCompose || threadId !== null;
 
   const [threads, setThreads] = useState<BoardThreadSummary[]>([]);
   const [thread, setThread] = useState<BoardThread | null>(null);
@@ -277,11 +303,10 @@ export default function BoardApp() {
 
   const loadThreads = useCallback(async () => {
     setLoadingList(true);
-    setError(null);
     try {
       setThreads(await fetchThreads());
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "読み込みに失敗しました");
+      setError(cause instanceof Error ? cause.message : "一覧の読み込みに失敗しました");
     } finally {
       setLoadingList(false);
     }
@@ -295,7 +320,7 @@ export default function BoardApp() {
       setThread(data.thread);
       setReplies(data.replies);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "読み込みに失敗しました");
+      setError(cause instanceof Error ? cause.message : "スレッドの読み込みに失敗しました");
       setThread(null);
       setReplies([]);
     } finally {
@@ -304,12 +329,16 @@ export default function BoardApp() {
   }, []);
 
   useEffect(() => {
-    if (view === "list") void loadThreads();
-  }, [view, loadThreads]);
+    void loadThreads();
+  }, [loadThreads]);
 
   useEffect(() => {
-    if (view === "thread" && threadId) void loadThread(threadId);
-  }, [view, threadId, loadThread]);
+    if (threadId && !isCompose) void loadThread(threadId);
+    else {
+      setThread(null);
+      setReplies([]);
+    }
+  }, [threadId, isCompose, loadThread]);
 
   const goList = () => router.push("/board");
   const goThread = (id: number) => router.push(`/board?t=${id}`);
@@ -320,6 +349,7 @@ export default function BoardApp() {
     setError(null);
     try {
       const id = await createThread({ title, name: name || undefined, body });
+      await loadThreads();
       router.push(`/board?t=${id}`);
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "投稿に失敗しました");
@@ -334,7 +364,7 @@ export default function BoardApp() {
     setError(null);
     try {
       await createReply(threadId, { name: name || undefined, body });
-      await loadThread(threadId);
+      await Promise.all([loadThread(threadId), loadThreads()]);
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "返信に失敗しました");
     } finally {
@@ -347,40 +377,45 @@ export default function BoardApp() {
       <header className="pop-board-hero">
         <p className="pop-board-kicker">BOARD</p>
         <h1 className="pop-board-mark">掲示板</h1>
-        <p className="pop-board-lead">気軽に書き込んでください。名前が空欄の場合は「名無し」になります。</p>
+        <p className="pop-board-lead">左にスレッド、右にレス。気軽に書き込んでください。</p>
       </header>
 
-      {view === "list" ? (
+      <div className={`pop-board-shell ${hasMain ? "has-main" : ""}`}>
         <ThreadList
           threads={threads}
           loading={loadingList}
+          activeId={threadId}
           onOpen={goThread}
           onCompose={goCompose}
         />
-      ) : null}
 
-      {view === "thread" ? (
-        <ThreadView
-          thread={thread}
-          replies={replies}
-          loading={loadingThread}
-          submitting={submitting}
-          error={error}
-          onBack={goList}
-          onSubmitReply={handleCreateReply}
-        />
-      ) : null}
+        <section className="pop-board-panel pop-board-main">
+          {isCompose ? (
+            <ComposePane
+              submitting={submitting}
+              error={error}
+              onBack={hasMain ? goList : undefined}
+              onSubmit={handleCreateThread}
+            />
+          ) : null}
 
-      {view === "compose" ? (
-        <ComposeView
-          submitting={submitting}
-          error={error}
-          onBack={goList}
-          onSubmit={handleCreateThread}
-        />
-      ) : null}
+          {!isCompose && threadId ? (
+            <ThreadPane
+              thread={thread}
+              replies={replies}
+              loading={loadingThread}
+              submitting={submitting}
+              error={error}
+              onBack={hasMain ? goList : undefined}
+              onSubmitReply={handleCreateReply}
+            />
+          ) : null}
 
-      {view === "list" && error ? <p className="pop-board-error pop-board-error-block">{error}</p> : null}
+          {!isCompose && !threadId ? <EmptyPane /> : null}
+        </section>
+      </div>
+
+      {!hasMain && error ? <p className="pop-board-error pop-board-error-block">{error}</p> : null}
     </div>
   );
 }
