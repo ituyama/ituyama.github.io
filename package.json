@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ogp": "node scripts/ogp.mjs"
   },
   "dependencies": {
     "@fontsource/line-seed-jp": "^5.2.2",
