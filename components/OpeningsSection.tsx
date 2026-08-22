@@ -26,6 +26,7 @@ export default function OpeningsSection({ id, feed }: Props) {
   const href = job.email ? mailto(job.email, job.org, job.role, feed.mailtoPrefix) : job.url;
   const titleId = `${id}-title`;
   const panelId = `${id}-panel`;
+  const multi = openings.length > 1;
 
   return (
     <section id={id} className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby={titleId}>
@@ -36,7 +37,8 @@ export default function OpeningsSection({ id, feed }: Props) {
         {feed.intro ? <p className="pop-section-intro">{feed.intro}</p> : null}
 
         <article className="pop-work-sheet pop-frame">
-          <div className="pop-work-split">
+          <div className={`pop-work-split ${multi ? "" : "pop-work-split-single"}`}>
+            {multi ? (
             <ul className="pop-work-list" role="tablist" aria-label={feed.title}>
               {openings.map((item, i) => {
                 const on = i === active;
@@ -57,12 +59,13 @@ export default function OpeningsSection({ id, feed }: Props) {
                 );
               })}
             </ul>
+            ) : null}
 
             <div
               className="pop-work-detail"
               id={panelId}
-              role="tabpanel"
-              aria-labelledby={`${id}-tab-${active}`}
+              role={multi ? "tabpanel" : undefined}
+              aria-labelledby={multi ? `${id}-tab-${active}` : undefined}
             >
               <p className="pop-work-role">{job.role}</p>
               {job.summary ? <p className="pop-work-summary">{job.summary}</p> : null}

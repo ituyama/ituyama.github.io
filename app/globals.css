@@ -888,6 +888,10 @@ body {
   grid-template-columns: 1fr;
 }
 
+.pop-work-split-single {
+  grid-template-columns: 1fr;
+}
+
 .pop-work-list {
   margin: 0;
   padding: 0;

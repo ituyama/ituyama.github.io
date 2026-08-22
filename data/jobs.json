@@ -4,26 +4,10 @@
   "mailtoPrefix": "案件相談",
   "openings": [
     {
-      "org": "開発",
-      "role": "Web / App",
-      "summary": "プロダクト開発、機能追加、技術支援など。TypeScript / Python / Cloudflare あたりが得意です。",
-      "tags": ["TypeScript", "Python", "Cloudflare"],
-      "cta": "案件を相談する",
-      "email": "itsuki-yamano@mitologie.jp"
-    },
-    {
-      "org": "LLM",
-      "role": "AI / プロダクト",
-      "summary": "LLM を使ったプロダクト開発や業務改善。DMM テックリード室でも LLM 周りを担当しています。",
-      "tags": ["LLM", "プロダクト"],
-      "cta": "案件を相談する",
-      "email": "itsuki-yamano@mitologie.jp"
-    },
-    {
-      "org": "デザイン",
-      "role": "UI / ブランド",
-      "summary": "UI デザイン、ブランド周り、プロダクトの見た目を整える仕事。",
-      "tags": ["UI", "デザイン"],
+      "org": "案件",
+      "role": "開発 / プロダクト / デザイン",
+      "summary": "Web / App 開発、LLM プロダクト、UI デザインなど。TypeScript / Python / Cloudflare あたりが得意です。",
+      "tags": ["TypeScript", "Python", "Cloudflare", "LLM", "UI"],
       "cta": "案件を相談する",
       "email": "itsuki-yamano@mitologie.jp"
     }
