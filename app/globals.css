@@ -1083,6 +1083,10 @@ body {
     align-items: stretch;
   }
 
+  .pop-work-split-single {
+    grid-template-columns: 1fr;
+  }
+
   .pop-work-list {
     display: flex;
     flex-direction: column;
