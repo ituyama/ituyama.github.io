@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "dev:cf": "npm run build && wrangler dev",
-    "predev": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs && node scripts/fetch-grass.mjs && node scripts/fetch-sukiya-random.mjs",
+    "predev": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs && node scripts/fetch-sukiya-random.mjs",
     "build": "next build",
-    "prebuild": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs && node scripts/fetch-grass.mjs && node scripts/fetch-sukiya-random.mjs",
+    "prebuild": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs && node scripts/fetch-sukiya-random.mjs",
     "start": "next start",
     "lint": "next lint",
     "deploy:cf": "node scripts/deploy-cf.mjs",

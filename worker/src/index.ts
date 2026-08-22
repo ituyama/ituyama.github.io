@@ -1,4 +1,3 @@
-import { fetchGrass } from "./grass";
 import { girlfriendResponse } from "./girlfriend";
 import { handleContact, type ContactEnv } from "./contact";
 
@@ -7,11 +6,6 @@ export type NikkeiPayload = {
   price?: number;
   changePercent?: number;
   asOf?: number;
-};
-
-export type GrassPayload = {
-  total: { lastYear: number };
-  contributions: Array<{ date: string; count: number; level: number }>;
 };
 
 const ALLOWED_ORIGINS = new Set([
@@ -110,21 +104,6 @@ export default {
       return Response.json(girlfriendResponse(), {
         headers: apiHeaders,
       });
-    }
-
-    if (url.pathname === "/api/grass") {
-      const grassHeaders = {
-        ...headers,
-        "Cache-Control": "public, max-age=3600",
-      };
-      try {
-        return Response.json(await fetchGrass(), { headers: grassHeaders });
-      } catch {
-        return Response.json(
-          { total: { lastYear: 0 }, contributions: [] } satisfies GrassPayload,
-          { status: 502, headers: grassHeaders },
-        );
-      }
     }
 
     if (url.pathname === "/api/contact") {
