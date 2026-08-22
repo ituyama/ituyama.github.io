@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Fira_Code, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "@fontsource/line-seed-jp/400.css";
 import "@fontsource/line-seed-jp/700.css";
@@ -38,6 +39,8 @@ const firaCode = Fira_Code({
   variable: "--font-fira-code",
   display: "swap",
 });
+
+const GA_MEASUREMENT_ID = "G-C6TSYXVQ9R";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -132,6 +135,18 @@ export default function RootLayout({
         ))}
       </head>
       <body className={`${notoSansJp.variable} ${notoSerifJp.variable} ${firaCode.variable}`}>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <ContactFormProvider>
           <ProfileFacts />
           <Splash />
