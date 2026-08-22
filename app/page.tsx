@@ -1,5 +1,5 @@
 import BioSection from "@/components/BioSection";
-import GrassSection from "@/components/GrassSection";
+import GrassFooter from "@/components/GrassFooter";
 import HireSection from "@/components/HireSection";
 import JobsSection from "@/components/JobsSection";
 import ProfileHero from "@/components/ProfileHero";
@@ -25,11 +25,11 @@ export default function Home() {
         <TalkSection />
         <WorkPanel />
         <TagSection />
-        <GrassSection />
         <JobsSection />
         <HireSection />
       </main>
       <footer className="border-t-2 border-bento-line px-4 pb-[max(4.5rem,calc(env(safe-area-inset-bottom,0px)+3.5rem))] pt-6 text-center text-[0.76rem] font-bold text-bento-muted md:ml-[72px] md:pb-8">
+        <GrassFooter />
         <p>
           © {year} {profile.nameJa} / {profile.nameEn}
         </p>

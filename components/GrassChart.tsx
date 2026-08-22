@@ -5,10 +5,39 @@ import { buildGrassWeeks, type GrassDay } from "@/lib/grass";
 type Props = {
   contributions: GrassDay[];
   total: number;
+  compact?: boolean;
 };
 
-export default function GrassChart({ contributions, total }: Props) {
+export default function GrassChart({ contributions, total, compact = false }: Props) {
   const weeks = buildGrassWeeks(contributions);
+
+  if (compact) {
+    return (
+      <div
+        className="pop-grass pop-grass-compact"
+        role="img"
+        aria-label={`GitHub 草。過去1年 ${total} 件。`}
+      >
+        <div className="pop-grass-grid" aria-hidden="true">
+          {weeks.map((week, weekIndex) => (
+            <div key={weekIndex} className="pop-grass-week">
+              {week.map((day, dayIndex) =>
+                day ? (
+                  <span
+                    key={day.date}
+                    className={`pop-grass-cell level-${day.level}`}
+                    title={`${day.date}: ${day.count}`}
+                  />
+                ) : (
+                  <span key={`empty-${weekIndex}-${dayIndex}`} className="pop-grass-cell is-empty" />
+                ),
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pop-grass">
@@ -32,15 +61,6 @@ export default function GrassChart({ contributions, total }: Props) {
           </div>
         ))}
       </div>
-      <ul className="pop-grass-legend" aria-hidden="true">
-        <li>少</li>
-        {[0, 1, 2, 3, 4].map((level) => (
-          <li key={level}>
-            <span className={`pop-grass-cell level-${level}`} />
-          </li>
-        ))}
-        <li>多</li>
-      </ul>
     </div>
   );
 }

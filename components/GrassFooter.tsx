@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 
 import GrassChart from "@/components/GrassChart";
 import { GRASS_API_PATH, type GrassFeed } from "@/lib/grass";
-import { profile } from "@/lib/profile";
 
-export default function GrassSection() {
+export default function GrassFooter() {
   const [feed, setFeed] = useState<GrassFeed | null>(null);
-  const github = profile.socials.find((s) => s.icon === "github" || s.name === "GitHub");
 
   useEffect(() => {
     let cancelled = false;
@@ -39,26 +37,8 @@ export default function GrassSection() {
   if (!feed?.contributions.length) return null;
 
   return (
-    <section id="grass" className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby="grass-title">
-      <div className="pop-policy-inner">
-        <h2 id="grass-title" className="pop-policy-mark">
-          芝
-        </h2>
-        <div className="pop-grass-sheet pop-frame">
-          <GrassChart contributions={feed.contributions} total={feed.total.lastYear} />
-          {github ? (
-            <a
-              href={github.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pop-grass-link"
-            >
-              <i className="bi bi-github" aria-hidden="true" />
-              {github.handle}
-            </a>
-          ) : null}
-        </div>
-      </div>
-    </section>
+    <div className="pop-grass-footer">
+      <GrassChart contributions={feed.contributions} total={feed.total.lastYear} compact />
+    </div>
   );
 }

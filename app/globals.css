@@ -2205,6 +2205,56 @@ body {
   background: #ffffff;
 }
 
+.pop-grass-footer {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 0.85rem;
+  max-width: 100%;
+  opacity: 0.72;
+}
+
+.pop-grass-compact .pop-grass-grid {
+  justify-content: center;
+  gap: 3px;
+  padding: 0;
+}
+
+.pop-grass-compact .pop-grass-week {
+  gap: 3px;
+}
+
+.pop-grass-compact .pop-grass-cell {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.pop-grass-compact .pop-grass-cell.is-empty {
+  visibility: hidden;
+}
+
+.pop-grass-compact .pop-grass-cell.level-0 {
+  background: #e8ebe9;
+}
+
+.pop-grass-compact .pop-grass-cell.level-1 {
+  background: #b8f5d4;
+}
+
+.pop-grass-compact .pop-grass-cell.level-2 {
+  background: #6deea8;
+}
+
+.pop-grass-compact .pop-grass-cell.level-3 {
+  background: #3de88a;
+}
+
+.pop-grass-compact .pop-grass-cell.level-4 {
+  background: #00e676;
+}
+
 .pop-grass-total {
   margin: 0 0 0.85rem;
   font-size: 0.82rem;
