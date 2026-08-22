@@ -5,8 +5,8 @@ import { useState } from "react";
 import MatchApp from "@/components/MatchApp";
 import type { OpeningsFeed } from "@/lib/openings";
 
-function mailto(email: string, org: string, role: string) {
-  const subject = encodeURIComponent(`募集: ${org} ${role}`);
+function mailto(email: string, org: string, role: string, prefix = "募集") {
+  const subject = encodeURIComponent(`${prefix}: ${org} ${role}`);
   return `mailto:${email}?subject=${subject}`;
 }
 
@@ -23,7 +23,7 @@ export default function OpeningsSection({ id, feed }: Props) {
 
   if (!job) return null;
 
-  const href = job.email ? mailto(job.email, job.org, job.role) : job.url;
+  const href = job.email ? mailto(job.email, job.org, job.role, feed.mailtoPrefix) : job.url;
   const titleId = `${id}-title`;
   const panelId = `${id}-panel`;
 

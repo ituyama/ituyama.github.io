@@ -12,5 +12,7 @@ export type Opening = {
 export type OpeningsFeed = {
   title: string;
   intro: string;
+  /** mailto subject prefix — default: 募集 */
+  mailtoPrefix?: string;
   openings: Opening[];
 };

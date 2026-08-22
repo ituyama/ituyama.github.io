@@ -1,13 +1,30 @@
 {
   "title": "お仕事募集",
-  "intro": "開発・プロダクトで一緒に作れる方を探しています",
+  "intro": "開発・プロダクトの案件を探しています",
+  "mailtoPrefix": "案件相談",
   "openings": [
     {
-      "org": "一緒に働く人",
-      "role": "プロダクト / 事業",
-      "summary": "ちょいちょい開発案件が来ます。手に負えない数になることもあるので、エンジニアを募集しています。",
-      "tags": ["Mitologie", "Xtraveler"],
-      "cta": "話を聞く",
+      "org": "開発",
+      "role": "Web / App",
+      "summary": "プロダクト開発、機能追加、技術支援など。TypeScript / Python / Cloudflare あたりが得意です。",
+      "tags": ["TypeScript", "Python", "Cloudflare"],
+      "cta": "案件を相談する",
+      "email": "itsuki-yamano@mitologie.jp"
+    },
+    {
+      "org": "LLM",
+      "role": "AI / プロダクト",
+      "summary": "LLM を使ったプロダクト開発や業務改善。DMM テックリード室でも LLM 周りを担当しています。",
+      "tags": ["LLM", "プロダクト"],
+      "cta": "案件を相談する",
+      "email": "itsuki-yamano@mitologie.jp"
+    },
+    {
+      "org": "デザイン",
+      "role": "UI / ブランド",
+      "summary": "UI デザイン、ブランド周り、プロダクトの見た目を整える仕事。",
+      "tags": ["UI", "デザイン"],
+      "cta": "案件を相談する",
       "email": "itsuki-yamano@mitologie.jp"
     }
   ]
