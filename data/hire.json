@@ -1,6 +1,6 @@
 {
-  "title": "お仕事募集",
-  "intro": "開発・プロダクトで一緒に作れる方を探しています",
+  "title": "求人募集",
+  "intro": "人を募集しています",
   "openings": [
     {
       "org": "飲み友達",
@@ -8,17 +8,6 @@
       "summary": "飲み友達を募集しています　ドライブも行こうね",
       "tags": [],
       "cta": "連絡する",
-      "email": "itsuki-yamano@mitologie.jp"
-    },
-    {
-      "org": "一緒に働く人",
-      "role": "プロダクト / 事業",
-      "summary": "ちょいちょい開発案件が来ます。手に負えない数になることもあるので、エンジニアを募集しています。",
-      "tags": [
-        "Mitologie",
-        "Xtraveler"
-      ],
-      "cta": "話を聞く",
       "email": "itsuki-yamano@mitologie.jp"
     },
     {

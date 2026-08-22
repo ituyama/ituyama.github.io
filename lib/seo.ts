@@ -1,4 +1,5 @@
 import { hire } from "@/lib/hire";
+import { jobs } from "@/lib/jobs";
 import { profile } from "@/lib/profile";
 import { tags } from "@/lib/tags";
 import { work } from "@/lib/work";
@@ -153,6 +154,13 @@ export function llmsTxtBody(age: number | null) {
       if (c.focus?.length) bits.push(`focus: ${c.focus.join(", ")}`);
       if (c.url) bits.push(c.url);
       lines.push(`- ${bits.join(" / ")}`);
+    }
+  }
+
+  if (jobs.openings.length) {
+    lines.push("", `## ${jobs.title}`, jobs.intro);
+    for (const job of jobs.openings) {
+      lines.push(`- ${job.org} — ${job.role}: ${job.summary}`);
     }
   }
 

@@ -1,4 +1,5 @@
 import { hire } from "@/lib/hire";
+import { jobs } from "@/lib/jobs";
 import { calcAge, profile } from "@/lib/profile";
 import { tags } from "@/lib/tags";
 import { work } from "@/lib/work";
@@ -81,6 +82,23 @@ export default function ProfileFacts() {
           <ul>
             {profile.university ? <li>{profile.university}</li> : null}
             {profile.highSchool ? <li>{profile.highSchool}</li> : null}
+          </ul>
+        </section>
+      ) : null}
+
+      {jobs.openings.length ? (
+        <section aria-label={jobs.title}>
+          <h2>{jobs.title}</h2>
+          {jobs.intro ? <p>{jobs.intro}</p> : null}
+          <ul>
+            {jobs.openings.map((job) => (
+              <li key={`${job.org}-${job.role}`}>
+                <p>
+                  {job.org} — {job.role}
+                </p>
+                {job.summary ? <p>{job.summary}</p> : null}
+              </li>
+            ))}
           </ul>
         </section>
       ) : null}
