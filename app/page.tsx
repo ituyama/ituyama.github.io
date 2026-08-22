@@ -1,4 +1,5 @@
 import BioSection from "@/components/BioSection";
+import GrassSection from "@/components/GrassSection";
 import HireSection from "@/components/HireSection";
 import JobsSection from "@/components/JobsSection";
 import ProfileHero from "@/components/ProfileHero";
@@ -24,6 +25,7 @@ export default function Home() {
         <TalkSection />
         <WorkPanel />
         <TagSection />
+        <GrassSection />
         <JobsSection />
         <HireSection />
       </main>
