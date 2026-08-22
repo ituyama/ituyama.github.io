@@ -1,14 +1,14 @@
 {
   "title": "お仕事募集",
-  "intro": "開発・プロダクトの案件を探しています",
-  "mailtoPrefix": "案件相談",
+  "intro": "",
+  "mailtoPrefix": "お仕事のご相談",
   "openings": [
     {
       "org": "案件",
-      "role": "開発 / プロダクト / デザイン",
-      "summary": "Web / App 開発、LLM プロダクト、UI デザインなど。TypeScript / Python / Cloudflare あたりが得意です。",
-      "tags": ["TypeScript", "Python", "Cloudflare", "LLM", "UI"],
-      "cta": "案件を相談する",
+      "role": "",
+      "summary": "ある程度モダンな技術スタックであれば大体いけます。\n\nPoCの開発でもラズパイ電子工作でも人生相談でも大体なんでも受けます。\n\nこのホームページを見てお仕事たのみたいな〜！と思った方は下記フォームよりお問い合わせください。",
+      "tags": [],
+      "cta": "お問い合わせ",
       "email": "itsuki-yamano@mitologie.jp"
     }
   ]

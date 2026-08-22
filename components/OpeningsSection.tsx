@@ -67,7 +67,7 @@ export default function OpeningsSection({ id, feed }: Props) {
               role={multi ? "tabpanel" : undefined}
               aria-labelledby={multi ? `${id}-tab-${active}` : undefined}
             >
-              <p className="pop-work-role">{job.role}</p>
+              {job.role ? <p className="pop-work-role">{job.role}</p> : null}
               {job.summary ? <p className="pop-work-summary">{job.summary}</p> : null}
               {job.tags.length ? (
                 <div className="pop-hire-tags">
