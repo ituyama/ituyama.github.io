@@ -937,6 +937,23 @@ body {
   font-weight: 700;
 }
 
+#jobs .pop-work-detail-single {
+  align-items: center;
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 6vw, 3.5rem);
+}
+
+#jobs .pop-work-detail-single .pop-work-summary {
+  max-width: 36rem;
+  margin-inline: auto;
+  line-height: 1.85;
+}
+
+#jobs .pop-work-actions {
+  justify-content: center;
+  width: 100%;
+}
+
 .pop-work-role {
   margin: 0;
   font-size: 0.78rem;

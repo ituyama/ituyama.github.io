@@ -80,7 +80,7 @@ export default function OpeningsSection({ id, feed }: Props) {
                 </div>
               ) : null}
               {job.api === "girlfriend" ? <GirlfriendApiCard /> : null}
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="pop-work-actions mt-5 flex flex-wrap gap-2">
                 {job.match ? (
                   <button type="button" className="pop-btn pop-match-open" onClick={() => setMatchOpen(true)}>
                     <i className="bi bi-heart-fill" aria-hidden="true" />
