@@ -1,5 +1,3 @@
-import { handleBoard } from "./board";
-
 export type NikkeiPayload = {
   ok: boolean;
   price?: number;
@@ -69,8 +67,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const origin = request.headers.get("Origin");
-    const apiMethods = "GET, POST, OPTIONS";
-    const headers = corsHeaders(origin, apiMethods);
+    const headers = corsHeaders(origin, "GET, OPTIONS");
 
     if (url.hostname === "www.ituyama.com") {
       url.hostname = "ituyama.com";
@@ -80,9 +77,6 @@ export default {
     if (request.method === "OPTIONS") {
       return new Response(null, { headers });
     }
-
-    const board = await handleBoard(request, env, url, headers);
-    if (board) return board;
 
     if (url.pathname === "/api/nikkei") {
       const nikkeiHeaders = {
@@ -105,5 +99,4 @@ export default {
 
 interface Env {
   ASSETS: Fetcher;
-  DB: D1Database;
 }

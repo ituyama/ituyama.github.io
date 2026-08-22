@@ -10,9 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "deploy:cf": "node scripts/deploy-cf.mjs",
-    "deploy:pages": "node scripts/deploy-pages.mjs",
-    "db:migrate": "wrangler d1 migrations apply ituyama-board --remote",
-    "db:migrate:local": "wrangler d1 migrations apply ituyama-board --local"
+    "deploy:pages": "node scripts/deploy-pages.mjs"
   },
   "dependencies": {
     "@fontsource/line-seed-jp": "^5.2.2",

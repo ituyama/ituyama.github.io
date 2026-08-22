@@ -8,14 +8,6 @@
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash"
   },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "ituyama-board",
-      "database_id": "f7576569-ba67-4151-9d71-f3f82a36d54f",
-      "migrations_dir": "migrations"
-    }
-  ],
   "routes": [
     { "pattern": "ituyama.com/*", "zone_name": "ituyama.com" },
     { "pattern": "www.ituyama.com/*", "zone_name": "ituyama.com" }
