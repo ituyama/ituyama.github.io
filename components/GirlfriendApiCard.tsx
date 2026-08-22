@@ -2,49 +2,42 @@
 
 import { useEffect, useState } from "react";
 
+import { GIRLFRIEND_API_PATH, type GirlfriendPayload } from "@/lib/girlfriend";
 import { SITE_URL } from "@/lib/seo";
 
-type Payload = {
-  hasGirlfriend: boolean;
-};
-
-const ENDPOINT = "/api/girlfriend";
-
 export default function GirlfriendApiCard() {
-  const [payload, setPayload] = useState<Payload | null>(null);
+  const [payload, setPayload] = useState<GirlfriendPayload | null>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
 
-    (async () => {
-      try {
-        const res = await fetch(ENDPOINT);
+    fetch(GIRLFRIEND_API_PATH, { headers: { Accept: "application/json" } })
+      .then((res) => {
         if (!res.ok) throw new Error(String(res.status));
-        const data = (await res.json()) as Payload;
-        if (!cancelled) setPayload(data);
-      } catch {
-        try {
-          const res = await fetch("/data/girlfriend.json");
-          if (!res.ok) throw new Error(String(res.status));
-          const data = (await res.json()) as Payload;
-          if (!cancelled) setPayload(data);
-        } catch {
-          if (!cancelled) setPayload({ hasGirlfriend: false });
+        return res.json() as Promise<GirlfriendPayload>;
+      })
+      .then((data) => {
+        if (!cancelled) {
+          setPayload(data);
+          setError(false);
         }
-      }
-    })();
+      })
+      .catch(() => {
+        if (!cancelled) setError(true);
+      });
 
     return () => {
       cancelled = true;
     };
   }, []);
 
-  const json = JSON.stringify(payload ?? { hasGirlfriend: false }, null, 2);
-  const absolute = `${SITE_URL}${ENDPOINT}`;
+  const absolute = `${SITE_URL}${GIRLFRIEND_API_PATH}`;
+  const json = payload ? JSON.stringify(payload, null, 2) : error ? "/* fetch failed */" : "…";
 
   return (
     <div className="pop-girlfriend-api" aria-label="彼女在籍状況 API">
-      <p className="pop-girlfriend-api-label">REST API（ネタ）</p>
+      <p className="pop-girlfriend-api-label">彼女存在判定API</p>
       <p className="pop-girlfriend-api-method">
         <span className="pop-girlfriend-api-verb">GET</span>{" "}
         <code className="pop-girlfriend-api-url">{absolute}</code>
