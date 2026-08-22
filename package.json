@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "predev": "node scripts/fetch-nikkei.mjs",
+    "dev:cf": "npm run build && wrangler dev",
+    "predev": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs",
     "build": "next build",
-    "prebuild": "node scripts/fetch-nikkei.mjs",
+    "prebuild": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs",
     "start": "next start",
     "lint": "next lint",
     "deploy:cf": "node scripts/deploy-cf.mjs",
