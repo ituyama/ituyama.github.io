@@ -7,6 +7,8 @@ export type Opening = {
   email?: string;
   url?: string;
   match?: boolean;
+  /** special panel — girlfriend status API */
+  api?: "girlfriend";
 };
 
 export type OpeningsFeed = {

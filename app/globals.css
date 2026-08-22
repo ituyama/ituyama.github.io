@@ -968,6 +968,53 @@ body {
   margin-top: 1rem;
 }
 
+.pop-girlfriend-api {
+  margin-top: 1.1rem;
+  padding: 0.85rem 0.95rem;
+  border: 2px solid var(--color-bento-line);
+  border-radius: 12px;
+  background: #f7f7f6;
+  font-family: var(--font-mono);
+}
+
+.pop-girlfriend-api-label {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.pop-girlfriend-api-method {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.pop-girlfriend-api-verb {
+  display: inline-block;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: var(--color-bento-accent);
+  font-weight: 700;
+}
+
+.pop-girlfriend-api-url {
+  font-size: 0.76rem;
+}
+
+.pop-girlfriend-api-body {
+  margin: 0.65rem 0 0;
+  padding: 0.65rem 0.75rem;
+  border: 2px solid var(--color-bento-line);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow-x: auto;
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
 .pop-tag-list {
   display: flex;
   flex-wrap: wrap;

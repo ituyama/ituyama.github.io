@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import MatchApp from "@/components/MatchApp";
+import GirlfriendApiCard from "@/components/GirlfriendApiCard";
 import type { OpeningsFeed } from "@/lib/openings";
 
 function mailto(email: string, org: string, role: string, prefix = "募集") {
@@ -78,6 +79,7 @@ export default function OpeningsSection({ id, feed }: Props) {
                   ))}
                 </div>
               ) : null}
+              {job.api === "girlfriend" ? <GirlfriendApiCard /> : null}
               <div className="mt-5 flex flex-wrap gap-2">
                 {job.match ? (
                   <button type="button" className="pop-btn pop-match-open" onClick={() => setMatchOpen(true)}>

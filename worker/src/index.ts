@@ -5,6 +5,10 @@ export type NikkeiPayload = {
   asOf?: number;
 };
 
+export type GirlfriendPayload = {
+  hasGirlfriend: false;
+};
+
 const ALLOWED_ORIGINS = new Set([
   "https://ituyama.com",
   "https://www.ituyama.com",
@@ -91,6 +95,16 @@ export default {
           headers: nikkeiHeaders,
         });
       }
+    }
+
+    if (url.pathname === "/api/girlfriend") {
+      const apiHeaders = {
+        ...headers,
+        "Cache-Control": "public, max-age=300",
+      };
+      return Response.json({ hasGirlfriend: false } satisfies GirlfriendPayload, {
+        headers: apiHeaders,
+      });
     }
 
     return env.ASSETS.fetch(request);

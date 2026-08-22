@@ -25,7 +25,8 @@
       "tags": [],
       "cta": "連絡する",
       "email": "itsuki-yamano@mitologie.jp",
-      "match": true
+      "match": true,
+      "api": "girlfriend"
     }
   ]
 }
