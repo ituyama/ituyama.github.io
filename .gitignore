@@ -36,6 +36,9 @@ yarn-error.log*
 .wrangler/
 .dev.vars
 
+# synced from github.com/ituyama/SukiyaRandom at build time
+/public/SukiyaRandom/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
