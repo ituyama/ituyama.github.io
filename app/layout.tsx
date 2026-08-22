@@ -44,13 +44,17 @@ export const metadata: Metadata = {
   title: { default: siteTitle, template: `%s｜${profile.nameJa}` },
   description: siteDescription,
   keywords: siteKeywords,
-  authors: [{ name: profile.nameEn, url: SITE_URL }],
+  applicationName: profile.nameJa,
+  authors: [{ name: profile.nameEn, url: SITE_URL }, { name: profile.nameJa, url: SITE_URL }],
   creator: profile.nameEn,
   publisher: profile.nameEn,
   category: "portfolio",
   alternates: {
     canonical: "/",
     languages: { "ja-JP": "/" },
+    types: {
+      "application/ld+json": `${SITE_URL}/`,
+    },
   },
   robots: {
     index: true,
@@ -74,11 +78,14 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: siteTitle,
     locale: "ja_JP",
+    alternateLocale: ["en_US"],
+    countryName: "Japan",
     images: ogImages,
     type: "profile",
     firstName: "Itsuki",
     lastName: "Yamano",
     username: "ituyama",
+    emails: profile.email ? [profile.email] : undefined,
   },
   twitter: {
     card: "summary_large_image",
@@ -120,6 +127,9 @@ export default function RootLayout({
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph()) }}
         />
+        {profile.socials.map((social) => (
+          <link key={social.url} rel="me" href={social.url} />
+        ))}
       </head>
       <body className={`${notoSansJp.variable} ${notoSerifJp.variable} ${firaCode.variable}`}>
         <ContactFormProvider>

@@ -1,6 +1,7 @@
 import { hire } from "@/lib/hire";
 import { jobs } from "@/lib/jobs";
 import { calcAge, profile } from "@/lib/profile";
+import { faqEntries } from "@/lib/seo";
 import { tags } from "@/lib/tags";
 import { work } from "@/lib/work";
 
@@ -24,6 +25,13 @@ export default function ProfileFacts() {
       {profile.policy ? <p>{profile.policy}</p> : null}
       {profile.roles.length ? <p>{profile.roles.join(" / ")}</p> : null}
       {profile.about ? <p>{profile.about}</p> : null}
+
+      {faqEntries().map((entry) => (
+        <details key={entry.question}>
+          <summary>{entry.question}</summary>
+          <p>{entry.answer}</p>
+        </details>
+      ))}
 
       <dl>
         {age !== null ? (

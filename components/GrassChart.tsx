@@ -1,6 +1,6 @@
 "use client";
 
-import { buildGrassWeeks, type GrassDay, type GrassFeed } from "@/lib/grass";
+import { buildGrassWeeks, type GrassDay } from "@/lib/grass";
 
 type Props = {
   contributions: GrassDay[];

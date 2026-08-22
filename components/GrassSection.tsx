@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import GrassChart, { type GrassFeed } from "@/components/GrassChart";
-import { GRASS_API_PATH } from "@/lib/grass";
+import GrassChart from "@/components/GrassChart";
+import { GRASS_API_PATH, type GrassFeed } from "@/lib/grass";
 import { profile } from "@/lib/profile";
 
 export default function GrassSection() {
