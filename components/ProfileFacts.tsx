@@ -86,8 +86,8 @@ export default function ProfileFacts() {
       ) : null}
 
       {hire.openings.length ? (
-        <section aria-label="募集">
-          <h2>募集</h2>
+        <section aria-label={hire.title}>
+          <h2>{hire.title}</h2>
           {hire.intro ? <p>{hire.intro}</p> : null}
           <ul>
             {hire.openings.map((job) => (

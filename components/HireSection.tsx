@@ -30,7 +30,7 @@ export default function HireSection() {
 
         <article className="pop-work-sheet pop-frame">
           <div className="pop-work-split">
-            <ul className="pop-work-list" role="tablist" aria-label="募集">
+            <ul className="pop-work-list" role="tablist" aria-label={hire.title}>
               {openings.map((item, i) => {
                 const on = i === active;
                 return (

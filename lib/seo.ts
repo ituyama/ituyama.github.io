@@ -157,7 +157,7 @@ export function llmsTxtBody(age: number | null) {
   }
 
   if (hire.openings.length) {
-    lines.push("", "## 募集", hire.intro);
+    lines.push("", `## ${hire.title}`, hire.intro);
     for (const job of hire.openings) {
       lines.push(`- ${job.org} — ${job.role}: ${job.summary}`);
     }
