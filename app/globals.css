@@ -2081,3 +2081,131 @@ body {
 .pop-btn-ghost {
   background: #ffffff;
 }
+
+.pop-contact-root {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-match) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(1rem, env(safe-area-inset-top, 0px)) 1rem max(1rem, env(safe-area-inset-bottom, 0px));
+  background: rgba(17, 17, 17, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.pop-contact-shell {
+  width: min(100%, 28rem);
+  max-height: min(44rem, calc(100dvh - 2rem));
+  overflow: auto;
+  border: 2px solid var(--color-bento-line);
+  border-radius: calc(var(--radius-bento) + 4px);
+  background: #ffffff;
+  box-shadow: 8px 8px 0 #000000;
+}
+
+.pop-contact-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 2px solid var(--color-bento-line);
+  background: var(--color-bento-accent);
+  padding: 0.75rem 0.85rem;
+}
+
+.pop-contact-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.pop-contact-close {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-bento-line);
+  border-radius: 999px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.pop-contact-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1rem 1rem 1.15rem;
+}
+
+.pop-contact-subject {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.5;
+  color: var(--color-bento-muted, #555);
+}
+
+.pop-contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.pop-contact-field input,
+.pop-contact-field textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 2px solid var(--color-bento-line);
+  border-radius: 10px;
+  background: #ffffff;
+  font: inherit;
+  font-weight: 700;
+}
+
+.pop-contact-field textarea {
+  resize: vertical;
+  min-height: 6.5rem;
+}
+
+.pop-contact-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.pop-contact-error {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #b00020;
+}
+
+.pop-contact-submit {
+  width: 100%;
+  justify-content: center;
+}
+
+.pop-contact-done {
+  align-items: center;
+  text-align: center;
+  padding-block: 1.5rem;
+}
+
+.pop-contact-done-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.pop-contact-done-copy {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.6;
+}

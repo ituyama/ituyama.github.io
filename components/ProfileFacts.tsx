@@ -134,11 +134,7 @@ export default function ProfileFacts() {
       <section aria-label="連絡先・リンク">
         <h2>連絡先・リンク</h2>
         <ul>
-          {profile.email ? (
-            <li>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </li>
-          ) : null}
+          {profile.email ? <li>{profile.email}</li> : null}
           {profile.socials.map((s) => (
             <li key={s.url}>
               <a href={s.url} rel="me noopener noreferrer">

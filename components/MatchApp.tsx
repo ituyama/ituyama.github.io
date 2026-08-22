@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+import { useContactForm } from "@/components/ContactFormProvider";
 import { match } from "@/lib/match";
 import { calcAge, profile } from "@/lib/profile";
 
@@ -18,12 +19,6 @@ const SWIPE_THRESHOLD = 88;
 const PHOTO_SWIPE_THRESHOLD = 42;
 const PHOTO_TAP_ZONE = 0.34;
 const EXIT_MS = 260;
-
-function mailtoMatch() {
-  const subject = encodeURIComponent(match.mailto.subject);
-  const body = encodeURIComponent(match.mailto.body);
-  return `mailto:${profile.email}?subject=${subject}&body=${body}`;
-}
 
 export default function MatchApp({ open, onClose }: MatchAppProps) {
   const titleId = useId();
@@ -99,6 +94,8 @@ export default function MatchApp({ open, onClose }: MatchAppProps) {
 }
 
 function MatchCelebrate({ onClose, titleId }: { onClose: () => void; titleId: string }) {
+  const { openContact } = useContactForm();
+
   return (
     <div className="pop-match-celebrate" role="status" aria-labelledby={titleId}>
       <div className="pop-match-celebrate-sparkles" aria-hidden="true">
@@ -138,10 +135,21 @@ function MatchCelebrate({ onClose, titleId }: { onClose: () => void; titleId: st
       <p className="pop-match-celebrate-copy">{match.matched.copy}</p>
 
       <div className="pop-match-celebrate-actions">
-        <a href={mailtoMatch()} className="pop-match-celebrate-btn pop-match-celebrate-btn-primary">
+        <button
+          type="button"
+          className="pop-match-celebrate-btn pop-match-celebrate-btn-primary"
+          onClick={() => {
+            openContact({
+              subject: match.mailto.subject,
+              source: "マッチングアプリ",
+              defaultMessage: match.mailto.body,
+            });
+            onClose();
+          }}
+        >
           <i className="bi bi-chat-heart-fill" aria-hidden="true" />
           {match.matched.messageCta}
-        </a>
+        </button>
         <button type="button" className="pop-match-celebrate-btn pop-match-celebrate-btn-secondary" onClick={onClose}>
           {match.matched.closeCta}
         </button>

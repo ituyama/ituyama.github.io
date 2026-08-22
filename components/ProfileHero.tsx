@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import KvHeightLock from "./KvHeightLock";
+import ContactButton from "@/components/ContactButton";
 import { profile } from "@/lib/profile";
 
 const LIME = "#00e676";
@@ -182,10 +183,14 @@ export default function ProfileHero() {
             ))}
           </div>
           {profile.email ? (
-            <a href={`mailto:${profile.email}`} className="pop-cover-copy-rest pop-btn mt-5 w-fit">
+            <ContactButton
+              subject="ポートフォリオからの連絡"
+              source="ヒーロー"
+              className="pop-cover-copy-rest pop-btn mt-5 w-fit"
+            >
               <i className="bi bi-envelope-fill" aria-hidden="true" />
-              メールする
-            </a>
+              お問い合わせ
+            </ContactButton>
           ) : null}
         </div>
       </div>

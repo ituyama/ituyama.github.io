@@ -2,14 +2,10 @@
 
 import { useState } from "react";
 
+import ContactButton from "@/components/ContactButton";
 import MatchApp from "@/components/MatchApp";
 import GirlfriendApiCard from "@/components/GirlfriendApiCard";
 import type { OpeningsFeed } from "@/lib/openings";
-
-function mailto(email: string, org: string, role: string, prefix = "募集") {
-  const subject = encodeURIComponent(`${prefix}: ${org} ${role}`);
-  return `mailto:${email}?subject=${subject}`;
-}
 
 type Props = {
   id: string;
@@ -24,7 +20,8 @@ export default function OpeningsSection({ id, feed }: Props) {
 
   if (!job) return null;
 
-  const href = job.email ? mailto(job.email, job.org, job.role, feed.mailtoPrefix) : job.url;
+  const contactSubject = `${feed.mailtoPrefix || "募集"}: ${job.org}${job.role ? ` ${job.role}` : ""}`;
+  const contactSource = `${feed.title} / ${job.org}`;
   const titleId = `${id}-title`;
   const panelId = `${id}-panel`;
   const multi = openings.length > 1;
@@ -87,15 +84,25 @@ export default function OpeningsSection({ id, feed }: Props) {
                     マッチング
                   </button>
                 ) : null}
-                {href ? (
+                {job.url && !job.email ? (
                   <a
-                    href={href}
+                    href={job.url}
                     className="pop-btn pop-work-link w-fit"
-                    {...(job.url && !job.email ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                    {job.cta}
+                  </a>
+                ) : job.cta ? (
+                  <ContactButton
+                    subject={contactSubject}
+                    source={contactSource}
+                    className="pop-btn pop-work-link w-fit"
                   >
                     <i className="bi bi-envelope-fill" aria-hidden="true" />
                     {job.cta}
-                  </a>
+                  </ContactButton>
                 ) : null}
               </div>
             </div>

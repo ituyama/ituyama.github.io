@@ -11,5 +11,10 @@
   "routes": [
     { "pattern": "ituyama.com/*", "zone_name": "ituyama.com" },
     { "pattern": "www.ituyama.com/*", "zone_name": "ituyama.com" }
-  ]
+  ],
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "NOTIFY_EMAIL": "ituyama01@gmail.com",
+    "CONTACT_FROM": "contact@ituyama.com"
+  }
 }

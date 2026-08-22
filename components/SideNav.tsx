@@ -1,3 +1,4 @@
+import ContactSideNavButton from "@/components/ContactSideNavButton";
 import { profile } from "@/lib/profile";
 
 const github = profile.socials.find((s) => s.icon === "github" || s.name === "GitHub");
@@ -26,15 +27,7 @@ export default function SideNav() {
           </a>
         ) : null}
 
-        {profile.email ? (
-          <a
-            href={`mailto:${profile.email}`}
-            aria-label="メール"
-            className="flex size-11 items-center justify-center rounded-[10px] text-[1.2rem] text-bento-ink hover:bg-white"
-          >
-            <i className="bi bi-envelope" aria-hidden="true" />
-          </a>
-        ) : null}
+        <ContactSideNavButton />
       </nav>
 
       <div className="mt-auto flex flex-col items-center gap-4" aria-hidden="true">

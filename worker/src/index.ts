@@ -1,12 +1,11 @@
+import { girlfriendResponse } from "./girlfriend";
+import { handleContact, type ContactEnv } from "./contact";
+
 export type NikkeiPayload = {
   ok: boolean;
   price?: number;
   changePercent?: number;
   asOf?: number;
-};
-
-export type GirlfriendPayload = {
-  hasGirlfriend: false;
 };
 
 const ALLOWED_ORIGINS = new Set([
@@ -18,7 +17,7 @@ const ALLOWED_ORIGINS = new Set([
   "http://127.0.0.1:8787",
 ]);
 
-function corsHeaders(origin: string | null, methods = "GET, OPTIONS"): HeadersInit {
+function corsHeaders(origin: string | null, methods = "GET, POST, OPTIONS"): HeadersInit {
   const allow =
     origin && ALLOWED_ORIGINS.has(origin) ? origin : "https://ituyama.com";
   return {
@@ -71,7 +70,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const origin = request.headers.get("Origin");
-    const headers = corsHeaders(origin, "GET, OPTIONS");
+    const headers = corsHeaders(origin);
 
     if (url.hostname === "www.ituyama.com") {
       url.hostname = "ituyama.com";
@@ -102,15 +101,23 @@ export default {
         ...headers,
         "Cache-Control": "public, max-age=300",
       };
-      return Response.json({ hasGirlfriend: false } satisfies GirlfriendPayload, {
+      return Response.json(girlfriendResponse(), {
         headers: apiHeaders,
       });
+    }
+
+    if (url.pathname === "/api/contact") {
+      const contactHeaders = {
+        ...headers,
+        "Cache-Control": "no-store",
+      };
+      return handleContact(request, env, contactHeaders);
     }
 
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;
 
-interface Env {
+interface Env extends ContactEnv {
   ASSETS: Fetcher;
 }

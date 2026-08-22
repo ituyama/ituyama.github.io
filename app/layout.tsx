@@ -4,6 +4,7 @@ import "@fontsource/line-seed-jp/400.css";
 import "@fontsource/line-seed-jp/700.css";
 import "@fontsource/line-seed-jp/800.css";
 import "./globals.css";
+import ContactFormProvider from "@/components/ContactFormProvider";
 import ProfileFacts from "@/components/ProfileFacts";
 import Splash from "@/components/Splash";
 import { profile } from "@/lib/profile";
@@ -121,9 +122,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${notoSansJp.variable} ${notoSerifJp.variable} ${firaCode.variable}`}>
-        <ProfileFacts />
-        <Splash />
-        {children}
+        <ContactFormProvider>
+          <ProfileFacts />
+          <Splash />
+          {children}
+        </ContactFormProvider>
       </body>
     </html>
   );
