@@ -62,7 +62,7 @@ export default function OpeningsSection({ id, feed }: Props) {
             ) : null}
 
             <div
-              className="pop-work-detail"
+              className={`pop-work-detail${multi ? "" : " pop-work-detail-single"}`}
               id={panelId}
               role={multi ? "tabpanel" : undefined}
               aria-labelledby={multi ? `${id}-tab-${active}` : undefined}
