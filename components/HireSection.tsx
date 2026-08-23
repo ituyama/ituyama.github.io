@@ -3,11 +3,7 @@
 import { useState } from "react";
 
 import { hire } from "@/lib/hire";
-
-function mailto(email: string, org: string, role: string) {
-  const subject = encodeURIComponent(`募集: ${org} ${role}`);
-  return `mailto:${email}?subject=${subject}`;
-}
+import ContactForm from "./ContactForm";
 
 export default function HireSection() {
   const openings = hire.openings;
@@ -15,10 +11,6 @@ export default function HireSection() {
   const job = openings[active] ?? openings[0];
 
   if (!job) return null;
-
-  const href = job.email
-    ? mailto(job.email, job.org, job.role)
-    : job.url;
 
   return (
     <section id="hire" className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby="hire-title">
@@ -68,18 +60,12 @@ export default function HireSection() {
                   ))}
                 </div>
               ) : null}
-              {href ? (
-                <a
-                  href={href}
-                  className="pop-btn pop-work-link mt-5 w-fit"
-                  {...(job.url && !job.email
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                >
-                  <i className="bi bi-envelope-fill" aria-hidden="true" />
-                  {job.cta}
-                </a>
-              ) : null}
+              <ContactForm
+                org={job.org}
+                role={job.role}
+                email={job.email}
+                url={job.url}
+              />
             </div>
           </div>
         </article>
