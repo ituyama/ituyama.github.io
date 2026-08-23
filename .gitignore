@@ -20,6 +20,9 @@
 /image copy 4.png
 /image copy 5.png
 
+# logs
+/logs
+
 # debug
 npm-debug.log*
 yarn-debug.log*
