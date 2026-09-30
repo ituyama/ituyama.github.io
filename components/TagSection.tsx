@@ -1,4 +1,4 @@
-import { profile } from "@/lib/profile";
+import ContactButton from "@/components/ContactButton";
 import { tags } from "@/lib/tags";
 
 export default function TagSection() {
@@ -18,11 +18,11 @@ export default function TagSection() {
             </li>
           ))}
         </ul>
-        {tags.cta && profile.email ? (
-          <a href={`mailto:${profile.email}`} className="pop-btn w-fit">
+        {tags.cta ? (
+          <ContactButton subject="TAG からの連絡" source="TAG" className="pop-btn w-fit">
             <i className="bi bi-envelope-fill" aria-hidden="true" />
             {tags.cta}
-          </a>
+          </ContactButton>
         ) : null}
       </div>
     </section>

@@ -1,5 +1,7 @@
 import { hire } from "@/lib/hire";
+import { jobs } from "@/lib/jobs";
 import { calcAge, profile } from "@/lib/profile";
+import { faqEntries } from "@/lib/seo";
 import { tags } from "@/lib/tags";
 import { work } from "@/lib/work";
 
@@ -16,12 +18,20 @@ export default function ProfileFacts() {
 
   return (
     <section className="sr-only" aria-label={`${profile.nameJa}（${profile.nameEn}）のプロフィール`}>
-      <h1>
+      <p>
         {profile.nameJa} / {profile.nameEn}
-      </h1>
+      </p>
       {profile.tagline ? <p>{profile.tagline}</p> : null}
+      {profile.policy ? <p>{profile.policy}</p> : null}
       {profile.roles.length ? <p>{profile.roles.join(" / ")}</p> : null}
       {profile.about ? <p>{profile.about}</p> : null}
+
+      {faqEntries().map((entry) => (
+        <details key={entry.question}>
+          <summary>{entry.question}</summary>
+          <p>{entry.answer}</p>
+        </details>
+      ))}
 
       <dl>
         {age !== null ? (
@@ -84,9 +94,26 @@ export default function ProfileFacts() {
         </section>
       ) : null}
 
+      {jobs.openings.length ? (
+        <section aria-label={jobs.title}>
+          <h2>{jobs.title}</h2>
+          {jobs.intro ? <p>{jobs.intro}</p> : null}
+          <ul>
+            {jobs.openings.map((job) => (
+              <li key={`${job.org}-${job.role}`}>
+                <p>
+                  {job.org} — {job.role}
+                </p>
+                {job.summary ? <p>{job.summary}</p> : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       {hire.openings.length ? (
-        <section aria-label="募集">
-          <h2>募集</h2>
+        <section aria-label={hire.title}>
+          <h2>{hire.title}</h2>
           {hire.intro ? <p>{hire.intro}</p> : null}
           <ul>
             {hire.openings.map((job) => (
@@ -115,11 +142,7 @@ export default function ProfileFacts() {
       <section aria-label="連絡先・リンク">
         <h2>連絡先・リンク</h2>
         <ul>
-          {profile.email ? (
-            <li>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </li>
-          ) : null}
+          {profile.email ? <li>{profile.email}</li> : null}
           {profile.socials.map((s) => (
             <li key={s.url}>
               <a href={s.url} rel="me noopener noreferrer">

@@ -4,9 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:cf": "npm run build && wrangler dev",
+    "predev": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs && node scripts/fetch-sukiya-random.mjs",
     "build": "next build",
+    "prebuild": "node scripts/fetch-nikkei.mjs && node scripts/write-girlfriend.mjs && node scripts/fetch-sukiya-random.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:cf": "node scripts/deploy-cf.mjs",
+    "deploy:pages": "node scripts/deploy-pages.mjs"
   },
   "dependencies": {
     "@fontsource/line-seed-jp": "^5.2.2",
@@ -22,6 +27,8 @@
     "eslint": "^9.36.0",
     "eslint-config-next": "^15.5.4",
     "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.125.0",
+    "@cloudflare/workers-types": "^5.20260821.0"
   }
 }

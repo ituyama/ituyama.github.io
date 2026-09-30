@@ -1,0 +1,116 @@
+"use client";
+
+import { useState } from "react";
+
+import ContactButton from "@/components/ContactButton";
+import MatchApp from "@/components/MatchApp";
+import GirlfriendApiCard from "@/components/GirlfriendApiCard";
+import type { OpeningsFeed } from "@/lib/openings";
+
+type Props = {
+  id: string;
+  feed: OpeningsFeed;
+};
+
+export default function OpeningsSection({ id, feed }: Props) {
+  const openings = feed.openings;
+  const [active, setActive] = useState(0);
+  const [matchOpen, setMatchOpen] = useState(false);
+  const job = openings[active] ?? openings[0];
+
+  if (!job) return null;
+
+  const contactSubject = `${feed.mailtoPrefix || "募集"}: ${job.org}${job.role ? ` ${job.role}` : ""}`;
+  const contactSource = `${feed.title} / ${job.org}`;
+  const titleId = `${id}-title`;
+  const panelId = `${id}-panel`;
+  const multi = openings.length > 1;
+
+  return (
+    <section id={id} className="pop-work scroll-mt-10 md:pl-[72px]" aria-labelledby={titleId}>
+      <div className="pop-work-inner">
+        <h2 id={titleId} className="pop-policy-mark">
+          {feed.title}
+        </h2>
+        {feed.intro ? <p className="pop-section-intro">{feed.intro}</p> : null}
+
+        <article className="pop-work-sheet pop-frame">
+          <div className={`pop-work-split ${multi ? "" : "pop-work-split-single"}`}>
+            {multi ? (
+            <ul className="pop-work-list" role="tablist" aria-label={feed.title}>
+              {openings.map((item, i) => {
+                const on = i === active;
+                return (
+                  <li key={`${item.org}-${item.role}`}>
+                    <button
+                      type="button"
+                      role="tab"
+                      id={`${id}-tab-${i}`}
+                      aria-selected={on}
+                      aria-controls={panelId}
+                      className={`pop-work-tab ${on ? "is-on" : ""}`}
+                      onClick={() => setActive(i)}
+                    >
+                      <span className="pop-work-tab-name font-lineseed">{item.org}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            ) : null}
+
+            <div
+              className={`pop-work-detail${multi ? "" : " pop-work-detail-single"}`}
+              id={panelId}
+              role={multi ? "tabpanel" : undefined}
+              aria-labelledby={multi ? `${id}-tab-${active}` : undefined}
+            >
+              {job.role ? <p className="pop-work-role">{job.role}</p> : null}
+              {job.summary ? <p className="pop-work-summary">{job.summary}</p> : null}
+              {job.tags.length ? (
+                <div className="pop-hire-tags">
+                  {job.tags.map((tag) => (
+                    <span key={tag} className="pop-chip pop-chip-ghost">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+              {job.api === "girlfriend" ? <GirlfriendApiCard /> : null}
+              <div className="pop-work-actions mt-5 flex flex-wrap gap-2">
+                {job.match ? (
+                  <button type="button" className="pop-btn pop-match-open" onClick={() => setMatchOpen(true)}>
+                    <i className="bi bi-heart-fill" aria-hidden="true" />
+                    マッチング
+                  </button>
+                ) : null}
+                {job.url && !job.email ? (
+                  <a
+                    href={job.url}
+                    className="pop-btn pop-work-link w-fit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                    {job.cta}
+                  </a>
+                ) : job.cta ? (
+                  <ContactButton
+                    subject={contactSubject}
+                    source={contactSource}
+                    className="pop-btn pop-work-link w-fit"
+                  >
+                    <i className="bi bi-envelope-fill" aria-hidden="true" />
+                    {job.cta}
+                  </ContactButton>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <MatchApp open={matchOpen} onClose={() => setMatchOpen(false)} />
+    </section>
+  );
+}

@@ -6,7 +6,7 @@
 
 - [Next.js 15](https://nextjs.org/) (App Router) / React 19 / TypeScript
 - [Tailwind CSS v4](https://tailwindcss.com/)
-- ホスティング: [Vercel](https://vercel.com/)
+- ホスティング: [Cloudflare Workers](https://developers.cloudflare.com/workers/)（静的アセット + `/api/nikkei`）
 
 ## セットアップ
 
@@ -17,19 +17,29 @@ npm run dev                  # http://localhost:3000
 
 プロフィール内容は [`data/profile.json`](data/profile.json) が唯一の情報源です。JSON を編集するとカードが更新されます。
 
-## デプロイ (Vercel)
+## デプロイ (Cloudflare Workers)
 
-1. このリポジトリを Vercel にインポート（Framework: Next.js は自動検出）。
-2. デプロイ。
+1. [Cloudflare](https://dash.cloudflare.com/) に `ituyama.com` ゾーンを追加し、レジストラのネームサーバーを Cloudflare 向けに変更する。
+2. ローカルで Cloudflare にログインする。
 
-### 独自ドメイン `ituyama.com`
+```bash
+npx wrangler login
+```
 
-GitHub Pages から Vercel へ移すため、DNS の切り替えが必要です（**ユーザー作業**）。
+3. ビルドしてデプロイする。
 
-1. Vercel の Project → Settings → Domains に `ituyama.com` と `www.ituyama.com` を追加。
-2. ドメインレジストラの DNS を Vercel の指示どおりに変更:
-   - Apex (`ituyama.com`): `A` レコードを `76.76.21.21`、もしくは案内される値に。
-   - `www`: `CNAME` を `cname.vercel-dns.com`。
-3. GitHub Pages 側のカスタムドメイン設定は解除（旧 `CNAME` ファイルは削除済み）。
+```bash
+npm run deploy:cf
+```
 
-> 反映には DNS 伝播の時間がかかる場合があります。
+`wrangler.jsonc` で `ituyama.com` / `www.ituyama.com` にルートされる。`www` は apex へ 301 リダイレクトする。
+
+### GitHub Pages から移行する場合
+
+1. GitHub リポジトリ Settings → Pages でカスタムドメイン `ituyama.com` を解除する。
+2. DNS を Cloudflare 管理に切り替える（上記）。
+3. 以降の本番デプロイは `npm run deploy:cf` を使う（旧 `npm run deploy:pages` は不要）。
+
+### 日経平均 API
+
+本番では Worker の `/api/nikkei` が Yahoo Finance から取得する。ローカル dev では `/data/nikkei.json`（`predev` / `prebuild` で生成）にフォールバックする。

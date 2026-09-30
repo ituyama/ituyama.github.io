@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "ituyama",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    { "pattern": "ituyama.com/*", "zone_name": "ituyama.com" },
+    { "pattern": "www.ituyama.com/*", "zone_name": "ituyama.com" }
+  ],
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "NOTIFY_EMAIL": "ituyama01@gmail.com",
+    "CONTACT_FROM": "contact@ituyama.com"
+  }
+}

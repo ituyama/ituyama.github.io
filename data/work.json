@@ -1,27 +1,38 @@
 {
   "title": "WORK",
-  "subtitle": "いまの所属",
+  "subtitle": "実はサラリーマンをしています。",
   "items": [
     {
       "name": "DMM.com",
       "role": "テックリード室",
       "url": "https://dmm.com",
       "summary": "25新卒入社。テックリード室に所属。",
-      "focus": ["テックリード", "プロダクト", "LLM"]
+      "focus": [
+        "テックリード",
+        "プロダクト",
+        "LLM"
+      ]
     },
     {
       "name": "Mitologie, Inc.",
       "role": "Co-CEO",
       "url": "https://mitologie.jp",
       "summary": "個人会社です　色々やってます",
-      "focus": ["経営", "プロダクト", "実装"]
+      "focus": [
+        "経営",
+        "プロダクト",
+        "実装"
+      ]
     },
     {
       "name": "Xtraveler, Inc.",
       "role": "Co-Founder",
       "url": "https://xtraveler.jp",
       "summary": "共同創業者。技術周り全般やっています　8年目",
-      "focus": ["創業", "プロダクト"]
+      "focus": [
+        "創業",
+        "プロダクト"
+      ]
     }
   ]
 }
